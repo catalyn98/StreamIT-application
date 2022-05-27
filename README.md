@@ -2,7 +2,7 @@
 StreamIT
 </h1>
 <p align="center">
-MongoDB, ExpressJS, NodeJS, React/Redux
+MongoDB, ExpressJS, NodeJS, React
 </p>
 
 <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/mern.png" />
@@ -13,7 +13,6 @@ StreamIT uses a number of open source projects to work properly:
 * [ExpressJS](https://expressjs.com/) - fast node.js network app framework.
 * [NodeJS](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
-* [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps.
 
 # Installation
 StreamIT application requires [Node.js](https://nodejs.org/)  to run.
