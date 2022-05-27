@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+<h1 align="center">
+StreamIT
+</h1>
+<p align="center">
+MongoDB, ExpressJS, NodeJS, React/Redux
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/mern.png" />
 
-## Available Scripts
+# Tech stack
+StreamIT uses a number of open source projects to work properly:
+* [MongoDB](https://www.mongodb.com/) - A document-oriented, No-SQL database used to store the application data.
+* [ExpressJS](https://expressjs.com/) - fast node.js network app framework.
+* [NodeJS](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps.
 
-In the project directory, you can run:
+# Installation
+StreamIT application requires [Node.js](https://nodejs.org/)  to run.
 
-### `npm start`
+### Set environment variables 
+```sh
+$ Create a .env file in your backend API folder
+$ See the .env sample
+create a mongodb database and add your connection string into .env file
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Clone the repositories
+```sh
+$ git clone https://github.com/catalyn98/StreamIT-application.git
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Install the dependencies and devDependencies:
+Start the server:
+```sh
+$ cd backend API
+$ npm install 
+$ npm start 
+```
+Start the frontend user:
+```sh
+$ cd frontend admin
+$ npm install 
+$ npm start 
+```
+Start the frontend admin:
+```sh
+$ cd frontend admin
+$ npm install 
+$ npm start 
+```
 
-### `npm test`
+# Screenshots frontend user 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.Home page
+<img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/4.Home%20page.png" />
 
-### `npm run build`
+<details>
+  <summary>More Screenshots</summary>
+  2.Movies page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/5.Movies%20page.png" />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  3.Blog page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/6.Blog%20page.png" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  4.Team page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/7.Team%20page.png" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  5.Contact us page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/8.Contact%20us.png" />
 
-### `npm run eject`
+  6.View profile
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/9.View%20profile.png" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  7.Settings account
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/10.Settings%20account.png" />
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  8.Seen movies by user
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/11.Seen%20movies%20by%20user.png" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  9.Movies details page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/12.Movies%20details%20page.png" />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  10.Terms of use
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/15.Terms%20of%20use.png" />
 
-## Learn More
+  11.Privacy policy
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/13.Privacy%20policy.png" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  12.Frequevent questions
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/14.Frequevent%20questions.png" />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  13.Login page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/1.Login%20page.png" />
 
-### Code Splitting
+  14.Register page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/2.Register%20page.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  15.Recovery password page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/3.Recovery%20password%20page.png" />
+</details>
 
-### Analyzing the Bundle Size
+# Screenshots frontend admin 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1.Dashboard
+<img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/1.Dashboard.png" />
 
-### Making a Progressive Web App
+<details>
+  <summary>More Screenshots</summary>
+  2.Users list
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/2.Users%20list.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  3.Movies list
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/3.Movies%20list.png" />
 
-### Advanced Configuration
+  4.Categories movies
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/4.Categories%20movies%20list.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  5.Posts list
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/5.Posts%20list.png" />
 
-### Deployment
+  6.Account settings
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/6.Account%20settings.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  7.Change password
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/7.Change%20password.png" />
 
-### `npm run build` fails to minify
+  8.Add movie page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/8.Add%20movie%20page.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  9.Add category movies list
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/9.Add%20category%20movies%20list.png" />
+
+  10.Add post page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/10.Add%20post%20page.png" />
+
+  11.Login admin page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/11.Login%20admin%20page.png" />
+</details>
