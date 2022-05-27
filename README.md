@@ -49,7 +49,7 @@ $ npm install
 $ npm start 
 ```
 
-# Screenshots frontend user 
+# Web application screenshots 
 
 1.Home page
 <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/4.Home%20page.png" />
@@ -99,7 +99,7 @@ $ npm start
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/3.Recovery%20password%20page.png" />
 </details>
 
-# Screenshots frontend admin 
+# Admin panel screenshots
 
 1.Dashboard
 <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/1.Dashboard.png" />
