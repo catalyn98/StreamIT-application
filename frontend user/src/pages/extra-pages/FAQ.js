@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BannerPages from "../../components/banners/BannerPages";
+import Card from "../../components/card/Card";
 import multipleDevices from "../../assets/images/multipleDevices.png";
-import streamit from "../../assets/images/streamit.png";
-import deleteAccountFAQ from "../../assets/images/deleteAccount.png";
 
 export default function FAQ() {
   const [faq, setfaq] = useState("1");
@@ -76,12 +75,19 @@ export default function FAQ() {
                     <p className="iq-content-text">
                       {" "}
                       Vizionează oriunde și oricând pe orice dispozitiv cu
-                      conexiune la internet. Poți viziona filmele pe iPhone,
-                      iPad, telefonul mobil, tabletă Android, Apple TV, Android
-                      TV, Chromecast, Samsung TV, LG, Chrome OS, MacOS, Windows
-                      PC, PS4 și PS5, iar în viitor aplicația va fi disponibilă
-                      și pe alte dispozitive. Datorită design-ului responsive
-                      serviciul poate fi redat pe orice ecran.{" "}
+                      conexiune la internet.{" "}
+                    </p>
+                    <p className="iq-content-text">
+                      {" "}
+                      Poți viziona filmele pe iPhone, iPad, telefon mobil,
+                      tabletă Android, Apple TV, Android TV, Chromecast, Samsung
+                      TV, LG, Chrome OS, MacOS, Windows PC, PS4 și PS5, iar în
+                      viitor aplicația va fi disponibilă și pe alte dispozitive.{" "}
+                    </p>
+                    <p className="iq-content-text">
+                      {" "}
+                      Datorită design-ului responsive serviciul poate fi redat
+                      pe orice ecran!{" "}
                     </p>
                     <div className=" text-center" style={{ paddingTop: 5 }}>
                       <img
@@ -124,14 +130,6 @@ export default function FAQ() {
                       extraordinar de bogată, cu filme premiate, lungmetraje,
                       documentare, animeuri și multe altele.{" "}
                     </p>
-                    <div className=" text-center" style={{ paddingTop: 5 }}>
-                      <img
-                        src={streamit}
-                        width="500"
-                        className="img-fluid d-block mx-auto mb-3"
-                        alt="StreamIT"
-                      />
-                    </div>
                   </div>
                 </div>
                 <div
@@ -175,13 +173,126 @@ export default function FAQ() {
                       Acest lucru ne ajută să ne îmbunătățim serviciul pe
                       viitor.{" "}
                     </p>
-                    <div className=" text-center" style={{ paddingTop: 5 }}>
-                      <img
-                        src={deleteAccountFAQ}
-                        width="400"
-                        className="img-fluid d-block mx-auto mb-3"
-                        alt="deleteAccount"
-                      />
+                  </div>
+                </div>
+                <div
+                  className={`iq-accordion-block 5  ${
+                    faq === "5" ? "iq-active" : ""
+                  }`}
+                  onClick={() => {
+                    setfaq("5");
+                  }}
+                >
+                  <div className="iq-accordion-title">
+                    <div className="iq-icon-right">
+                      <i aria-hidden="true" className="fa fa-minus active"></i>
+                      <i aria-hidden="true" className="fa fa-plus inactive"></i>
+                    </div>
+                    <h4 className="mb-0 accordion-title iq-heading-title">
+                      Ce este sistemul de evaluare al conținutului?
+                    </h4>
+                  </div>
+                  <div
+                    className={`iq-accordion-details ${
+                      faq === "5" ? "d-block" : "d-none"
+                    }`}
+                  >
+                    <p className="iq-content-text">
+                      {" "}
+                      Sistemul de evaluare al conținutului reprezintă un sistem
+                      de rating pentru filme și seriale cu scopul de a estima
+                      adecvarea acestora pentru anumite audiențe pe baza
+                      conținutului lor{" "}
+                    </p>
+                    <p className="iq-content-text">
+                      {" "}
+                      Sistemul de rating MPA (Motion Picture Association) este
+                      un exemplu de sistem de evaluare al conținutului care este
+                      folosit cu scopul de a ajuta părinții să decidă ce
+                      conținut media este adecvat pentru copiii lor.{" "}
+                    </p>
+                    <div>
+                      <Card.Body>
+                        <div
+                          className="table-responsive"
+                          style={{ paddingTop: 20 }}
+                        >
+                          <table
+                            id="datatable"
+                            className="table table-striped table-bordered"
+                          >
+                            <thead>
+                              <tr>
+                                <th style={{ textAlign: "center" }}>
+                                  Simbol de evaluare
+                                </th>
+                                <th style={{ textAlign: "center" }}>
+                                  Descriere
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>G</td>
+                                <td>
+                                  Public general - sunt admise toate vârstele.
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>R</td>
+                                <td>
+                                  Restricționat - conține materiale pentru
+                                  adulți, iar pentru copii cu vârsta sub 17 ani
+                                  este necesară aprobarea din partea unui
+                                  părinte.
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>PG</td>
+                                <td>
+                                  <p>
+                                    Îndrumare părintească sugerată - este
+                                    posibil ca unele materiale să nu fie
+                                    potrivite pentru copii.
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>PG-13</td>
+                                <td>
+                                  <p>
+                                    Părinții puternic avertizați - unele
+                                    materiale pot fi inadecvate copiilor sub 13
+                                    ani, de aceea părinții sunt îndemnați să fie
+                                    prudenți.
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>NC-13</td>
+                                <td>
+                                  <p>
+                                    Numai pentru adulți - persoanele sub 17 ani
+                                    nu au voie să vizioneze acest tip de
+                                    conținut.
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>TV-MA</td>
+                                <td>
+                                  <p>
+                                    Numai pentru publicul matur - acest program
+                                    este conceput special pentru a fi vizionat
+                                    de adulți și, prin urmare, poate fi
+                                    nepotrivit copiilor sub 17 ani.
+                                  </p>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </Card.Body>
                     </div>
                   </div>
                 </div>
