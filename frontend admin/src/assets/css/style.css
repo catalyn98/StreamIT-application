@@ -1,4 +1,4 @@
-/*================================================
+/*==============================================
 [  Table of contents  ]
 ================================================
 
@@ -492,6 +492,7 @@ Sign In
 .sign-in-page .btn {
   padding: 10px 35px;
   border-radius: 5px;
+  font-size: 15px !important;
 }
 .sign-user_card {
   position: relative;
@@ -532,7 +533,7 @@ Sign In
 }
 ::placeholder {
   color: #d9d5d5 !important;
-  opacity: 1; 
+  opacity: 1;
 }
 :-ms-input-placeholder {
   color: #d9d5d5 !important;

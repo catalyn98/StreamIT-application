@@ -1,4 +1,4 @@
-/*================================================
+/*==============================================
 [  Table of contents  ]
 ================================================
 
@@ -280,6 +280,14 @@ loading
   width: 100%;
   -webkit-border-radius: 6px;
   border-radius: 6px;
+}
+.inputAdmin {
+  border-color: #404043;
+}
+.buttonConnectAdmin {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 12px 24px !important;
 }
 .form-control:focus {
   color: var(--iq-dark1);
