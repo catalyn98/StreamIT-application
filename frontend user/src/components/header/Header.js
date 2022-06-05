@@ -82,7 +82,7 @@ export default function Header() {
                               >
                                 <div className="media align-items-center">
                                   <div className="right-icon">
-                                    <i class="ri-movie-line text-primary"></i>
+                                    <i className="ri-movie-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
                                     <h6 className="my-0 ">Filme vizualizate</h6>
@@ -91,7 +91,7 @@ export default function Header() {
                               </Link>
                               {/* Logout */}
                               <Link
-                                to="/welcome/register"
+                                to="/welcome/login"
                                 className="iq-sub-card setting-dropdown"
                               >
                                 <div className="media align-items-center">
@@ -227,7 +227,7 @@ export default function Header() {
                               >
                                 <div className="media align-items-center">
                                   <div className="right-icon">
-                                    <i class="ri-movie-line text-primary"></i>
+                                    <i className="ri-movie-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
                                     <h6 className="my-0 ">Filme vizualizate</h6>

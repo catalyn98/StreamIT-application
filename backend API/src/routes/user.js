@@ -66,7 +66,7 @@ router.post("/reset-password", async (req, res) => {
                 margin-left: auto;
                 margin-right: auto;
               }
-              p {
+              p, li {
                 margin-left: 40px;
                 font-size: 15px;
               } 
@@ -97,20 +97,34 @@ router.post("/reset-password", async (req, res) => {
              ul {
               list-style-type: disc;
              }
+             a:link {
+              color: blue;
+              background-color: transparent;
+              text-decoration: none;
+            }
+            a:hover {
+              color: red;
+              background-color: transparent;
+            }
+            .contactInfo {
+              font-style: oblique;
+            }
             </style>
               <meta charset="utf-8">
             </head>
             <body>
               <img src="https://t4.ftcdn.net/jpg/04/65/91/57/360_F_465915770_HsbKRqP7PQnoGnNn5dyYRlODYZQI9PNu.jpg" alt="image">
               <p>Salut,</p>
-              <p>Ai primit acest email, deoarece ai solicitat resetarea parolei!</p>
+              <p>Ai primit acest email, deoarece ai solicitat resetarea parolei pentru contul tău de StreamIT.</p>
               <p>Parola ta de autentificare a fost schimbată, iar ca urmare a acestui lucru ai fost deconectat automat de pe toate dispozitivele pe care ai fost logat anterior. 
-              Pentru a te putea autentifica din nou în aplicație folosește următoarele credențiale:</p>
+              Pentru a te putea autentifica din nou în aplicație navighează la pagina de <a href="http://localhost:3000/welcome/login">Conectare</a> și introdu următoarele credențiale:</p>
               <ul>
                 <li>email: <span class="credentials">${user.email}</span></li>
                 <li>parolă: <span class="credentials">${key}</span></li>
               </ul>
-              <p>După autentificare te rugăm să îți schimbi parola, acest lucru se poate face accesând pagina <span class="userAccountSettings">Setări profil</span>.</p>
+              <p>După autentificare te rugăm să îți schimbi parola accesând pagina <a href="http://localhost:3000/user-account-settings">Setări profil</a>.</p>
+              <p>Dacă ai orice fel de neclarități în legătură cu procesul de autentificare nu ezita să ne contactezi prin email la adresa <span class="contactInfo">hello@streamit.com</span> sau telefonic la numărul <span class="contactInfo">+(40) 737 728 737</span>.</p>
+              <p>Toate cele bune!</p>
               <div>
                 <p class="team">Echipa StreamIT</p>
               </div>
@@ -133,6 +147,78 @@ router.post("/reset-password", async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+router.post("/contact", async (req, res) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const phoneNumber = req.body.phoneNumber;
+  const emailAddress = req.body.emailAddress;
+  const message = req.body.message;
+  const mail = {
+    from: process.env.USER,
+    to: process.env.YAHOO_MAIL,
+    subject: "Mesaj din partea lui " + firstName + " " + lastName,
+    html: `<!doctype html>
+      <html>
+        <head>
+          <style>
+            img {
+              width: 280px;
+              height: 200px;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            p, li {
+              margin-left: 40px;
+              font-size: 15px;
+            } 
+            .message {
+              font-style: oblique;
+            }
+            .contactInfo {
+              font-weight: 600;
+            }
+            .footer {
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              color: black;
+              text-align: right;
+              font-style: oblique;
+              font-weight: 700;
+           }
+           .name {
+            color: red;
+           }
+          </style>
+          <meta charset="utf-8">
+        </head>
+        <body>
+           <img src="https://cdni.iconscout.com/illustration/premium/thumb/message-notification-in-laptop-with-coffee-cup-3178506-2670442.png" alt="image">
+           <p>Bună ziua ați primit un mesaj din partea lui ${firstName} ${lastName}.</p>
+           <p>Mesajul trimis este următorul:</p>
+           <p class="message">${message}</p>
+           <p>Dacă doriți să luați legătura cu ${lastName} datele sale de contact pe care le-a furnizat sunt următoarele:</p>
+           <ul>
+            <li>Nume: <span class="contactInfo">${firstName}</span></li>
+            <li>Prenume: <span class="contactInfo">${lastName}</span></li>
+            <li>Adresă de email: <span class="contactInfo">${emailAddress}</span></li>
+            <li>Număr de telefon: <span class="contactInfo">${phoneNumber}</span></li>
+           </ul>
+           <div class="footer">
+            <p>© 2022 <span class="name">StreamIT</span>. Toate drepturile rezervate!</p>
+           </div>
+        </body>
+      </html>`,
+  };
+  const info = await transporter.sendMail(mail);
+  console.log(info);
+  res.send({
+    message: "A fost trimis un mesaj!",
+  });
 });
 
 // Update user

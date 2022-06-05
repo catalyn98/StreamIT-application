@@ -100,6 +100,9 @@ $ npm start
 
   16.Email resset password
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/16.Email%20resset%20password.png" />
+
+  17.Email sent by user from contact page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/17.Email%20sent%20by%20user%20from%20contact%20page.png" />
 </details>
 
 # Admin panel screenshots
