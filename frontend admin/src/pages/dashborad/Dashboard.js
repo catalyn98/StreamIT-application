@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faFilm, faList } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +9,62 @@ import MoviesStatisticsChart from "../../components/charts/MoviesStatisticsChart
 import TableNewUsers from "../../components/new-users/TableNewUsers";
 
 export default function Dashbord() {
+  const [totalNumberOfUsers, setTotalNumberOfUsers] = useState();
+  const [totalNumberOfMovies, setTotalNumberOfMovies] = useState();
+  const [totalNumberOfCategoriesMovies, setTotalNumberOfCategoriesMovies] =
+    useState();
+
+  useEffect(() => {
+    const getTotalNumberOfUsers = async () => {
+      try {
+        const res = await axios.get("/user/total-number-of-users", {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+          },
+        });
+        setTotalNumberOfUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const getTotalNumberOfMovies = async () => {
+      try {
+        const res = await axios.get("movie/total-number-of-movies", {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+          },
+        });
+        setTotalNumberOfMovies(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const getTotalNumberOfCategoriesMovies = async () => {
+      try {
+        const res = await axios.get(
+          "/categories-movies/total-number-of-categories-movies",
+          {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+            },
+          }
+        );
+        setTotalNumberOfCategoriesMovies(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getTotalNumberOfUsers();
+    getTotalNumberOfMovies();
+    getTotalNumberOfCategoriesMovies();
+  }, []);
+
   return (
     <>
       <Container fluid>
@@ -33,7 +90,7 @@ export default function Dashbord() {
                       </div>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mt-3">
-                      <h4 className="mb-0">150</h4>
+                      <h4 className="mb-0">{totalNumberOfUsers}</h4>
                     </div>
                   </Card.Body>
                 </Card>
@@ -53,7 +110,7 @@ export default function Dashbord() {
                       </div>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mt-3">
-                      <h4 className=" mb-0">25</h4>
+                      <h4 className=" mb-0">{totalNumberOfMovies}</h4>
                     </div>
                   </Card.Body>
                 </Card>
@@ -76,7 +133,7 @@ export default function Dashbord() {
                       </div>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mt-3">
-                      <h4 className="mb-0">5</h4>
+                      <h4 className="mb-0">{totalNumberOfCategoriesMovies}</h4>
                     </div>
                   </Card.Body>
                 </Card>

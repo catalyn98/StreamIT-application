@@ -42,7 +42,7 @@ export default function Footer() {
                   <div className="textwidget">
                     <p>
                       <small>
-                        © 2021 StreamIT. Toate drepturile rezervate!
+                        © 2022 StreamIT. Toate drepturile rezervate!
                       </small>
                     </p>
                     <p>

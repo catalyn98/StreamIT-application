@@ -97,6 +97,9 @@ $ npm start
 
   15.Recovery password page
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/3.Recovery%20password%20page.png" />
+
+  16.Email resset password
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/16.Email%20resset%20password.png" />
 </details>
 
 # Admin panel screenshots

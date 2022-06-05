@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -8,8 +8,6 @@ import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
 
 export default function AddNews() {
-  let history = useHistory();
-
   const options = [
     { value: "Box office", label: "Box office" },
     { value: "Film", label: "Film" },
@@ -96,17 +94,13 @@ export default function AddNews() {
                   <Row>
                     <Form.Group className="col-12">
                       {/* Add article button */}
-                      <Link to="/news-list">
-                        <Button
-                          type="button"
-                          onClick={() => history.push("/news-list")}
-                          variant="primary"
-                        >
+                      <Link to="/blog-posts">
+                        <Button type="button" variant="primary">
                           Adaugă articol
                         </Button>{" "}
                       </Link>
                       {/* Cancel article button */}
-                      <Link to="/news-list">
+                      <Link to="/blog-posts">
                         <Button type="reset" variant="danger">
                           Anulează
                         </Button>

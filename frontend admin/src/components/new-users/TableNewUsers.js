@@ -11,8 +11,8 @@ export default function TableNewUsers() {
       try {
         const res = await axios.get(`/user?new=${true}`, {
           headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2JkNDkxZDM4MWJlMzlkZDY5ZWMxNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1Mjg2MTc5NCwiZXhwIjoxNjU1NDUzNzk0fQ.VCx6UDoBYX1Q86viZ5aFp2XGXN-4eQLUXagCTh8g4JM",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
           },
         });
         setNewUsers(res.data);

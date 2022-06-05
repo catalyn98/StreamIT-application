@@ -6,28 +6,32 @@ import DropdownGenre from "../../components/movies/DropdownGenre";
 
 export default function Movies() {
   const [lists, setLists] = useState([]);
+  const [genre, setGenre] = useState(null);
 
   useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axios.get("categories-movies/", {
-          headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2JkNGU1ZDM4MWJlMzlkZDY5ZWMxYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NTI3NzcwMzMsImV4cCI6MTY1NTM2OTAzM30.LOXNcUtdISTsdPoTH22bIgD2ipyr1XgHVhovLQVhgdY",
-          },
-        });
+        const res = await axios.get(
+          `categories-movies${genre ? "?genre=" + genre : ""}`,
+          {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjliZTdkNTQyMTc4YzU2ODczNzAxMzEiLCJpYXQiOjE2NTQzODg3Nzd9.AYFpNADW9wAirr9xAoln8mfyqiHvjChvPz5Z9Hclwbs",
+            },
+          }
+        );
         setLists(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getRandomLists();
-  }, []);
+  }, [genre]);
 
   return (
     <>
       <MoviesCarousel />
-      <DropdownGenre />
+      <DropdownGenre setGenre={setGenre} />
       {lists?.map((list, index) => (
         <ListMovies key={index} list={list} />
       ))}
