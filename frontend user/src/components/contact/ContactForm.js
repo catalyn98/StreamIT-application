@@ -15,20 +15,20 @@ export default function ContactForm() {
   const sendMessage = (e) => {
     e.preventDefault();
     if (firstName.length < 3) {
-      notifyError("Completați câmpul pentru nume!");
+      notifyError("Adăugați nume.");
     } else if (lastName.length < 3) {
-      notifyError("Completați câmpul pentru prenume!");
+      notifyError("Adăugați prenume.");
     } else if (phoneNumber.length === 0) {
-      notifyError("Completați câmpul pentru telefon!");
+      notifyError("Adăugați număr de telefon.");
     } else if (phoneNumber.length !== 10) {
-      notifyError("Numărul de telefon introdus nu este valid!");
+      notifyError("Numărul de telefon introdus nu este valid.");
     } else if (emailAddress.length < 5) {
-      notifyError("Completați câmpul pentru email!");
+      notifyError("Adăugați email.");
     } else if (message.length === 0) {
-      notifyError("Completați câmpul pentru mesaj!");
+      notifyError("Adăugați mesaj.");
     } else if (message.length < 15) {
       notifyError(
-        "Pentru a putea fi trimis mesajul, acesta trebuie să conțină minim 15 caractere!"
+        "Pentru a putea fi trimis mesajul, acesta trebuie să conțină minim 15 caractere."
       );
     } else {
       Axios.post("/user/contact", {

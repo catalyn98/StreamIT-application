@@ -20,7 +20,7 @@ export default function RecoveryPassword() {
             notifySuccess(
               "Un email cu instrucțiunile de resetare a fost trimis la adresa " +
                 email +
-                "!"
+                "."
             );
             const inputs = document.querySelectorAll("#email");
             inputs.forEach((input) => {
@@ -29,7 +29,7 @@ export default function RecoveryPassword() {
           }
         })
         .catch(() =>
-          notifyError("Această adresă de email nu este asociată niciunui cont!")
+          notifyError("Această adresă de email nu este asociată niciunui cont.")
         );
     }
   };

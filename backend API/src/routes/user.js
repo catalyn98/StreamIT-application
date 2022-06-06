@@ -117,7 +117,7 @@ router.post("/reset-password", async (req, res) => {
               <p>Salut,</p>
               <p>Ai primit acest email, deoarece ai solicitat resetarea parolei pentru contul tău de StreamIT.</p>
               <p>Parola ta de autentificare a fost schimbată, iar ca urmare a acestui lucru ai fost deconectat automat de pe toate dispozitivele pe care ai fost logat anterior. 
-              Pentru a te putea autentifica din nou în aplicație navighează la pagina de <a href="http://localhost:3000/welcome/login">Conectare</a> și introdu următoarele credențiale:</p>
+              Pentru a te putea autentifica din nou în aplicație navighează la pagina de <a href="http://localhost:3000/welcome/login">Conectare</a> și completează câmpurile din formular cu următoarele date:</p>
               <ul>
                 <li>email: <span class="credentials">${user.email}</span></li>
                 <li>parolă: <span class="credentials">${key}</span></li>
