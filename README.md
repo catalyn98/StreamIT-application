@@ -149,19 +149,19 @@ $ npm start
 # Database structure
 
 1.The whole schema
-<img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/1.Structure%20of%20database.png" />
+<img src="https://github.com/catalyn98/StreamIT-application/blob/master/documents%20db/1.Structure%20of%20database.png" />
 
 <details>
   <summary>More Screenshots</summary>
   2.User schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/2.User.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/documents%20db/2.User.png" />
 
   3.Movie schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/3.Movie.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/documents%20db/3.Movie.png" />
 
   4.Category movie schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/4.Category%20movie.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/documents%20db/4.Category%20movie.png" />
 
   5.Article schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/5.Article.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/documents%20db/5.Article.png" />
 </details>
