@@ -1,8 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Header from "../components/header/Header";
+import React, { useContext } from "react";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
 import MainPages from "../router/MainPages";
-import Footer from "../components/footer/Footer";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
+import RecoveryPassword from "../pages/recovery-password/RecoveryPassword";
+import { AuthenticationContext } from "../context/authenticationContext/AuthenticationContext";
 
 const PagesLayout = () => {
   const backToTop = document.getElementById("back-to-top");
@@ -24,22 +26,65 @@ const PagesLayout = () => {
     });
   }
 
+  const { user } = useContext(AuthenticationContext);
+
   return (
-    <>
-      <div id="back-to-top">
-        <Link className="top" to="#" id="top">
-          {" "}
-          <i className="fa fa-angle-up"></i>{" "}
-        </Link>
-      </div>
-      <div className="wraper">
-        <Header />
-        <div className="content-page" id="content-page">
-          <MainPages />
-        </div>
-      </div>
-      <Footer />
-    </>
+    <Switch>
+      <Route exact path="/">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/movies">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/blog">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/team">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/contact-us">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/movie-details/:movieName">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/user-profile">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/user-account-settings">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/terms-of-use">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/privacy-policy">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/FAQ">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/my-seen-movies">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
+      <Route path="/login"> {!user ? <Login /> : <Redirect to="/" />} </Route>
+      <Route path="/register" component={Register} />
+      <Route path="/recovery-password" component={RecoveryPassword} />
+      {user && (
+        <>
+          <div id="back-to-top">
+            <Link className="top" to="#" id="top">
+              {" "}
+              <i className="fa fa-angle-up"></i>{" "}
+            </Link>
+          </div>
+          <div className="wraper">
+            <div className="content-page" id="content-page">
+              <MainPages />
+            </div>
+          </div>
+        </>
+      )}
+    </Switch>
   );
 };
 

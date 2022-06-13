@@ -73,7 +73,7 @@ export default function RecoveryPassword() {
                           Resetează
                         </Button>{" "}
                         {/* Cancel button */}
-                        <Link to="/welcome/login">
+                        <Link to="/login">
                           <Button className="btn btn-dark mt-2">
                             Anulează
                           </Button>

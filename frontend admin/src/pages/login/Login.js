@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
+import { login } from "../../context/authenticationContext/apiCalls";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { dispatch } = useContext(AuthenticationContext);
+
+  const handleLogin = () => {
+    login({ email, password }, dispatch);
+  };
+
   return (
     <>
       <section className="sign-in-page">
@@ -27,6 +37,7 @@ export default function Login() {
                           id="emailAddress"
                           placeholder="Tastează adresa de email"
                           autoComplete="off"
+                          onChange={(e) => setEmail(e.target.value)}
                           required
                         />
                       </Form.Group>
@@ -37,12 +48,16 @@ export default function Login() {
                           id="password"
                           placeholder="Tastează parola"
                           autoComplete="off"
+                          onChange={(e) => setPassword(e.target.value)}
                           required
                         />
                       </Form.Group>
                       <div className="sign-info">
-                        <Link to="/">
-                          <Button className="btn btn-hover btn-primary1 buttonConnectAdmin">
+                        <Link to="#">
+                          <Button
+                            className="btn btn-hover btn-primary1 buttonConnectAdmin"
+                            onClick={handleLogin}
+                          >
                             Conectează-te
                           </Button>
                         </Link>

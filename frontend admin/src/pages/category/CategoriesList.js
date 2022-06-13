@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Card from "../../components/card/Card";
+import { CategoryContext } from "../../context/categoryContext/CategoryContext";
+import {
+  getCategoriesMovies,
+  deleteCategoryMovie,
+} from "../../context/categoryContext/apiCalls";
 
 export default function CategoriesList() {
+  const { categoriesMovies, dispatch } = useContext(CategoryContext);
+
+  useEffect(() => {
+    getCategoriesMovies(dispatch);
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteCategoryMovie(id, dispatch);
+  };
+
   return (
     <>
       <Container fluid>
@@ -39,84 +54,37 @@ export default function CategoriesList() {
                     </thead>
                     {/* Content table */}
                     <tbody>
-                      {/* Row #1 */}
-                      <tr>
-                        <td>Filme populare</td>
-                        <td>Acțiune</td>
-                        <td>7</td>
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Edit</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Delete</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
+                      {categoriesMovies.map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.title}</td>
+                          <td>{item.genre}</td>
+                          <td>{item.content.length}</td>
+                          <td>
+                            <div className="flex align-items-center list-user-action">
+                              {/* Edit category movie button */}
+                              <Link
+                                to={{
+                                  pathname:
+                                    "/update-category-list/" + item.title,
+                                  categoryList: item,
+                                }}
+                                style={{ marginRight: 25 }}
+                              >
+                                <Button variant="outline-success">
+                                  <i className="ri-pencil-line"></i>
+                                </Button>
+                              </Link>{" "}
+                              {/* Delete category movie button */}
+                              <Button
+                                variant="outline-primary"
+                                onClick={() => handleDelete(item._id)}
+                              >
                                 <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #2 */}
-                      <tr>
-                        <td>Recomandările noastre</td>
-                        <td>Acțiune</td>
-                        <td>10</td>
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Edit</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Delete</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #3 */}
-                      <tr>
-                        <td>Cele mai bune filme horror</td>
-                        <td>Horror</td>
-                        <td>16</td>
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Edit</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Delete</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

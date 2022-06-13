@@ -15,6 +15,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@material-ui/core": "^4.12.4",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
+    "@material-ui/icons": "^4.11.3",
     "@mui/lab": "^5.0.0-alpha.80",
     "@mui/material": "^5.6.4",
     "@testing-library/jest-dom": "^5.11.10",
@@ -24,10 +26,12 @@
     "axios": "^0.27.2",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.28.0",
+    "firebase": "^8.7.1",
     "moment": "^2.29.3",
     "raphael": "^2.3.0",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
+    "react-app-rewired": "^2.2.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-quilljs": "^1.2.14",
@@ -36,6 +40,7 @@
     "react-scripts": "^4.0.3",
     "react-select": "^5.1.0",
     "react-slider-swiper": "^2.0.6",
+    "react-toastify": "^9.0.4",
     "react-transition-group": "^4.4.1",
     "react-use-theme": "^1.0.2",
     "redux": "^4.1.0",
@@ -47,10 +52,10 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [

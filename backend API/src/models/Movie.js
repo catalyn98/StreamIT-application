@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+const { Schema } = mongoose;
 const movieSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -11,6 +12,7 @@ const movieSchema = new mongoose.Schema(
     cast: { type: String, required: true },
     director: { type: String, required: true },
     trailer: { type: String, required: true },
+    list: { type: Schema.Types.ObjectId, ref: "CategoriesMovies" },
   },
   {
     timestamps: true,

@@ -78,15 +78,15 @@ export default function Banner() {
   useEffect(() => {
     const getSliderMovie = async () => {
       try {
-        const res = await axios.get("/movie/randomMovie", {
+        const res = await axios.get("/movie/randomMovie/", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhOGU1MDkzNjA2ZjhiYzQ2ZjZjYTkiLCJpYXQiOjE2NTQ0MTM0MjZ9.4ing-OKSxWow1iiME3BshJ0Xd_gZEMlv_nnSoda4mkk",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setConetent(res.data[0]);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getSliderMovie();
@@ -226,7 +226,10 @@ export default function Banner() {
                     className="trailor-video text-center"
                   >
                     <Link
-                      to={{ pathname: "/movie-details", movie: content }}
+                      to={{
+                        pathname: "/movie-details/" + content.title,
+                        movie: content,
+                      }}
                       className="video-open playbtn"
                     >
                       {/* Play button svg */}

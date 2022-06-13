@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Button, Nav, Dropdown } from "react-bootstrap";
 import Card from "../card/Card";
 import CustomToggle from "../dropdown/Dropdown";
 import user from "../../assets/images/user/01.png";
 import logo from "../../../src/assets/images/logo.png";
+import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
+import { logout } from "../../context/authenticationContext/AuthenticationAction";
 
 export default function Header() {
   const minisidbar = () => {
     document.body.classList.toggle("sidebar-main");
   };
+
+  const { dispatch } = useContext(AuthenticationContext);
 
   return (
     <div className="iq-top-navbar">
@@ -140,10 +144,12 @@ export default function Header() {
                       <div className="d-inline-block w-100 text-center p-3">
                         <Link
                           className="bg-primary iq-sign-btn"
-                          to="/authentication/login"
+                          to="/login"
                           role="button"
                         >
-                          Deconectare
+                          <span onClick={() => dispatch(logout())}>
+                            Deconectare
+                          </span>
                           <i className="ri-login-box-line ml-2"></i>
                         </Link>
                       </div>

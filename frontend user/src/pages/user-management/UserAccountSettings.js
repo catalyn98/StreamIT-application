@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 import user from "../../assets/images/user/user.png";
 
 export default function UserAccountSettings() {
   return (
     <>
+      <Header />
       <section className="m-profile manage-p">
         <Container>
           <Row className="row align-items-center justify-content-center h-100">
@@ -150,6 +153,7 @@ export default function UserAccountSettings() {
           </Row>
         </Container>
       </section>
+      <Footer />
     </>
   );
 }

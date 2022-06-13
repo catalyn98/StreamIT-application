@@ -9,10 +9,10 @@ export default function TheMostRecentArticle() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await axios.get("news/?new=true", {
+        const res = await axios.get("/news/?new=true/", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhOGU1MDkzNjA2ZjhiYzQ2ZjZjYTkiLCJpYXQiOjE2NTQ0MTM0MjZ9.4ing-OKSxWow1iiME3BshJ0Xd_gZEMlv_nnSoda4mkk",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setLists(res.data);
@@ -24,29 +24,7 @@ export default function TheMostRecentArticle() {
   }, []);
 
   return (
-    <div
-      className="widget-area"
-      aria-label="Blog Sidebar"
-      style={{ paddingTop: 25 }}
-    >
-      {/* Search bar */}
-      <div id="search-2" className="widget widget_search">
-        <form method="get" className="search-form" action="#">
-          <label>
-            <span className="input-group screen-reader-text">Search for:</span>
-          </label>
-          <input
-            type="search"
-            className="search-field search__input"
-            placeholder="Caută"
-            name="s"
-          />
-          <button type="submit" className="search-submit">
-            <i className="ri-search-line"></i>
-            <span className="screen-reader-text">Caută</span>
-          </button>
-        </form>
-      </div>
+    <div className="widget-area" aria-label="Blog Sidebar">
       <div className="iq-widget-menu widget">
         <h5 className="widget-title">Ultimele postări</h5>
         {/* Article items  */}

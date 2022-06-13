@@ -12,10 +12,10 @@ export default function MoviesStatisticsChart() {
       const genre = [];
       const numberMovies = [];
       try {
-        const res = await axios.get("/movie/statistics", {
+        const res = await axios.get("/movie/statistics/", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         const statisticsList = res.data.sort(function (a, b) {
@@ -32,8 +32,8 @@ export default function MoviesStatisticsChart() {
         );
         setCategory(genre);
         setData(numberMovies);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getMoviesStatistics();

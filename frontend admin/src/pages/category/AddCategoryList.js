@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
 import Card from "../../components/card/Card";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
-
-const animatedComponents = makeAnimated();
+import { getMovies } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { CategoryContext } from "../../context/categoryContext/CategoryContext";
+import { createCategoryMovies } from "../../context/categoryContext/apiCalls";
 
 export default function AddCategory() {
-  let history = useHistory();
+  const [list, setList] = useState(null);
+  const history = useHistory();
 
-  const options = [
-    { value: "Sonic Ariciul 2", label: "Sonic Ariciul 2" },
-    { value: "Mortal Kombat", label: "Mortal Kombat" },
-    { value: "Insurgent", label: "Insurgent" },
-    { value: "Dune", label: "Dune" },
-    { value: "Răzbunătorii", label: "Răzbunătorii" },
-  ];
+  const { dispatch } = useContext(CategoryContext);
+  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMovies(dispatchMovie);
+  }, [dispatchMovie]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setList({ ...list, [e.target.name]: value });
+  };
+
+  const handleSelect = (e) => {
+    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    setList({ ...list, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createCategoryMovies(list, dispatch);
+    history.push("/categories-movies-list");
+  };
 
   return (
     <>
@@ -35,15 +51,22 @@ export default function AddCategory() {
                     <Form>
                       {/* Category name */}
                       <Form.Group>
-                        <Form.Control type="text" placeholder="Nume" />
+                        <Form.Control
+                          type="text"
+                          placeholder="Titlu"
+                          name="title"
+                          onChange={handleChange}
+                        />
                       </Form.Group>
                       {/* Choose genre movie category */}
                       <Form.Group>
                         <select
                           className="form-control"
-                          id="exampleFormControlSelect1"
-                          defaultValue={"Gen categorie"}
+                          name="genre"
+                          onChange={handleChange}
+                          defaultValue="Gen categorie"
                         >
+                          <option>Alege genul categoriei</option>
                           <option>Acțiune</option>
                           <option>Animație</option>
                           <option>Aventură</option>
@@ -58,25 +81,38 @@ export default function AddCategory() {
                       </Form.Group>
                       {/* Choose movie(es) */}
                       <Form.Group>
-                        <Select
-                          closeMenuOnSelect={false}
-                          components={animatedComponents}
-                          placeholder={"Selectează filme"}
-                          isMulti
-                          options={options}
-                        />
+                        <Col lg="12">
+                          <label>
+                            Alege filmele care vor face parte din această
+                            categorie
+                          </label>
+                        </Col>
+                        <Form.Group>
+                          <select
+                            multiple
+                            className="form-control"
+                            name="content"
+                            onChange={handleSelect}
+                          >
+                            {movies
+                              .sort((a, b) => a.title.localeCompare(b.title))
+                              .map((movie) => (
+                                <option key={movie._id} value={movie._id}>
+                                  {movie.title}
+                                </option>
+                              ))}
+                          </select>
+                        </Form.Group>
                       </Form.Group>
                       <Form.Group className="form-group">
                         <Link to="/categories-movies-list">
-                          {/* Save button */}
+                          {/* Add button */}
                           <Button
                             type="button"
-                            onClick={() =>
-                              history.push("/categories-movies-list")
-                            }
+                            onClick={handleSubmit}
                             variant=" btn-primary"
                           >
-                            Salvează
+                            Adaugă
                           </Button>{" "}
                         </Link>
                         <Link to="/categories-movies-list">

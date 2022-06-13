@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col, Navbar, Dropdown, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../card/Card";
@@ -6,8 +6,12 @@ import CustomToggle from "../customToggle/CustomToggle";
 import TheMostRecentMovies from "./TheMostRecentMovies";
 import logo from "../../assets/images/logo.png";
 import user from "../../assets/images/user/user.png";
+import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
+import { logout } from "../../context/authenticationContext/AuthenticationAction";
 
 export default function Header() {
+  const { dispatch } = useContext(AuthenticationContext);
+
   return (
     <>
       <header id="main-header">
@@ -91,7 +95,7 @@ export default function Header() {
                               </Link>
                               {/* Logout */}
                               <Link
-                                to="/welcome/login"
+                                to="/login"
                                 className="iq-sub-card setting-dropdown"
                               >
                                 <div className="media align-items-center">
@@ -99,7 +103,11 @@ export default function Header() {
                                     <i className="ri-logout-circle-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
-                                    <h6 className="my-0 ">Deconectare</h6>
+                                    <h6 className="my-0 ">
+                                      <span onClick={() => dispatch(logout())}>
+                                        Deconectare
+                                      </span>
+                                    </h6>
                                   </div>
                                 </div>
                               </Link>
@@ -236,7 +244,7 @@ export default function Header() {
                               </Link>
                               {/* Logout */}
                               <Link
-                                to="/welcome/login"
+                                to="/login"
                                 className="iq-sub-card setting-dropdown"
                               >
                                 <div className="media align-items-center">
@@ -244,7 +252,11 @@ export default function Header() {
                                     <i className="ri-logout-circle-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
-                                    <h6 className="my-0 ">Deconectare</h6>
+                                    <h6 className="my-0 ">
+                                      <span onClick={() => dispatch(logout())}>
+                                        Deconectare
+                                      </span>
+                                    </h6>
                                   </div>
                                 </div>
                               </Link>

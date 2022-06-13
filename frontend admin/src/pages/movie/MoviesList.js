@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Card from "../../components/card/Card";
-import SearchBar from "../../components/searchBar/SearchBar";
-import posterMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
 
 export default function MoviesList() {
+  const { movies, dispatch } = useContext(MovieContext);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    getMovies(dispatch);
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteMovie(id, dispatch);
+  };
+
   return (
     <>
       <Container fluid>
@@ -18,7 +29,19 @@ export default function MoviesList() {
                   <h4 className="card-title">Listă filme</h4>
                 </Card.Header.Title>
                 {/* SearchBar */}
-                <SearchBar placeholder="Caută film după nume" />
+                <div className="iq-search-bar ml-auto">
+                  <Form action="#" className="searchbox">
+                    <input
+                      type="text"
+                      className="text search-input"
+                      placeholder="Caută film după nume"
+                      onChange={(event) => setQuery(event.target.value)}
+                    />
+                    <Link className="search-link" to="#">
+                      <i className="ri-search-line"></i>
+                    </Link>
+                  </Form>
+                </div>
                 {/* Add movie button */}
                 <div className="iq-card-header-toolbar d-flex align-items-center">
                   <Link to="/add-movie" className="btn btn-primary">
@@ -45,159 +68,72 @@ export default function MoviesList() {
                     </thead>
                     {/* Content table */}
                     <tbody>
-                      {/* Row #1 */}
-                      <tr>
-                        {/* Movie poster + movie name */}
-                        <td>
-                          <div className="media align-items-center">
-                            <div className="iq-movie">
-                              {/* Movie poster */}
-                              <Link to="#">
-                                <img
-                                  src={posterMovie}
-                                  className="img-border-radius avatar-40 img-fluid"
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                            {/* Movie name */}
-                            <div className="media-body text-white text-left ml-3">
-                              <p className="mb-0">Ariciul Sonic 2</p>
-                            </div>
-                          </div>
-                        </td>
-                        {/* Limit age */}
-                        <td>PG</td>
-                        {/* Duration */}
-                        <td>2h 2m</td>
-                        {/* Genre */}
-                        <td>Acțiune</td>
-                        {/* Edit and delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            {/* Edit movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Editează</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            {/* Delete movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #2 */}
-                      <tr>
-                        {/* Movie poster + movie name */}
-                        <td>
-                          <div className="media align-items-center">
-                            <div className="iq-movie">
-                              {/* Movie poster */}
-                              <Link to="#">
-                                <img
-                                  src={posterMovie}
-                                  className="img-border-radius avatar-40 img-fluid"
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                            {/* Movie name */}
-                            <div className="media-body text-white text-left ml-3">
-                              <p className="mb-0">Mortal Kombat</p>
-                            </div>
-                          </div>
-                        </td>
-                        {/* Limit age */}
-                        <td>R</td>
-                        {/* Duration */}
-                        <td>1h 50m</td>
-                        {/* Genre */}
-                        <td>Acțiune</td>
-                        {/* Edit and delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            {/* Edit movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Editează</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            {/* Delete movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #3 */}
-                      <tr>
-                        {/* Movie poster + movie name */}
-                        <td>
-                          <div className="media align-items-center">
-                            <div className="iq-movie">
-                              {/* Movie poster */}
-                              <Link to="#">
-                                <img
-                                  src={posterMovie}
-                                  className="img-border-radius avatar-40 img-fluid"
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                            {/* Movie name */}
-                            <div className="media-body text-white text-left ml-3">
-                              <p className="mb-0">Divergent</p>
-                            </div>
-                          </div>
-                        </td>
-                        {/* Limit age */}
-                        <td>PG-13</td>
-                        {/* Duration */}
-                        <td>2h 19m</td>
-                        {/* Genre */}
-                        <td>Acțiune</td>
-                        {/* Edit and delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            {/* Edit movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Editează</Tooltip>}
-                            >
-                              <Link className="iq-bg-success" to="#">
-                                <i className="ri-pencil-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                            {/* Delete movie button */}
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link className="iq-bg-primary" to="#">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
+                      {movies
+                        .filter((item) => {
+                          if (query === "") {
+                            return item;
+                          } else if (
+                            item.title
+                              .toLowerCase()
+                              .includes(query.toLowerCase())
+                          ) {
+                            return item;
+                          }
+                          return false;
+                        })
+                        .map((item, index) => (
+                          <tr key={index}>
+                            {/* Movie poster + movie name */}
+                            <td>
+                              <div className="media align-items-center">
+                                <div className="iq-movie">
+                                  {/* Movie poster */}
+                                  <Link to="#">
+                                    <img
+                                      src={item.image}
+                                      className="img-border-radius avatar-40 img-fluid"
+                                      alt=""
+                                    />
+                                  </Link>
+                                </div>
+                                {/* Movie name */}
+                                <div className="media-body text-white text-left ml-3">
+                                  <p className="mb-0">{item.title}</p>
+                                </div>
+                              </div>
+                            </td>
+                            {/* Limit age */}
+                            <td>{item.limitAge}</td>
+                            {/* Duration */}
+                            <td>{item.duration}</td>
+                            {/* Genre */}
+                            <td>{item.genre}</td>
+                            {/* Edit and delete button */}
+                            <td>
+                              <div className="flex align-items-center list-user-action">
+                                {/* Edit movie button */}
+                                <Link
+                                  to={{
+                                    pathname: "/update-movie/" + item.title,
+                                    movie: item,
+                                  }}
+                                  style={{ marginRight: 25 }}
+                                >
+                                  <Button variant="outline-success">
+                                    <i className="ri-pencil-line"></i>
+                                  </Button>{" "}
+                                </Link>
+                                {/* Delete movie button */}
+                                <Button
+                                  variant="outline-primary"
+                                  onClick={() => handleDelete(item._id)}
+                                >
+                                  <i className="ri-delete-bin-line"></i>
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>

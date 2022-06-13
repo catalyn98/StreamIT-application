@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
 import Card from "../../components/card/Card";
+import Footer from "../../components/footer/Footer";
 import multipleDevices from "../../assets/images/multipleDevices.png";
 
 export default function FAQ() {
@@ -10,6 +12,7 @@ export default function FAQ() {
 
   return (
     <>
+      <Header />
       <BannerPages pageName="Întrebări frecvente" />
       <main id="main" className="site-main">
         <Container>
@@ -301,6 +304,7 @@ export default function FAQ() {
           </Row>
         </Container>
       </main>
+      <Footer />
     </>
   );
 }

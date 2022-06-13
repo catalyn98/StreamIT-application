@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Header from "../../components/header/Header";
 import Banner from "../../components/banners/BannerHomePage";
 import ListMovies from "../../components/movies/ListMovies";
 import ParallaxHomePage from "../../components/parallax/ParallaxHomePage";
 import AnnouncedMovies from "../../components/announcedMovies/AnnouncedMovies";
+import Footer from "../../components/footer/Footer";
 
 export default function Home() {
   const [lists, setLists] = useState([]);
@@ -14,7 +16,7 @@ export default function Home() {
         const res = await axios.get("/categories-movies/", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhOGU1MDkzNjA2ZjhiYzQ2ZjZjYTkiLCJpYXQiOjE2NTQ0MTM0MjZ9.4ing-OKSxWow1iiME3BshJ0Xd_gZEMlv_nnSoda4mkk",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setLists(res.data);
@@ -26,7 +28,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
+      <Header />
       <Banner />
       {lists?.map((list, index) => {
         if (index >= 2) return null;
@@ -34,6 +37,7 @@ export default function Home() {
       })}
       <ParallaxHomePage />
       <AnnouncedMovies />
-    </div>
+      <Footer />
+    </>
   );
 }

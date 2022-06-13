@@ -1,16 +1,19 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
 import register from "../../assets/images/register.png";
 import deleteAccount from "../../assets/images/deleteAccount.png";
 import streaming from "../../assets/images/streaming.png";
 import accessAccount from "../../assets/images/accessAccount.png";
 import termsOfUse from "../../assets/images/termsOfUse.png";
+import Footer from "../../components/footer/Footer";
 
 export default function TermsOfUse() {
   return (
     <>
+      <Header />
       <BannerPages pageName="Termeni și condiții" />
       <main id="main" className="site-main">
         <Container>
@@ -160,6 +163,7 @@ export default function TermsOfUse() {
           </Row>
         </Container>
       </main>
+      <Footer />
     </>
   );
 }

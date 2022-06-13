@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
+import Footer from "../../components/footer/Footer";
 
 export default function PrivacyPolicy() {
   return (
     <>
+      <Header />
       <BannerPages pageName="Politică de confidențialitate" />
       <main id="main" className="site-main">
         <Container>
@@ -158,6 +161,7 @@ export default function PrivacyPolicy() {
           </Row>
         </Container>
       </main>
+      <Footer />
     </>
   );
 }

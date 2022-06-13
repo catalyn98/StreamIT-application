@@ -31,7 +31,7 @@ export default function ContactForm() {
         "Pentru a putea fi trimis mesajul, acesta trebuie să conțină minim 15 caractere."
       );
     } else {
-      Axios.post("/user/contact", {
+      Axios.post("/user/contact/", {
         firstName,
         lastName,
         phoneNumber,
@@ -40,10 +40,10 @@ export default function ContactForm() {
       })
         .then((res) => {
           if (res.status === 200) {
-            notifySuccess("Mesajul tău a fost trimis!");
+            notifySuccess("Mesajul tău a fost trimis.");
           }
         })
-        .catch(() => notifyError("Mesajul tău nu s-a putut trimite!"));
+        .catch(() => notifyError("Mesajul tău nu s-a putut trimite"));
       const inputs = document.querySelectorAll(
         "#firstName, #lastName, #phoneNumber, #emailAddress, #message"
       );

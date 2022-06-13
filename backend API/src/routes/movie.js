@@ -18,8 +18,7 @@ router.post("/", authentication.verify, async (req, res) => {
 });
 
 // Update movie
-router.put("/:id", authentication.verify, async (req, res) => {
-  if (req.user.role === "admin") {
+router.put("/:id", async (req, res) => {
     try {
       const updateMovie = await Movie.findByIdAndUpdate(
         req.params.id,
@@ -34,9 +33,7 @@ router.put("/:id", authentication.verify, async (req, res) => {
     } catch (error) {
       res.status(500).json(error);
     }
-  } else {
-    res.status(500).json("Nu ai dreptul de a actualiza filme!");
-  }
+  
 });
 
 // Delete movie

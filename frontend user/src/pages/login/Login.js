@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
+import { login } from "../../context/authenticationContext/apiCalls";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { dispatch } = useContext(AuthenticationContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login({ email, password }, dispatch);
+  };
+
   return (
     <>
       <section className="sign-in-page">
@@ -23,6 +34,7 @@ export default function Login() {
                           id="emailAddress"
                           placeholder="Tastează adresa de email"
                           autoComplete="off"
+                          onChange={(e) => setEmail(e.target.value)}
                           required
                         />
                       </Form.Group>
@@ -34,13 +46,17 @@ export default function Login() {
                           id="password"
                           placeholder="Tastează parola"
                           autoComplete="off"
+                          onChange={(e) => setPassword(e.target.value)}
                           required
                         />
                       </Form.Group>
                       <Link to="/">
                         <div className="sign-info">
                           {/* Connect button */}
-                          <Button className="btn btn-hover btn-primary1">
+                          <Button
+                            className="btn btn-hover btn-primary1"
+                            onClick={handleLogin}
+                          >
                             Conectează-te
                           </Button>
                         </div>
@@ -53,7 +69,7 @@ export default function Login() {
                   <div className="d-flex justify-content-center links">
                     Nu ai încă un cont?
                     <Link
-                      to="/welcome/register"
+                      to="register"
                       className="text-primary ml-2"
                       style={{ fontWeight: "bold" }}
                     >
@@ -62,7 +78,7 @@ export default function Login() {
                   </div>
                   <div className="d-flex justify-content-center links">
                     <Link
-                      to="/welcome/recovery-password"
+                      to="recovery-password"
                       className="f-link"
                       style={{ color: "white" }}
                     >

@@ -7,7 +7,14 @@ const transporter = require("../utils/transporter");
 // Register
 router.post("/register", async (req, res) => {
   try {
-    const user = new User(req.body);
+    const user = new User({
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+    });
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });

@@ -97,12 +97,15 @@ $ npm start
 
   15.Recovery password page
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/3.Recovery%20password%20page.png" />
+  
+  16.All movies page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/16.All%20movies.png" />
 
-  16.Email resset password
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/16.Email%20resset%20password.png" />
+  17.Email resset password
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/17.Email%20resset%20password.png" />
 
-  17.Email sent by user from contact page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/17.Email%20sent%20by%20user%20from%20contact%20page.png" />
+  18.Email sent by user from contact page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Users%20pages%20screenshots/18.Email%20sent%20by%20user%20from%20contact%20page.png" />
 </details>
 
 # Admin panel screenshots
@@ -141,4 +144,24 @@ $ npm start
 
   11.Login admin page
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/11.Login%20admin%20page.png" />
+</details>
+
+# Database structure
+
+1.The whole schema
+<img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/1.Structure%20of%20database.png" />
+
+<details>
+  <summary>More Screenshots</summary>
+  2.User schema
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/2.User.png" />
+
+  3.Movie schema
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/3.Movie.png" />
+
+  4.Category movie schema
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/4.Category%20movie.png" />
+
+  5.Article schema
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/5.Article.png" />
 </details>

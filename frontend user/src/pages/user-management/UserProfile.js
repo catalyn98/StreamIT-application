@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 import user from "../../assets/images/user/user.png";
 
 export default function UserProfile() {
   return (
     <>
+      <Header />
       <section className="m-profile setting-wrapper">
         <Container>
           <h4 className="main-title mb-4">Vizualizare profil</h4>
@@ -69,6 +72,7 @@ export default function UserProfile() {
           </Row>
         </Container>
       </section>
+      <Footer />
     </>
   );
 }

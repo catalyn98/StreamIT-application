@@ -9,15 +9,15 @@ export default function TableNewUsers() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = await axios.get(`/user?new=${true}`, {
+        const res = await axios.get(`/user?new=${true}/`, {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setNewUsers(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getNewUsers();

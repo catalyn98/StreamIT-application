@@ -21,7 +21,6 @@ const userSchema = Schema(
     },
     phoneNumber: {
       type: String,
-      default: "Adaugă număr de telefon",
       unique: true,
     },
     profilePicture: {
@@ -29,10 +28,12 @@ const userSchema = Schema(
       default:
         "https://pkds.ru/wp-content/uploads/2021/12/1_x7X2oAehk5M9IvGwO_K0Pg.png",
     },
-    movieId: {
-      type: Schema.Types.ObjectId,
-      ref: "Movie",
-    },
+    seenMovies: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Movie",
+      },
+    ],
     role: { type: String, default: "user", enum: ["user", "admin"] },
     tokens: [
       {

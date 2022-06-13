@@ -8,6 +8,7 @@ import ContactUs from "../pages/contact-us/ContactUs";
 import UserAccountSettings from "../pages/user-management/UserAccountSettings";
 import UserProfile from "../pages/user-management/UserProfile";
 import MovieDetails from "../pages/movie-details/MovieDetails";
+import AllMovies from "../pages/all-movies/AllMovies";
 import TermsOfUse from "../pages/extra-pages/TermsOfUse";
 import PrivacyPolicy from "../pages/extra-pages/PrivacyPolicy";
 import FAQ from "../pages/extra-pages/FAQ";
@@ -23,7 +24,8 @@ const MainPages = () => {
           <Route path="/blog" component={Blog} />
           <Route path="/team" component={Team} />
           <Route path="/contact-us" component={ContactUs} />
-          <Route path="/movie-details" component={MovieDetails} />
+          <Route path="/movie-details/:movieName" component={MovieDetails} />
+          <Route path="/all-movies" component={AllMovies} />
           <Route path="/user-profile" component={UserProfile} />
           <Route
             path="/user-account-settings"

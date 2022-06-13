@@ -1,10 +1,13 @@
 import React from "react";
-import SeenMovieCard from "../../components/movies/SeenMovieCard";
 import { Container, Row, Col } from "react-bootstrap";
+import Header from "../../components/header/Header";
+import SeenMovieCard from "../../components/movies/SeenMovieCard";
+import Footer from "../../components/footer/Footer";
 
 export default function SeenMovies() {
   return (
     <>
+      <Header />
       <div className="main-content" style={{ paddingTop: 60 }}>
         <section id="iq-favorites">
           <Container fluid>
@@ -32,6 +35,7 @@ export default function SeenMovies() {
           </Container>
         </section>
       </div>
+      <Footer />
     </>
   );
 }

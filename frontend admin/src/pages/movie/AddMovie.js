@@ -1,10 +1,65 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
+import storage from "../../firebase";
+import { createMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 
 export default function AddMovie() {
-  let history = useHistory();
+  const [movie, setMovie] = useState(null);
+  const [image, setImage] = useState(null);
+  const [trailer, setTrailer] = useState(null);
+  const [uploaded, setUploaded] = useState(0);
+  const history = useHistory();
+
+  const { dispatch } = useContext(MovieContext);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setMovie({ ...movie, [e.target.name]: value });
+  };
+
+  const upload = (items) => {
+    items.forEach((item) => {
+      const fileName =
+        new Date().getTime() + " - " + item.label + " - " + item.file.name;
+      const uploadTask = storage.ref(`/movieFiles/${fileName}`).put(item.file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setMovie((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+          });
+        }
+      );
+    });
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    upload([
+      { file: image, label: "image" },
+      { file: trailer, label: "trailer" },
+    ]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createMovie(movie, dispatch);
+    history.push("/movies-list");
+  };
 
   return (
     <>
@@ -26,19 +81,24 @@ export default function AddMovie() {
                       <Row>
                         {/* Add movie title */}
                         <Form.Group className="col-12">
-                          <Form.Control type="text" placeholder="Titlu" />
+                          <Form.Control
+                            type="text"
+                            placeholder="Titlu"
+                            name="title"
+                            onChange={handleChange}
+                          />
                         </Form.Group>
                         {/* Upload image */}
                         <div className="col-12 form_gallery form-group">
-                          <label id="gallery2" htmlFor="form_gallery-upload">
-                            Încarcă imagine
-                          </label>
+                          <label htmlFor="image">Imagine</label>
                           <input
                             data-name="#gallery2"
-                            id="form_gallery-upload"
+                            htmlFor="image"
+                            id="image"
                             className="form_gallery-upload"
                             type="file"
-                            accept=".png, .jpg, .jpeg"
+                            name="image"
+                            onChange={(e) => setImage(e.target.files[0])}
                           />
                         </div>
                         {/* Choose genre movie */}
@@ -46,8 +106,11 @@ export default function AddMovie() {
                           <select
                             className="form-control"
                             id="exampleFormControlSelect1"
+                            onChange={handleChange}
+                            name="genre"
                             defaultValue={"Genul filmului"}
                           >
+                            <option>Alege genul filmului</option>
                             <option>Acțiune</option>
                             <option>Animație</option>
                             <option>Aventură</option>
@@ -62,31 +125,49 @@ export default function AddMovie() {
                         </Form.Group>
                         {/* Add movie duration */}
                         <Col sm="6" className="form-group">
-                          <Form.Control type="text" placeholder="Durată" />
+                          <Form.Control
+                            type="text"
+                            placeholder="Durată"
+                            name="duration"
+                            onChange={handleChange}
+                          />
                         </Col>
                         {/* Add movie limit age */}
                         <Col sm="6" className="form-group">
                           <Form.Control
                             type="text"
                             placeholder="Limită de vârstă"
+                            name="limitAge"
+                            onChange={handleChange}
                           />
                         </Col>
                         {/* Add movie director */}
                         <Col sm="6" className="form-group">
-                          <Form.Control type="text" placeholder="Director" />
+                          <Form.Control
+                            type="text"
+                            placeholder="Director"
+                            name="director"
+                            onChange={handleChange}
+                          />
                         </Col>
                         {/* Add movie cast */}
                         <Form.Group className="col-12">
-                          <Form.Control type="text" placeholder="Distribuție" />
+                          <Form.Control
+                            type="text"
+                            placeholder="Distribuție"
+                            name="cast"
+                            onChange={handleChange}
+                          />
                         </Form.Group>
                         {/* Add movie description */}
                         <Form.Group className="col-12">
                           <Form.Control
                             as="textarea"
                             id="text"
-                            name="text"
+                            name="description"
                             rows="5"
                             placeholder="Descriere"
+                            onChange={handleChange}
                           ></Form.Control>
                         </Form.Group>
                       </Row>
@@ -97,8 +178,7 @@ export default function AddMovie() {
                         <div className="form_video-upload">
                           <input
                             type="file"
-                            accept="video/mp4,video/x-m4v,video/*"
-                            multiple
+                            onChange={(e) => setTrailer(e.target.files[0])}
                           />
                           <p>Încarcă film</p>
                         </div>
@@ -108,15 +188,27 @@ export default function AddMovie() {
                   <Row>
                     <Form.Group className="col-12">
                       {/* Add movie button */}
-                      <Link to="/movies-list">
-                        <Button
-                          type="button"
-                          onClick={() => history.push("/movie-list")}
-                          variant="primary"
-                        >
-                          Adaugă film
-                        </Button>{" "}
-                      </Link>
+                      {uploaded === 2 ? (
+                        <Link to="/movies-list">
+                          <Button
+                            type="button"
+                            variant="primary"
+                            onClick={handleSubmit}
+                          >
+                            Adaugă
+                          </Button>{" "}
+                        </Link>
+                      ) : (
+                        <Link to="#">
+                          <Button
+                            type="button"
+                            variant="primary"
+                            onClick={handleUpload}
+                          >
+                            Încarcă
+                          </Button>{" "}
+                        </Link>
+                      )}
                       {/* Cancel movie button */}
                       <Link to="/movies-list">
                         <Button type="reset" variant="danger">

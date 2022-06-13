@@ -12,7 +12,7 @@ export default function ArticleItem({ item }) {
         const res = await axios.get("/news/find/" + item._id, {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhOGU1MDkzNjA2ZjhiYzQ2ZjZjYTkiLCJpYXQiOjE2NTQ0MTM0MjZ9.4ing-OKSxWow1iiME3BshJ0Xd_gZEMlv_nnSoda4mkk",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setPost(res.data);

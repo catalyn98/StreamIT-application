@@ -30,5 +30,5 @@ app.use("/api/categories-movies", categoriesMoviesRouter);
 app.use("/api/news", newsRouter);
 
 app.listen(8800, () => {
-  console.log("Serverul de beckend rulează!");
+  console.log("Serverul de backend rulează!");
 });

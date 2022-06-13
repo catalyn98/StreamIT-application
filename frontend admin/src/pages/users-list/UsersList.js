@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Card from "../../components/card/Card";
-import SearchBar from "../../components/searchBar/SearchBar";
-import user from "../../assets/images/user/01.png";
+import Moment from "moment";
+import { UserContext } from "../../context/userContext/UserContext";
+import { getUsers, deleteUser } from "../../context/userContext/apiCalls";
 
 export default function UsersList() {
+  const { users, dispatch } = useContext(UserContext);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteUser(id, dispatch);
+  };
+
   return (
     <>
       <Container fluid>
@@ -18,7 +30,19 @@ export default function UsersList() {
                   <h4 className="card-title">Listă utilizatori</h4>
                 </Card.Header.Title>
                 {/* SearchBar */}
-                <SearchBar placeholder="Caută utilizator după username" />
+                <div className="iq-search-bar ml-auto">
+                  <Form action="#" className="searchbox">
+                    <input
+                      type="text"
+                      className="text search-input"
+                      placeholder="Caută utilizator după username"
+                      onChange={(event) => setQuery(event.target.value)}
+                    />
+                    <Link className="search-link" to="#">
+                      <i className="ri-search-line"></i>
+                    </Link>
+                  </Form>
+                </div>
               </Card.Header>
               {/* Content table - users list */}
               <Card.Body>
@@ -42,123 +66,58 @@ export default function UsersList() {
                     </thead>
                     {/* Content table */}
                     <tbody>
-                      {/* Row #1 */}
-                      <tr>
-                        <td>
-                          <img
-                            src={user}
-                            className="img-fluid avatar-50"
-                            alt="author-profile"
-                          />
-                        </td>
-                        {/* First name */}
-                        <td>Cătălan</td>
-                        {/* Last name */}
-                        <td>Cătălin</td>
-                        {/* Email address */}
-                        <td>catalin_catalan@yahoo.com</td>
-                        {/* Username */}
-                        <td>catalyn98</td>
-                        {/* Phone number */}
-                        <td>0737 728 737</td>
-                        {/* Join date */}
-                        <td>10 mai 2022</td>
-                        {/* Delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link
-                                onClick={(e) => e.preventDefault()}
-                                className="iq-bg-primary"
-                                to="#"
-                              >
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #2 */}
-                      <tr>
-                        <td>
-                          <img
-                            src={user}
-                            className="img-fluid avatar-50"
-                            alt="author-profile"
-                          />
-                        </td>
-                        {/* First name */}
-                        <td>Bodan</td>
-                        {/* Last name */}
-                        <td>Dănuț</td>
-                        {/* Email address */}
-                        <td>bodan_danut@yahoo.com</td>
-                        {/* Username */}
-                        <td>dan99</td>
-                        {/* Phone number */}
-                        <td>0731 654 812</td>
-                        {/* Join date */}
-                        <td>08 mai 2022</td>
-                        {/* Delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link
-                                onClick={(e) => e.preventDefault()}
-                                className="iq-bg-primary"
-                                to="#"
-                              >
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Row #3 */}
-                      <tr>
-                        <td>
-                          <img
-                            src={user}
-                            className="img-fluid avatar-50"
-                            alt="author-profile"
-                          />
-                        </td>
-                        {/* First name */}
-                        <td>Zimbru</td>
-                        {/* Last name */}
-                        <td>Cătălin</td>
-                        {/* Email address */}
-                        <td>catalin_zimbru@yahoo.com</td>
-                        {/* Username */}
-                        <td>zimbru_cata</td>
-                        {/* Phone number */}
-                        <td>0735 315 908</td>
-                        {/* Join date */}
-                        <td>17 martie 2022</td>
-                        {/* Delete button */}
-                        <td>
-                          <div className="flex align-items-center list-user-action">
-                            <OverlayTrigger
-                              placement="top"
-                              overlay={<Tooltip>Șterge</Tooltip>}
-                            >
-                              <Link
-                                onClick={(e) => e.preventDefault()}
-                                className="iq-bg-primary"
-                                to="#"
-                              >
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </OverlayTrigger>
-                          </div>
-                        </td>
-                      </tr>
+                      {users
+                        .filter((item) => {
+                          if (query === "") {
+                            return item;
+                          } else if (
+                            item.username
+                              .toLowerCase()
+                              .includes(query.toLowerCase())
+                          ) {
+                            return item;
+                          }
+                          return false;
+                        })
+                        .map((item, index) => (
+                          <tr key={index}>
+                            <td>
+                              <img
+                                src={item.profilePicture}
+                                className="img-fluid avatar-50"
+                                alt="author-profile"
+                              />
+                            </td>
+                            {/* First name */}
+                            <td>{item.firstName}</td>
+                            {/* Last name */}
+                            <td>{item.lastName}</td>
+                            {/* Email address */}
+                            <td>{item.email}</td>
+                            {/* Username */}
+                            <td>{item.username}</td>
+                            {/* Phone number */}
+                            <td>{item.phoneNumber}</td>
+                            {/* Join date */}
+                            <td>
+                              {Moment(item.createdAt).format(
+                                "DD/MM/YYYY, HH:mm"
+                              )}
+                            </td>
+                            {/* Delete button */}
+                            <td>
+                              <div className="flex align-items-center list-user-action">
+                                {/* Delete user button */}
+                                <Button
+                                  variant="outline-primary"
+                                  onClick={() => handleDelete(item._id)}
+                                >
+                                  <i className="ri-delete-bin-line"></i>
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>

@@ -30,10 +30,10 @@ export default function UsersStatisticsChart() {
       const month = [];
       const numberUsers = [];
       try {
-        const res = await axios.get("/user/statistics", {
+        const res = await axios.get("/user/statistics/", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhNjEzMjZlZjk2NjQ5YmUwZThmMzgiLCJpYXQiOjE2NTQyODk3OTF9._6QUfdKwMbPhx7oUYu_xkGXfEjb5JyYwInMJJipGWX8",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         const statisticsList = res.data.sort(function (a, b) {
@@ -50,8 +50,8 @@ export default function UsersStatisticsChart() {
         );
         setCategory(month);
         setData(numberUsers);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getUsersStatistics();

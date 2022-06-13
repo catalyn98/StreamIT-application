@@ -12,7 +12,7 @@ export default function MovieItem({ item }) {
         const res = await axios.get("/movie/find/" + item._id, {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjlhOGU1MDkzNjA2ZjhiYzQ2ZjZjYTkiLCJpYXQiOjE2NTQ0MTM0MjZ9.4ing-OKSxWow1iiME3BshJ0Xd_gZEMlv_nnSoda4mkk",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           },
         });
         setItemMovie(res.data);
@@ -26,7 +26,7 @@ export default function MovieItem({ item }) {
   return (
     <>
       <Link
-        to={{ pathname: "/movie-details", movie: item }}
+        to={{ pathname: "/movie-details/" + item.title, movie: item }}
         className="iq-sub-card"
       >
         <div className="media align-items-center">

@@ -7,10 +7,13 @@ import ChangeAdminPassword from "../pages/admin-management/ChangeAdminPassword";
 import UsersList from "../pages/users-list/UsersList";
 import MoviesList from "../pages/movie/MoviesList";
 import AddMovie from "../pages/movie/AddMovie";
+import UpdateMovie from "../pages/movie/UpdateMovie";
 import CategoriesList from "../pages/category/CategoriesList";
 import AddCategory from "../pages/category/AddCategoryList";
+import UpdateCategoryList from "../pages/category/UpdateCategoryList";
 import NewsList from "../pages/news/NewsList";
 import AddNews from "../pages/news/AddNews";
+import UpdateNews from "../pages/news/UpdateNews";
 
 const MainPages = () => {
   let location = useLocation();
@@ -24,13 +27,24 @@ const MainPages = () => {
           <Route path="/movies-list" exact component={MoviesList} />
           <Route path="/add-movie" exact component={AddMovie} />
           <Route
+            path="/update-movie/:movieName"
+            exact
+            component={UpdateMovie}
+          />
+          <Route
             path="/categories-movies-list"
             exact
             component={CategoriesList}
           />
           <Route path="/add-category" exact component={AddCategory} />
+          <Route
+            path="/update-category-list/:categoryName"
+            exact
+            component={UpdateCategoryList}
+          />
           <Route path="/blog-posts" exact component={NewsList} />
           <Route path="/add-news" exact component={AddNews} />
+          <Route path="/update-news/:newsName" exact component={UpdateNews} />
           <Route
             path="/admin-management-account"
             exact
