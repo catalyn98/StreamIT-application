@@ -3,7 +3,6 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Dashbord from "../pages/dashborad/Dashboard";
 import AdminManagementAccount from "../pages/admin-management/AdminManagementAccount";
-import ChangeAdminPassword from "../pages/admin-management/ChangeAdminPassword";
 import UsersList from "../pages/users-list/UsersList";
 import MoviesList from "../pages/movie/MoviesList";
 import AddMovie from "../pages/movie/AddMovie";
@@ -49,11 +48,6 @@ const MainPages = () => {
             path="/admin-management-account"
             exact
             component={AdminManagementAccount}
-          />
-          <Route
-            path="/change-password"
-            exact
-            component={ChangeAdminPassword}
           />
         </Switch>
       </CSSTransition>

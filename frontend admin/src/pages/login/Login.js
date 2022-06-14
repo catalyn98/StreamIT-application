@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
 import { login } from "../../context/authenticationContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -69,6 +70,7 @@ export default function Login() {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </section>
     </>
   );

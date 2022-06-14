@@ -75,7 +75,7 @@ export default function UpdateCategoryList() {
                       </Form.Group>
                       <Form.Group className="form-group">
                         <Link to="/categories-movies-list">
-                          {/* Save button */}
+                          {/* Update button */}
                           <Button type="button" variant=" btn-primary">
                             Actualizează
                           </Button>{" "}

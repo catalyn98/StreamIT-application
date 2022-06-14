@@ -66,6 +66,9 @@ const PagesLayout = () => {
       <Route exact path="/my-seen-movies">
         {user ? <MainPages /> : <Redirect to="/login" />}
       </Route>
+      <Route exact path="/all-movies">
+        {user ? <MainPages /> : <Redirect to="/login" />}
+      </Route>
       <Route path="/login"> {!user ? <Login /> : <Redirect to="/" />} </Route>
       <Route path="/register" component={Register} />
       <Route path="/recovery-password" component={RecoveryPassword} />

@@ -13,19 +13,19 @@ export default function UpdateMovie() {
         <Row>
           <Col sm="12">
             <Card>
-              {/* Card header - add movie */}
+              {/* Card header - update movie */}
               <Card.Header className="d-flex justify-content-between">
                 <Card.Header.Title>
                   <h4 className="card-title">Actualizare film</h4>
                 </Card.Header.Title>
               </Card.Header>
-              {/* Add movie form */}
+              {/* Update movie form */}
               <Card.Body>
                 <Form>
                   <Row>
                     <Col lg="7">
                       <Row>
-                        {/* Add movie title */}
+                        {/* Update movie title */}
                         <Form.Group className="col-12">
                           <label>Titlu</label>
                           <Form.Control placeholder={movie.title} />
@@ -63,27 +63,27 @@ export default function UpdateMovie() {
                             <option>Thriller</option>
                           </select>
                         </Form.Group>
-                        {/* Add movie duration */}
+                        {/* Update movie duration */}
                         <Col sm="6" className="form-group">
                           <label>Durată</label>
                           <Form.Control placeholder={movie.duration} />
                         </Col>
-                        {/* Add movie limit age */}
+                        {/* Update movie limit age */}
                         <Col sm="6" className="form-group">
                           <label>Limită de vârstă</label>
                           <Form.Control placeholder={movie.limitAge} />
                         </Col>
-                        {/* Add movie director */}
+                        {/* Update movie director */}
                         <Col sm="6" className="form-group">
                           <label>Director</label>
                           <Form.Control placeholder={movie.director} />
                         </Col>
-                        {/* Add movie cast */}
+                        {/* Update movie cast */}
                         <Form.Group className="col-12">
                           <label>Distribuție</label>
                           <Form.Control placeholder={movie.cast} />
                         </Form.Group>
-                        {/* Add movie description */}
+                        {/* Update movie description */}
                         <Form.Group className="col-12">
                           <label>Descriere</label>
                           <Form.Control
@@ -112,7 +112,7 @@ export default function UpdateMovie() {
                   </Row>
                   <Row>
                     <Form.Group className="col-12">
-                      {/* Add movie button */}
+                      {/* Update movie button */}
                       <Link to="/movies-list">
                         <Button type="button" variant="primary">
                           Actualizează

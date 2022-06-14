@@ -81,6 +81,14 @@ export default function AddNews() {
                       <Row>
                         {/* Add title post */}
                         <Form.Group className="col-12">
+                          <div>
+                            <label style={{ color: "white" }}>
+                              Toate câmpurile sunt obligatorii! *
+                            </label>
+                          </div>
+                          <label style={{ color: "white" }}>
+                            Încărcați mai întâi fișierele multimedia. *
+                          </label>
                           <Form.Control
                             type="text"
                             placeholder="Titlu postare"
@@ -111,7 +119,7 @@ export default function AddNews() {
                             name="category"
                             onChange={handleChange}
                           >
-                            <option>Alege categoria postării</option>
+                            <option>Selectează categorie</option>
                             <option>Box Office</option>
                             <option>Avanpremieră film</option>
                             <option>Trailer film</option>

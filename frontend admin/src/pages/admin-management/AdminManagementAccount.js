@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col, Tab, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
-import user from "../../assets/images/user/01.png";
+import { MyInformationContext } from "../../context/myInformationContext/MyInformationContext";
+import { getMyInformation } from "../../context/myInformationContext/apiCalls";
+import userAvatr from "../../assets/images/user/user.png";
 
 export default function AdminManagementAccount() {
+  const { user, dispatchMyInformation } = useContext(MyInformationContext);
+
+  useEffect(() => {
+    getMyInformation(dispatchMyInformation);
+  }, [dispatchMyInformation]);
+
   return (
     <>
       <Container fluid>
@@ -24,25 +32,21 @@ export default function AdminManagementAccount() {
                       <div className="upload_profile d-inline-block">
                         {/* Change profile picture */}
                         <img
-                          src={user}
+                          src={user.profilePicture || userAvatr}
                           className="profile-pic avatar-130 rounded-circle img-fluid"
                           alt="user"
                         />
                         <div className="p-image">
                           <i className="ri-pencil-line upload-button"></i>
-                          <input
-                            className="file-upload"
-                            type="file"
-                            accept="image/*"
-                          />
+                          <input className="file-upload" type="file" />
                         </div>
                       </div>
                     </Col>
                     {/* Second column */}
-                    <Col lg="8" className="device-margin">
+                    <Col lg="12" className="device-margin">
                       <Form action="#">
                         <Row>
-                          <Col md="12">
+                          <Col md="6">
                             {/* Edit first name */}
                             <Form.Group className="form-group">
                               <Form.Label>Nume utilizator</Form.Label>
@@ -50,13 +54,13 @@ export default function AdminManagementAccount() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="firstName"
-                                placeholder="Nume"
+                                placeholder={user.firstName}
                                 autoComplete="off"
                                 required
                               />
                             </Form.Group>
                           </Col>
-                          <Col md="12">
+                          <Col md="6">
                             {/* Edit last name */}
                             <Form.Group className="form-group">
                               <Form.Label>Prenume utilizator</Form.Label>
@@ -64,13 +68,13 @@ export default function AdminManagementAccount() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="lastName"
-                                placeholder="Prenume"
+                                placeholder={user.lastName}
                                 autoComplete="off"
                                 required
                               />
                             </Form.Group>
                           </Col>
-                          <Col md="12">
+                          <Col md="6">
                             {/* Edit email address */}
                             <Form.Group className="form-group">
                               <Form.Label>Adresă de email</Form.Label>
@@ -78,13 +82,13 @@ export default function AdminManagementAccount() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="emailAddress"
-                                placeholder="Email"
+                                placeholder={user.email}
                                 autoComplete="off"
                                 required
                               />
                             </Form.Group>
                           </Col>
-                          <Col md="12">
+                          <Col md="6">
                             {/* Edit username */}
                             <Form.Group className="form-group">
                               <Form.Label>Nume de utilizator</Form.Label>
@@ -92,13 +96,13 @@ export default function AdminManagementAccount() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="username"
-                                placeholder="Nume de utilizator"
+                                placeholder={user.username}
                                 autoComplete="off"
                                 required
                               />
                             </Form.Group>
                           </Col>
-                          <Col md="12">
+                          <Col md="6">
                             {/* Edit phone number */}
                             <Form.Group className="form-group">
                               <Form.Label>Număr de telefon</Form.Label>
@@ -106,7 +110,21 @@ export default function AdminManagementAccount() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="phoneNumber"
-                                placeholder="Telefon"
+                                placeholder={user.phoneNumber}
+                                autoComplete="off"
+                                required
+                              />
+                            </Form.Group>
+                          </Col>
+                          <Col md="6">
+                            {/* Edit phone number */}
+                            <Form.Group className="form-group">
+                              <Form.Label>Parolă</Form.Label>
+                              <Form.Control
+                                type="text"
+                                className="form-control mb-0"
+                                id="password"
+                                placeholder="parolă"
                                 autoComplete="off"
                                 required
                               />

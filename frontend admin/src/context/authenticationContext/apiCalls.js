@@ -1,5 +1,6 @@
 import axios from "axios";
-import { loginFailure, loginStart, loginSuccess } from "./AuthenticationAction";
+import { loginStart, loginSuccess } from "./AuthenticationAction";
+import notifyError from "../../components/notify/notifyError";
 
 export const login = async (user, dispatch) => {
   dispatch(loginStart());
@@ -7,6 +8,6 @@ export const login = async (user, dispatch) => {
     const res = await axios.post("/user/login", user);
     res.data.user.role === "admin" && dispatch(loginSuccess(res.data));
   } catch (error) {
-    dispatch(loginFailure());
+    dispatch(notifyError("Adresa de email sau parola sunt greșite."));
   }
 };

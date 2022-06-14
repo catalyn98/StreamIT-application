@@ -49,6 +49,11 @@ export default function AddCategory() {
                 <Row>
                   <Col lg="12">
                     <Form>
+                      <div>
+                        <label style={{ color: "white" }}>
+                          Toate câmpurile sunt obligatorii! *
+                        </label>
+                      </div>
                       {/* Category name */}
                       <Form.Group>
                         <Form.Control
@@ -66,7 +71,7 @@ export default function AddCategory() {
                           onChange={handleChange}
                           defaultValue="Gen categorie"
                         >
-                          <option>Alege genul categoriei</option>
+                          <option>Selectează gen</option>
                           <option>Acțiune</option>
                           <option>Animație</option>
                           <option>Aventură</option>
@@ -98,7 +103,7 @@ export default function AddCategory() {
                               .sort((a, b) => a.title.localeCompare(b.title))
                               .map((movie) => (
                                 <option key={movie._id} value={movie._id}>
-                                  {movie.title}
+                                  {movie.title},&nbsp;&nbsp;{movie.genre}
                                 </option>
                               ))}
                           </select>

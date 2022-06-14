@@ -15,17 +15,13 @@ export default function ContactForm() {
   const sendMessage = (e) => {
     e.preventDefault();
     if (firstName.length < 3) {
-      notifyError("Adăugați nume.");
+      notifyError("Numele trebuie să conțină minim 3 caractere.");
     } else if (lastName.length < 3) {
-      notifyError("Adăugați prenume.");
-    } else if (phoneNumber.length === 0) {
-      notifyError("Adăugați număr de telefon.");
+      notifyError("Prenumele trebuie să conțină minim 3 caractere.");
     } else if (phoneNumber.length !== 10) {
-      notifyError("Numărul de telefon introdus nu este valid.");
+      notifyError("Numărul de telefon trebuie să conțină exact 10 numere.");
     } else if (emailAddress.length < 5) {
-      notifyError("Adăugați email.");
-    } else if (message.length === 0) {
-      notifyError("Adăugați mesaj.");
+      notifyError("Adresa de email trebuie să conțină minim 5 caractere.");
     } else if (message.length < 15) {
       notifyError(
         "Pentru a putea fi trimis mesajul, acesta trebuie să conțină minim 15 caractere."
@@ -43,7 +39,7 @@ export default function ContactForm() {
             notifySuccess("Mesajul tău a fost trimis.");
           }
         })
-        .catch(() => notifyError("Mesajul tău nu s-a putut trimite"));
+        .catch(() => notifyError("Mesajul tău nu s-a putut trimite."));
       const inputs = document.querySelectorAll(
         "#firstName, #lastName, #phoneNumber, #emailAddress, #message"
       );

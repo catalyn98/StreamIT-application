@@ -130,20 +130,17 @@ $ npm start
   6.Account settings
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/6.Account%20settings.png" />
 
-  7.Change password
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/7.Change%20password.png" />
+  7.Add movie page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/7.Add%20movie%20page.png" />
 
-  8.Add movie page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/8.Add%20movie%20page.png" />
+  8.Add category movies list
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/8.Add%20category%20movies%20list.png" />
 
-  9.Add category movies list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/9.Add%20category%20movies%20list.png" />
+  9.Add post page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/9.Add%20post%20page.png" />
 
-  10.Add post page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/10.Add%20post%20page.png" />
-
-  11.Login admin page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/11.Login%20admin%20page.png" />
+  10.Login admin page
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/Admin%20pages%20screenshots/10.Login%20admin%20page.png" />
 </details>
 
 # Database structure

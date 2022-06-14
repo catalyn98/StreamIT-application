@@ -1,19 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Button, Nav, Dropdown } from "react-bootstrap";
 import Card from "../card/Card";
 import CustomToggle from "../dropdown/Dropdown";
-import user from "../../assets/images/user/01.png";
+import userAvatar from "../../assets/images/user/01.png";
 import logo from "../../../src/assets/images/logo.png";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
+import { MyInformationContext } from "../../context/myInformationContext/MyInformationContext";
 import { logout } from "../../context/authenticationContext/AuthenticationAction";
+import { getMyInformation } from "../../context/myInformationContext/apiCalls";
 
 export default function Header() {
+  const { user, dispatchMyInformation } = useContext(MyInformationContext);
+  const { dispatch } = useContext(AuthenticationContext);
+
+  useEffect(() => {
+    getMyInformation(dispatchMyInformation);
+  }, [dispatchMyInformation]);
+
   const minisidbar = () => {
     document.body.classList.toggle("sidebar-main");
   };
-
-  const { dispatch } = useContext(AuthenticationContext);
 
   return (
     <div className="iq-top-navbar">
@@ -87,7 +94,7 @@ export default function Header() {
                 >
                   {/* Profile picture admin */}
                   <img
-                    src={user}
+                    src={user.profilePicture || userAvatar}
                     className="img-fluid rounded-circle mr-3"
                     alt="user"
                   />
@@ -101,7 +108,7 @@ export default function Header() {
                       <div className="bg-primary p-3">
                         {/* Admin name */}
                         <h5 className="mb-0 text-white line-height">
-                          Salutare Cătălin
+                          Salutare {user.lastName}
                         </h5>
                       </div>
                     </Card.Header>
@@ -119,23 +126,6 @@ export default function Header() {
                             <h6 className="mb-0 ">Profil</h6>
                             <p className="mb-0 font-size-12 iq-text">
                               Actualizează detaliile profilului
-                            </p>
-                          </div>
-                        </div>
-                      </Link>
-                      {/* Change password */}
-                      <Link
-                        to="/change-password"
-                        className="iq-sub-card iq-bg-primary-hover"
-                      >
-                        <div className="media align-items-center">
-                          <div className="rounded iq-card-icon iq-bg-primary">
-                            <i className="ri-profile-line"></i>
-                          </div>
-                          <div className="media-body ml-3">
-                            <h6 className="mb-0 ">Parolă</h6>
-                            <p className="mb-0 font-size-12 iq-text">
-                              Actualizează parola
                             </p>
                           </div>
                         </div>

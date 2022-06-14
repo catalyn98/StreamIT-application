@@ -1,16 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col, Navbar, Dropdown, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../card/Card";
 import CustomToggle from "../customToggle/CustomToggle";
 import TheMostRecentMovies from "./TheMostRecentMovies";
 import logo from "../../assets/images/logo.png";
-import user from "../../assets/images/user/user.png";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
 import { logout } from "../../context/authenticationContext/AuthenticationAction";
+import { UserContext } from "../../context/userContext/UserContext";
+import { getMyInformation } from "../../context/userContext/apiCalls";
+import user from "../../assets/images/user/user.png";
 
 export default function Header() {
   const { dispatch } = useContext(AuthenticationContext);
+  const { users, dispatchUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getMyInformation(dispatchUser);
+  }, [dispatchUser]);
 
   return (
     <>
@@ -185,7 +192,7 @@ export default function Header() {
                             data-toggle="search-toggle"
                           >
                             <img
-                              src={user}
+                              src={users.profilePicture || user}
                               className="img-fluid avatar-40 rounded-circle"
                               alt="user"
                             />

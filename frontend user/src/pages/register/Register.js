@@ -2,21 +2,34 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { Container, Button, Row, Col, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import notifySuccess from "../../components/notify/notifySuccess";
 import notifyError from "../../components/notify/notifyError";
 
 export default function Register() {
-  const [firstName, setFirstName] = useState("Costar");
-  const [lastName, setLastName] = useState("Mihai");
-  const [email, setEmail] = useState("costar_mihai23@yahoo.com");
-  const [password, setPassword] = useState("123456789");
-  const [username, setUsername] = useState("mihai23");
-  const [phoneNumber, setPhoneNumber] = useState("0727350163");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
 
   const handleFinish = async (e) => {
     e.preventDefault();
-    try {
+    if (firstName.length < 3) {
+      notifyError("Numele trebuie să conțină minim 3 caractere.");
+    } else if (lastName.length < 3) {
+      notifyError("Prenumele trebuie să conțină minim 3 caractere.");
+    } else if (email.length < 5) {
+      notifyError("Adresa de email trebuie să conțină minim 5 caractere.");
+    } else if (username.length < 5) {
+      notifyError("Numele de utilizator trebuie să conțină minim 5 caractere.");
+    } else if (phoneNumber.length !== 10) {
+      notifyError("Numărul de telefon trebuie să conțină exact 10 numere.");
+    } else if (password.length < 8) {
+      notifyError("Parola trebuie să conțină minim 8 caractere.");
+    } else {
       Axios.post("/user/register/", {
         email,
         username,
@@ -30,11 +43,17 @@ export default function Register() {
             notifySuccess(
               "Contul tău a fost creat cu succes! Te rugăm loghează-te în aplicație."
             );
-            history.push("/login");
+            setTimeout(() => {
+              history.push("/login");
+            }, 6000);
           }
         })
-        .catch(() => notifyError("Mesajul tău nu s-a putut trimite"));
-    } catch (err) {}
+        .catch(() =>
+          notifyError(
+            "Contul tău nu a putut fi creat. Adresa de email, numele de utilizator, sau numărul de telefon aparțin deja altui utilizator."
+          )
+        );
+    }
   };
 
   return (
@@ -50,40 +69,6 @@ export default function Register() {
                     <h3 className="mb-3 text-center">Înregistrare</h3>
                     <Form>
                       <Row>
-                        {/* Input email address */}
-                        <Col md="6">
-                          <Form.Group>
-                            <Form.Label>Adresă de email</Form.Label>
-                            <input
-                              type="email"
-                              className="mb-0"
-                              id="emailAddress"
-                              placeholder="Tastează adresa de email"
-                              autoComplete="off"
-                              onChange={(e) => {
-                                setEmail(e.target.value);
-                              }}
-                              required
-                            />
-                          </Form.Group>
-                        </Col>
-                        {/* Input username */}
-                        <Col md="6">
-                          <Form.Group>
-                            <Form.Label>Nume de utilizator</Form.Label>
-                            <input
-                              type="text"
-                              className="form-control mb-0"
-                              id="username"
-                              placeholder="Tastează nume de utilizator"
-                              autoComplete="off"
-                              onChange={(e) => {
-                                setUsername(e.target.value);
-                              }}
-                              required
-                            />
-                          </Form.Group>
-                        </Col>
                         {/* Input first name */}
                         <Col md="6">
                           <Form.Group>
@@ -113,6 +98,40 @@ export default function Register() {
                               autoComplete="off"
                               onChange={(e) => {
                                 setLastName(e.target.value);
+                              }}
+                              required
+                            />
+                          </Form.Group>
+                        </Col>
+                        {/* Input email address */}
+                        <Col md="6">
+                          <Form.Group>
+                            <Form.Label>Adresă de email</Form.Label>
+                            <input
+                              type="email"
+                              className="mb-0"
+                              id="emailAddress"
+                              placeholder="Tastează adresa de email"
+                              autoComplete="off"
+                              onChange={(e) => {
+                                setEmail(e.target.value);
+                              }}
+                              required
+                            />
+                          </Form.Group>
+                        </Col>
+                        {/* Input username */}
+                        <Col md="6">
+                          <Form.Group>
+                            <Form.Label>Nume de utilizator</Form.Label>
+                            <input
+                              type="text"
+                              className="form-control mb-0"
+                              id="username"
+                              placeholder="Tastează nume de utilizator"
+                              autoComplete="off"
+                              onChange={(e) => {
+                                setUsername(e.target.value);
                               }}
                               required
                             />
@@ -185,6 +204,7 @@ export default function Register() {
           </Row>
         </Container>
       </section>
+      <ToastContainer />
     </>
   );
 }

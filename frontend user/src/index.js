@@ -4,12 +4,15 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { AuthenticationContextProvider } from "../src/context/authenticationContext/AuthenticationContext";
+import { UserContextProvider } from "../src/context/userContext/UserContext";
 
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <AuthenticationContextProvider>
-        <App />
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
       </AuthenticationContextProvider>
     </BrowserRouter>
   </React.Fragment>,

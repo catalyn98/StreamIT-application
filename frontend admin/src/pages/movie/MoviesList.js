@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Card from "../../components/card/Card";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function MoviesList() {
   const { movies, dispatch } = useContext(MovieContext);
@@ -90,7 +91,7 @@ export default function MoviesList() {
                                   {/* Movie poster */}
                                   <Link to="#">
                                     <img
-                                      src={item.image}
+                                      src={item.image || placeholderMovie}
                                       className="img-border-radius avatar-40 img-fluid"
                                       alt=""
                                     />

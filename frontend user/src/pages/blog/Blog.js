@@ -70,13 +70,15 @@ export default function Blog() {
                     <input
                       type="search"
                       className="search-field search__input"
-                      placeholder="Caută"
+                      placeholder="Caută articol după titlu"
                       name="search"
                       onChange={(event) => setQuery(event.target.value)}
                     />
                     <button type="submit" className="search-submit">
                       <i className="ri-search-line"></i>
-                      <span className="screen-reader-text">Caută</span>
+                      <span className="screen-reader-text">
+                        Caută articol după titlu
+                      </span>
                     </button>
                   </form>
                 </div>

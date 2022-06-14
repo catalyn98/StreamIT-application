@@ -45,9 +45,6 @@ export default function PagesLayout() {
       <Route exact path="/admin-management-account">
         {user ? <MainPagesApp /> : <Redirect to="/login" />}
       </Route>
-      <Route exact path="/change-password">
-        {user ? <MainPagesApp /> : <Redirect to="/login" />}
-      </Route>
       <Route path="/login"> {!user ? <Login /> : <Redirect to="/" />} </Route>
       {user && (
         <>

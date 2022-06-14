@@ -5,6 +5,7 @@ import Card from "../../components/card/Card";
 import Moment from "moment";
 import { UserContext } from "../../context/userContext/UserContext";
 import { getUsers, deleteUser } from "../../context/userContext/apiCalls";
+import user from "../../assets/images/user/user.png";
 
 export default function UsersList() {
   const { users, dispatch } = useContext(UserContext);
@@ -83,7 +84,7 @@ export default function UsersList() {
                           <tr key={index}>
                             <td>
                               <img
-                                src={item.profilePicture}
+                                src={item.profilePicture || user}
                                 className="img-fluid avatar-50"
                                 alt="author-profile"
                               />

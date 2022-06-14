@@ -5,6 +5,7 @@ import Card from "../../components/card/Card";
 import Moment from "moment";
 import { BlogContext } from "../../context/blogContext/BlogContext";
 import { getPosts, deletePost } from "../../context/blogContext/apiCalls";
+import news from "../../assets/images/movie-thumb/news.jpg";
 
 export default function NewsList() {
   const { posts, dispatch } = useContext(BlogContext);
@@ -91,7 +92,7 @@ export default function NewsList() {
                                 <div className="iq-movie">
                                   <Link to="#">
                                     <img
-                                      src={item.image}
+                                      src={item.image || news}
                                       className="img-border-radius avatar-40 img-fluid"
                                       alt=""
                                       style={{ Width: 100 }}

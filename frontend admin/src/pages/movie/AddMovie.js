@@ -81,6 +81,14 @@ export default function AddMovie() {
                       <Row>
                         {/* Add movie title */}
                         <Form.Group className="col-12">
+                          <div>
+                            <label style={{ color: "white" }}>
+                              Toate câmpurile sunt obligatorii! *
+                            </label>
+                          </div>
+                          <label style={{ color: "white" }}>
+                            Încărcați mai întâi fișierele multimedia. *
+                          </label>
                           <Form.Control
                             type="text"
                             placeholder="Titlu"
@@ -90,7 +98,7 @@ export default function AddMovie() {
                         </Form.Group>
                         {/* Upload image */}
                         <div className="col-12 form_gallery form-group">
-                          <label htmlFor="image">Imagine</label>
+                          <label htmlFor="image">Încarcă imagine</label>
                           <input
                             data-name="#gallery2"
                             htmlFor="image"
@@ -110,7 +118,7 @@ export default function AddMovie() {
                             name="genre"
                             defaultValue={"Genul filmului"}
                           >
-                            <option>Alege genul filmului</option>
+                            <option>Selectează gen</option>
                             <option>Acțiune</option>
                             <option>Animație</option>
                             <option>Aventură</option>

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import { UserContext } from "../../context/userContext/UserContext";
+import { getMyInformation } from "../../context/userContext/apiCalls";
 import user from "../../assets/images/user/user.png";
 
 export default function UserAccountSettings() {
+  const { users, dispatchUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getMyInformation(dispatchUser);
+  }, [dispatchUser]);
+
   return (
     <>
       <Header />
@@ -20,7 +28,7 @@ export default function UserAccountSettings() {
                     <div className="upload_profile d-inline-block">
                       {/* Change profile picture */}
                       <img
-                        src={user}
+                        src={users.profilePicture || user}
                         className="profile-pic avatar-130 rounded-circle img-fluid"
                         alt="user"
                       />
@@ -48,7 +56,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="firstName"
-                                placeholder="Nume"
+                                placeholder={users.firstName}
                                 autoComplete="off"
                                 required
                               />
@@ -62,7 +70,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="lastName"
-                                placeholder="Prenume"
+                                placeholder={users.lastName}
                                 autoComplete="off"
                                 required
                               />
@@ -76,7 +84,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="emailAddress"
-                                placeholder="Email"
+                                placeholder={users.email}
                                 autoComplete="off"
                                 required
                               />
@@ -90,7 +98,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="username"
-                                placeholder="Nume de utilizator"
+                                placeholder={users.username}
                                 autoComplete="off"
                                 required
                               />
@@ -104,7 +112,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 id="phoneNumber"
-                                placeholder="Telefon"
+                                placeholder={users.phoneNumber}
                                 autoComplete="off"
                                 required
                               />
@@ -118,7 +126,7 @@ export default function UserAccountSettings() {
                                 type="password"
                                 className="form-control mb-0"
                                 id="password"
-                                placeholder="Parolă"
+                                placeholder="parolă"
                                 autoComplete="off"
                                 required
                               />
