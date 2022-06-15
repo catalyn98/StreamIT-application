@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
+import { updateMovie } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
 
 export default function UpdateMovie() {
   const location = useLocation();
+  const history = useHistory();
   const movie = location.movie;
+
+  const [movieUpdate, setMovieUpdate] = useState(null);
+
+  const { dispatch } = useContext(MovieContext);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setMovieUpdate({ ...movieUpdate, [e.target.name]: value });
+  };
+
+  console.log(movieUpdate);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateMovie(movie._id, dispatch);
+    history.push("/movies-list");
+  };
 
   return (
     <>
@@ -28,7 +48,11 @@ export default function UpdateMovie() {
                         {/* Update movie title */}
                         <Form.Group className="col-12">
                           <label>Titlu</label>
-                          <Form.Control placeholder={movie.title} />
+                          <Form.Control
+                            placeholder={movie.title}
+                            name="title"
+                            onChange={handleChange}
+                          />
                         </Form.Group>
                         {/* Upload image */}
                         <div className="col-12 form_gallery form-group">
@@ -49,6 +73,8 @@ export default function UpdateMovie() {
                           <select
                             className="form-control"
                             id="exampleFormControlSelect1"
+                            onChange={handleChange}
+                            name="genre"
                             defaultValue={movie.genre}
                           >
                             <option>Acțiune</option>
@@ -66,22 +92,38 @@ export default function UpdateMovie() {
                         {/* Update movie duration */}
                         <Col sm="6" className="form-group">
                           <label>Durată</label>
-                          <Form.Control placeholder={movie.duration} />
+                          <Form.Control
+                            placeholder={movie.duration}
+                            name="duration"
+                            onChange={handleChange}
+                          />
                         </Col>
                         {/* Update movie limit age */}
                         <Col sm="6" className="form-group">
                           <label>Limită de vârstă</label>
-                          <Form.Control placeholder={movie.limitAge} />
+                          <Form.Control
+                            placeholder={movie.limitAge}
+                            name="limitAge"
+                            onChange={handleChange}
+                          />
                         </Col>
                         {/* Update movie director */}
                         <Col sm="6" className="form-group">
                           <label>Director</label>
-                          <Form.Control placeholder={movie.director} />
+                          <Form.Control
+                            placeholder={movie.director}
+                            name="director"
+                            onChange={handleChange}
+                          />
                         </Col>
                         {/* Update movie cast */}
                         <Form.Group className="col-12">
                           <label>Distribuție</label>
-                          <Form.Control placeholder={movie.cast} />
+                          <Form.Control
+                            placeholder={movie.cast}
+                            name="cast"
+                            onChange={handleChange}
+                          />
                         </Form.Group>
                         {/* Update movie description */}
                         <Form.Group className="col-12">
@@ -89,9 +131,10 @@ export default function UpdateMovie() {
                           <Form.Control
                             as="textarea"
                             id="text"
-                            name="text"
+                            name="description"
                             rows="5"
                             placeholder={movie.description}
+                            onChange={handleChange}
                           />
                         </Form.Group>
                       </Row>
@@ -114,7 +157,11 @@ export default function UpdateMovie() {
                     <Form.Group className="col-12">
                       {/* Update movie button */}
                       <Link to="/movies-list">
-                        <Button type="button" variant="primary">
+                        <Button
+                          type="button"
+                          variant="primary"
+                          onClick={handleSubmit}
+                        >
                           Actualizează
                         </Button>{" "}
                       </Link>

@@ -5,7 +5,7 @@ import Card from "../../components/card/Card";
 import { CategoryContext } from "../../context/categoryContext/CategoryContext";
 import {
   getCategoriesMovies,
-  deleteCategoryMovie,
+  deleteCategoryMovies,
 } from "../../context/categoryContext/apiCalls";
 
 export default function CategoriesList() {
@@ -17,7 +17,7 @@ export default function CategoriesList() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    deleteCategoryMovie(id, dispatch);
+    deleteCategoryMovies(id, dispatch);
   };
 
   return (

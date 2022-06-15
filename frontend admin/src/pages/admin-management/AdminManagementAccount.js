@@ -1,17 +1,31 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Tab, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
-import { MyInformationContext } from "../../context/myInformationContext/MyInformationContext";
-import { getMyInformation } from "../../context/myInformationContext/apiCalls";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import {
+  getMyInformations,
+  updateMyInformations,
+} from "../../context/myInformationsContext/apiCalls";
 import userAvatr from "../../assets/images/user/user.png";
 
 export default function AdminManagementAccount() {
-  const { user, dispatchMyInformation } = useContext(MyInformationContext);
+  const [userInfo, setUserInfo] = useState(null);
+  const { user, dispatchMyInformations } = useContext(MyInformationsContext);
 
   useEffect(() => {
-    getMyInformation(dispatchMyInformation);
-  }, [dispatchMyInformation]);
+    getMyInformations(dispatchMyInformations);
+  }, [dispatchMyInformations]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setUserInfo({ ...userInfo, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateMyInformations(dispatchMyInformations);
+  };
 
   return (
     <>
@@ -53,9 +67,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="firstName"
+                                name="firstName"
                                 placeholder={user.firstName}
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -67,9 +81,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="lastName"
+                                name="lastName"
                                 placeholder={user.lastName}
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -81,9 +95,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="emailAddress"
+                                name="emailAddress"
                                 placeholder={user.email}
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -95,9 +109,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="username"
+                                name="username"
                                 placeholder={user.username}
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -109,9 +123,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="phoneNumber"
+                                name="phoneNumber"
                                 placeholder={user.phoneNumber}
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -123,9 +137,9 @@ export default function AdminManagementAccount() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="password"
+                                name="password"
                                 placeholder="parolă"
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -137,8 +151,9 @@ export default function AdminManagementAccount() {
                           type="submit"
                           variant="primary"
                           className="mr-2"
+                          onClick={handleSubmit}
                         >
-                          Salvează
+                          Actualizează
                         </Button>
                       </Link>
                       <Link to="/">

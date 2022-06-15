@@ -7,16 +7,16 @@ import TheMostRecentMovies from "./TheMostRecentMovies";
 import logo from "../../assets/images/logo.png";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
 import { logout } from "../../context/authenticationContext/AuthenticationAction";
-import { UserContext } from "../../context/userContext/UserContext";
-import { getMyInformation } from "../../context/userContext/apiCalls";
-import user from "../../assets/images/user/user.png";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import userAvatar from "../../assets/images/user/user.png";
 
 export default function Header() {
   const { dispatch } = useContext(AuthenticationContext);
-  const { users, dispatchUser } = useContext(UserContext);
+  const { user, dispatchUser } = useContext(MyInformationsContext);
 
   useEffect(() => {
-    getMyInformation(dispatchUser);
+    getMyInformations(dispatchUser);
   }, [dispatchUser]);
 
   return (
@@ -192,7 +192,7 @@ export default function Header() {
                             data-toggle="search-toggle"
                           >
                             <img
-                              src={users.profilePicture || user}
+                              src={user.profilePicture || userAvatar}
                               className="img-fluid avatar-40 rounded-circle"
                               alt="user"
                             />

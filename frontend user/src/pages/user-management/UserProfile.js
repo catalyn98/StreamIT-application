@@ -2,15 +2,15 @@ import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import { UserContext } from "../../context/userContext/UserContext";
-import { getMyInformation } from "../../context/userContext/apiCalls";
-import user from "../../assets/images/user/user.png";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import userAvatar from "../../assets/images/user/user.png";
 
 export default function UserProfile() {
-  const { users, dispatchUser } = useContext(UserContext);
+  const { user, dispatchUser } = useContext(MyInformationsContext);
 
   useEffect(() => {
-    getMyInformation(dispatchUser);
+    getMyInformations(dispatchUser);
   }, [dispatchUser]);
 
   return (
@@ -24,7 +24,7 @@ export default function UserProfile() {
             <Col lg="3" className="mb-3">
               <div className="sign-user_card text-center">
                 <img
-                  src={users.profilePicture || user}
+                  src={user.profilePicture || userAvatar}
                   className="rounded-circle img-fluid d-block mx-auto mb-3"
                   alt="user"
                 />
@@ -38,14 +38,14 @@ export default function UserProfile() {
                 <Row className="row align-items-center justify-content-between mb-3">
                   <Col md="8">
                     <span className="text-light font-size-13">Nume</span>
-                    <p className="mb-0">{users.firstName}</p>
+                    <p className="mb-0">{user.firstName}</p>
                   </Col>
                 </Row>
                 {/* Last name */}
                 <Row className="row align-items-center justify-content-between mb-3">
                   <Col md="8">
                     <span className="text-light font-size-13">Prenume</span>
-                    <p className="mb-0">{users.lastName}</p>
+                    <p className="mb-0">{user.lastName}</p>
                   </Col>
                 </Row>
                 {/* Email address */}
@@ -54,7 +54,7 @@ export default function UserProfile() {
                     <span className="text-light font-size-13">
                       Adresă de email
                     </span>
-                    <p className="mb-0">{users.email}</p>
+                    <p className="mb-0">{user.email}</p>
                   </Col>
                 </Row>
                 {/* Username */}
@@ -63,7 +63,7 @@ export default function UserProfile() {
                     <span className="text-light font-size-13">
                       Nume de utilizator
                     </span>
-                    <p className="mb-0">{users.username}</p>
+                    <p className="mb-0">{user.username}</p>
                   </Col>
                 </Row>
                 {/* Phone number */}
@@ -72,7 +72,7 @@ export default function UserProfile() {
                     <span className="text-light font-size-13">
                       Număr de telefon
                     </span>
-                    <p className="mb-0">{users.phoneNumber}</p>
+                    <p className="mb-0">{user.phoneNumber}</p>
                   </Col>
                 </Row>
               </div>

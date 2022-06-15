@@ -6,17 +6,17 @@ import CustomToggle from "../dropdown/Dropdown";
 import userAvatar from "../../assets/images/user/01.png";
 import logo from "../../../src/assets/images/logo.png";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
-import { MyInformationContext } from "../../context/myInformationContext/MyInformationContext";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
 import { logout } from "../../context/authenticationContext/AuthenticationAction";
-import { getMyInformation } from "../../context/myInformationContext/apiCalls";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
 
 export default function Header() {
-  const { user, dispatchMyInformation } = useContext(MyInformationContext);
+  const { user, dispatchMyInformations } = useContext(MyInformationsContext);
   const { dispatch } = useContext(AuthenticationContext);
 
   useEffect(() => {
-    getMyInformation(dispatchMyInformation);
-  }, [dispatchMyInformation]);
+    getMyInformations(dispatchMyInformations);
+  }, [dispatchMyInformations]);
 
   const minisidbar = () => {
     document.body.classList.toggle("sidebar-main");

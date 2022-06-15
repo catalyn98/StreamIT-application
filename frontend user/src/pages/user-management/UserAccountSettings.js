@@ -1,18 +1,32 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import { UserContext } from "../../context/userContext/UserContext";
-import { getMyInformation } from "../../context/userContext/apiCalls";
-import user from "../../assets/images/user/user.png";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import {
+  getMyInformations,
+  updateMyInformations,
+} from "../../context/myInformationsContext/apiCalls";
+import userAvatar from "../../assets/images/user/user.png";
 
 export default function UserAccountSettings() {
-  const { users, dispatchUser } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useState(null);
+  const { user, dispatchUser } = useContext(MyInformationsContext);
 
   useEffect(() => {
-    getMyInformation(dispatchUser);
+    getMyInformations(dispatchUser);
   }, [dispatchUser]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setUserInfo({ ...userInfo, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateMyInformations(dispatchUser);
+  };
 
   return (
     <>
@@ -28,17 +42,13 @@ export default function UserAccountSettings() {
                     <div className="upload_profile d-inline-block">
                       {/* Change profile picture */}
                       <img
-                        src={users.profilePicture || user}
-                        className="profile-pic avatar-130 rounded-circle img-fluid"
+                        src={user.profilePicture || userAvatar}
+                        className="profile-pic avatar-130 rounded-circle img-fluname"
                         alt="user"
                       />
                       <div className="p-image">
+                        <input className="file-upload" type="file" />
                         <i className="ri-pencil-line upload-button"></i>
-                        <input
-                          className="file-upload"
-                          type="file"
-                          accept="image/*"
-                        />
                       </div>
                     </div>
                   </Col>
@@ -55,9 +65,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="firstName"
-                                placeholder={users.firstName}
-                                autoComplete="off"
+                                name="firstName"
+                                placeholder={user.firstName}
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -69,9 +79,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="lastName"
-                                placeholder={users.lastName}
-                                autoComplete="off"
+                                name="lastName"
+                                placeholder={user.lastName}
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -83,9 +93,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="emailAddress"
-                                placeholder={users.email}
-                                autoComplete="off"
+                                name="emailAddress"
+                                placeholder={user.email}
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -97,9 +107,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="username"
-                                placeholder={users.username}
-                                autoComplete="off"
+                                name="username"
+                                placeholder={user.username}
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -111,9 +121,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="text"
                                 className="form-control mb-0"
-                                id="phoneNumber"
-                                placeholder={users.phoneNumber}
-                                autoComplete="off"
+                                name="phoneNumber"
+                                placeholder={user.phoneNumber}
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -125,9 +135,9 @@ export default function UserAccountSettings() {
                               <Form.Control
                                 type="password"
                                 className="form-control mb-0"
-                                id="password"
+                                name="password"
                                 placeholder="parolă"
-                                autoComplete="off"
+                                onChange={handleChange}
                                 required
                               />
                             </Form.Group>
@@ -137,8 +147,9 @@ export default function UserAccountSettings() {
                           type="button"
                           variant="btn btn-primary"
                           style={{ backgroundColor: "red", borderColor: "red" }}
+                          onClick={handleSubmit}
                         >
-                          Salvează
+                          Actualizează
                         </Button>{" "}
                         <Link to="/user-profile">
                           <Button

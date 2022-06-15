@@ -6,6 +6,9 @@ import {
   createPostStart,
   createPostSuccess,
   createPostFailure,
+  updatePostStart,
+  updatePostSuccess,
+  updatePostFailure,
   deletePostStart,
   deletePostSuccess,
   deletePostFailure,
@@ -38,6 +41,21 @@ export const createPost = async (post, dispatch) => {
     dispatch(createPostSuccess(res.data));
   } catch (error) {
     dispatch(createPostFailure());
+  }
+};
+
+export const updatePost = async (id, dispatch) => {
+  dispatch(updatePostStart());
+  try {
+    const res = await axios.put("/news/" + id, {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+      },
+    });
+    dispatch(updatePostSuccess(res.data));
+  } catch (error) {
+    dispatch(updatePostFailure());
   }
 };
 

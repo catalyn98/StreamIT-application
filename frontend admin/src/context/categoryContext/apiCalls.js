@@ -6,6 +6,9 @@ import {
   createCategoryStart,
   createCategorySuccess,
   createCategoryFailure,
+  updateCategoryStart,
+  updateCategorySuccess,
+  updateCategoryFailure,
   deleteCategoryStart,
   deleteCategorySuccess,
   deleteCategoryFailure,
@@ -41,7 +44,22 @@ export const createCategoryMovies = async (categoriesMovies, dispatch) => {
   }
 };
 
-export const deleteCategoryMovie = async (id, dispatch) => {
+export const updateCategoryMovies = async (id, dispatch) => {
+  dispatch(updateCategoryStart());
+  try {
+    const res = await axios.put("/categories-movies/" + id, {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+      },
+    });
+    dispatch(updateCategorySuccess(res.data));
+  } catch (error) {
+    dispatch(updateCategoryFailure());
+  }
+};
+
+export const deleteCategoryMovies = async (id, dispatch) => {
   dispatch(deleteCategoryStart());
   try {
     await axios.delete("/categories-movies/" + id, {
