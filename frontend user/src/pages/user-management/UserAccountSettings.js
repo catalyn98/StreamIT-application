@@ -123,6 +123,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 name="firstName"
+                                autoComplete="off"
                                 placeholder={user.firstName}
                                 onChange={handleChange}
                                 required
@@ -137,6 +138,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 name="lastName"
+                                autoComplete="off"
                                 placeholder={user.lastName}
                                 onChange={handleChange}
                                 required
@@ -151,6 +153,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 name="emailAddress"
+                                autoComplete="off"
                                 placeholder={user.email}
                                 onChange={handleChange}
                                 required
@@ -165,6 +168,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 name="username"
+                                autoComplete="off"
                                 placeholder={user.username}
                                 onChange={handleChange}
                                 required
@@ -179,6 +183,7 @@ export default function UserAccountSettings() {
                                 type="text"
                                 className="form-control mb-0"
                                 name="phoneNumber"
+                                autoComplete="off"
                                 placeholder={user.phoneNumber}
                                 onChange={handleChange}
                                 required
@@ -193,6 +198,7 @@ export default function UserAccountSettings() {
                                 type="password"
                                 className="form-control mb-0"
                                 name="password"
+                                autoComplete="off"
                                 placeholder="parolă"
                                 onChange={handleChange}
                                 required
