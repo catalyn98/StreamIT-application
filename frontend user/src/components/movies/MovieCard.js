@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);
 
 export default function MovieCard({ item }) {
@@ -29,7 +30,11 @@ export default function MovieCard({ item }) {
     <div className=" block-images position-relative">
       {/* Image thumbnail */}
       <div className="img-box">
-        <img src={movie.image} className="img-fluid" alt="" />
+        <img
+          src={movie.image || placeholderMovie}
+          className="img-fluid"
+          alt=""
+        />
       </div>
       {/* Movie title, limit age, duration & see movie */}
       <div className="block-description">

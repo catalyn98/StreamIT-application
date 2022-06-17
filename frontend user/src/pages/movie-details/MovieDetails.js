@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import placeholderVideo from "../../assets/video/Lionsgate.mp4";
 
 export default function MovieDetails() {
   const location = useLocation();
@@ -15,7 +16,29 @@ export default function MovieDetails() {
         <div className="main-content movi" style={{ paddingTop: 100 }}>
           <section className="movie-detail container-fluid">
             <Row>
-              <Col lg="6" style={{ paddingBottom: 30 }}>
+              <Col lg="12" style={{ paddingBottom: 30 }}>
+                <div
+                  className="video-container iq-main-slider sign-user_card"
+                  style={{ borderRadius: 15, backgroundColor: "#141414" }}
+                >
+                  {/* Title movie */}
+                  <h1
+                    className="trending-text big-title text-uppercase mb-3 pb-3 a-border a-border mt-0"
+                    style={{ fontSize: 40 }}
+                  >
+                    {movie.title}
+                  </h1>
+                  <iframe
+                    src={movie.trailer || placeholderVideo}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    style={{ height: 480 }}
+                  />
+                </div>
+              </Col>
+              <Col lg="12" style={{ paddingBottom: 30 }}>
                 <div
                   className="sign-user_card"
                   style={{ backgroundColor: "#141414", borderRadius: 15 }}
@@ -31,16 +54,15 @@ export default function MovieDetails() {
                     className="trending-info g-border"
                     style={{ paddingBottom: 0 }}
                   >
-                    {/* Title movie */}
-                    <h1
-                      className="trending-text big-title text-uppercase mt-0"
-                      style={{ fontSize: 40 }}
-                    >
-                      {movie.title}
-                    </h1>
-                    <div className=" text-center">
+                    <div style={{ maxWidth: "100%" }}>
                       <img
                         src={movie.image}
+                        style={{
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          dispaly: "block",
+                          width: "50%",
+                        }}
                         className="img-fluid d-block mx-auto mb-3"
                         alt="user"
                       />
@@ -191,27 +213,6 @@ export default function MovieDetails() {
                     </Row>
                   </div>
                   {/* Trailer movie */}
-                </div>
-              </Col>
-              <Col lg="6">
-                <div
-                  className="video-container iq-main-slider sign-user_card"
-                  style={{ borderRadius: 15, backgroundColor: "#141414" }}
-                >
-                  <h5
-                    className="mb-3 pb-3 a-border"
-                    style={{ fontSize: 30, fontWeight: "bold" }}
-                  >
-                    Vizionează
-                  </h5>
-                  <iframe
-                    src={movie.trailer}
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="video"
-                    style={{ height: 350 }}
-                  />
                 </div>
               </Col>
             </Row>

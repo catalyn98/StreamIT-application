@@ -11,8 +11,8 @@ export default function RecoveryPassword() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    if (email.length < 5) {
-      notifyError("Completați câmpul pentru email!");
+    if (email.length === 0) {
+      notifyError("Tastează adresa de email.");
     } else {
       Axios.post("/user/reset-password", { email })
         .then((res) => {

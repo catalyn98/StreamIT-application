@@ -6,6 +6,7 @@ import { getMovies } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { CategoryContext } from "../../context/categoryContext/CategoryContext";
 import { createCategoryMovies } from "../../context/categoryContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 
 export default function AddCategory() {
   const [list, setList] = useState(null);
@@ -31,7 +32,9 @@ export default function AddCategory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createCategoryMovies(list, dispatch);
-    history.push("/categories-movies-list");
+    setTimeout(() => {
+      history.push("/categories-movies-list");
+    }, 6000);
   };
 
   return (
@@ -135,6 +138,7 @@ export default function AddCategory() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

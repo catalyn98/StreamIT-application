@@ -7,6 +7,8 @@ import {
   deleteUserSuccess,
   deleteUserFailure,
 } from "./UserAction";
+import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
 
 export const getUsers = async (dispatch) => {
   dispatch(getUsersStart());
@@ -33,7 +35,9 @@ export const deleteUser = async (id, dispatch) => {
       },
     });
     dispatch(deleteUserSuccess(id));
+    notifySuccess("Utilizatorul a fost șters cu succes.");
   } catch (error) {
     dispatch(deleteUserFailure());
+    dispatch(notifyError("Utilizatorul nu a putut fi șters."));
   }
 };

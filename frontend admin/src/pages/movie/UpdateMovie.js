@@ -2,15 +2,23 @@ import React, { useContext, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
+import storage from "../../firebase";
+import Moment from "moment";
 import { updateMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { ToastContainer } from "react-toastify";
+import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export default function UpdateMovie() {
   const location = useLocation();
   const history = useHistory();
   const movie = location.movie;
 
-  const [movieUpdate, setMovieUpdate] = useState(null);
+  const [movieUpdate, setMovieUpdate] = useState(movie);
+  const [image, setImage] = useState(null);
+  const [trailer, setTrailer] = useState(null);
+  const [, setUploaded] = useState(0);
 
   const { dispatch } = useContext(MovieContext);
 
@@ -19,19 +27,64 @@ export default function UpdateMovie() {
     setMovieUpdate({ ...movieUpdate, [e.target.name]: value });
   };
 
-  console.log(movieUpdate);
+  const upload = (items) => {
+    items.forEach((item) => {
+      const fileName =
+        Moment(new Date().getTime()).format("HH:mm:ss") +
+        " - " +
+        item.file.name;
+      const uploadTask = storage
+        .ref(`/movies-files/${fileName}`)
+        .put(item.file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+          notifyError("Fișierele media nu au putut fi încărcate.");
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setMovieUpdate((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+            notifySuccess(
+              "Fișierul " + item.file.name + " a fost încărcat cu succes."
+            );
+          });
+        }
+      );
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMovie(movie._id, dispatch);
-    history.push("/movies-list");
+    updateMovie(movieUpdate, dispatch);
+    setTimeout(() => {
+      history.push("/movies-list");
+    }, 6000);
+  };
+
+  const handleSubmitImage = (e) => {
+    e.preventDefault();
+    upload([{ file: image, label: "image" }]);
+  };
+
+  const handleSubmitMovie = (e) => {
+    e.preventDefault();
+    upload([{ file: trailer, label: "trailer" }]);
   };
 
   return (
     <>
       <Container fluid>
         <Row>
-          <Col sm="12">
+          <Col sm="6">
             <Card>
               {/* Card header - update movie */}
               <Card.Header className="d-flex justify-content-between">
@@ -43,7 +96,7 @@ export default function UpdateMovie() {
               <Card.Body>
                 <Form>
                   <Row>
-                    <Col lg="7">
+                    <Col lg="12">
                       <Row>
                         {/* Update movie title */}
                         <Form.Group className="col-12">
@@ -55,20 +108,54 @@ export default function UpdateMovie() {
                           />
                         </Form.Group>
                         {/* Upload image */}
-                        <div className="col-12 form_gallery form-group">
-                          <label id="gallery2" htmlFor="form_gallery-upload">
-                            Încarcă imagine
+                        <div className="col-12 form-group">
+                          <label className="form-label">
+                            Încarcă altă imagine
                           </label>
                           <input
-                            data-name="#gallery2"
-                            id="form_gallery-upload"
-                            className="form_gallery-upload"
+                            className="form-control form_gallery-upload"
+                            name="image"
                             type="file"
-                            accept=".png, .jpg, .jpeg"
+                            id="image"
+                            onChange={(e) => setImage(e.target.files[0])}
                           />
+                          <Button
+                            type="button"
+                            variant="primary"
+                            style={{
+                              position: "absolute",
+                              top: "50%",
+                              right: 25,
+                            }}
+                            onClick={handleSubmitImage}
+                          >
+                            Încarcă
+                          </Button>{" "}
                         </div>
+                        {/* Upload movie */}
+                        <div className="col-12 form-group">
+                          <label className="form-label">Încarcă alt film</label>
+                          <input
+                            className="form-control form_gallery-upload"
+                            type="file"
+                            onChange={(e) => setTrailer(e.target.files[0])}
+                          />
+                          <Button
+                            type="button"
+                            variant="primary"
+                            style={{
+                              position: "absolute",
+                              top: "50%",
+                              right: 25,
+                            }}
+                            onClick={handleSubmitMovie}
+                          >
+                            Încarcă
+                          </Button>{" "}
+                        </div>
+
                         {/* Choose genre movie */}
-                        <Form.Group className="col-md-6">
+                        <Form.Group className="col-md-12">
                           <label>Gen</label>
                           <select
                             className="form-control"
@@ -139,19 +226,6 @@ export default function UpdateMovie() {
                         </Form.Group>
                       </Row>
                     </Col>
-                    {/* Upload movie */}
-                    <Col lg="5">
-                      <div className="d-block position-relative">
-                        <div className="form_video-upload">
-                          <input
-                            type="file"
-                            accept="video/mp4,video/x-m4v,video/*"
-                            multiple
-                          />
-                          <p>Încarcă film</p>
-                        </div>
-                      </div>
-                    </Col>
                   </Row>
                   <Row>
                     <Form.Group className="col-12">
@@ -179,6 +253,7 @@ export default function UpdateMovie() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

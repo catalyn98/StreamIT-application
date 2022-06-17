@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import axios from "axios";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function AllMoviesCard({ item }) {
   const [, setMovie] = useState({});
@@ -29,7 +30,11 @@ export default function AllMoviesCard({ item }) {
         <div className="epi-box">
           <div className="epi-img position-relative">
             {/* Movie image */}
-            <img src={item.image} className="img-fluid img-zoom" alt="" />
+            <img
+              src={item.image || placeholderMovie}
+              className="img-fluid img-zoom"
+              alt=""
+            />
             <div className="episode-play-info">
               <div className="episode-play">
                 <Link

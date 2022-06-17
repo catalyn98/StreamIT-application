@@ -3,8 +3,12 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
 import storage from "../../firebase";
+import Moment from "moment";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { ToastContainer } from "react-toastify";
+import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export default function AddMovie() {
   const [movie, setMovie] = useState(null);
@@ -23,8 +27,12 @@ export default function AddMovie() {
   const upload = (items) => {
     items.forEach((item) => {
       const fileName =
-        new Date().getTime() + " - " + item.label + " - " + item.file.name;
-      const uploadTask = storage.ref(`/movieFiles/${fileName}`).put(item.file);
+        Moment(new Date().getTime()).format("HH:mm:ss") +
+        " - " +
+        item.file.name;
+      const uploadTask = storage
+        .ref(`/movies-files/${fileName}`)
+        .put(item.file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -34,6 +42,7 @@ export default function AddMovie() {
         },
         (error) => {
           console.log(error);
+          notifyError("Fișierele media nu au putut fi încărcate.");
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
@@ -41,6 +50,9 @@ export default function AddMovie() {
               return { ...prev, [item.label]: url };
             });
             setUploaded((prev) => prev + 1);
+            notifySuccess(
+              "Fișierul " + item.file.name + " a fost încărcat cu succes."
+            );
           });
         }
       );
@@ -58,14 +70,16 @@ export default function AddMovie() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
-    history.push("/movies-list");
+    setTimeout(() => {
+      history.push("/movies-list");
+    }, 6000);
   };
 
   return (
     <>
       <Container fluid>
         <Row>
-          <Col sm="12">
+          <Col sm="6">
             <Card>
               {/* Card header - add movie */}
               <Card.Header className="d-flex justify-content-between">
@@ -77,7 +91,7 @@ export default function AddMovie() {
               <Card.Body>
                 <Form>
                   <Row>
-                    <Col lg="7">
+                    <Col lg="12">
                       <Row>
                         {/* Add movie title */}
                         <Form.Group className="col-12">
@@ -97,16 +111,23 @@ export default function AddMovie() {
                           />
                         </Form.Group>
                         {/* Upload image */}
-                        <div className="col-12 form_gallery form-group">
-                          <label htmlFor="image">Încarcă imagine</label>
+                        <div className="col-6 form-group">
+                          <label className="form-label">Încarcă imagine</label>
                           <input
-                            data-name="#gallery2"
-                            htmlFor="image"
-                            id="image"
-                            className="form_gallery-upload"
-                            type="file"
+                            className="form-control form_gallery-upload"
                             name="image"
+                            type="file"
+                            id="image"
                             onChange={(e) => setImage(e.target.files[0])}
+                          />
+                        </div>
+                        {/* Upload movie */}
+                        <div className="col-6 form-group">
+                          <label className="form-label">Încarcă film</label>
+                          <input
+                            className="form-control form_gallery-upload"
+                            type="file"
+                            onChange={(e) => setTrailer(e.target.files[0])}
                           />
                         </div>
                         {/* Choose genre movie */}
@@ -180,18 +201,6 @@ export default function AddMovie() {
                         </Form.Group>
                       </Row>
                     </Col>
-                    {/* Upload movie */}
-                    <Col lg="5">
-                      <div className="d-block position-relative">
-                        <div className="form_video-upload">
-                          <input
-                            type="file"
-                            onChange={(e) => setTrailer(e.target.files[0])}
-                          />
-                          <p>Încarcă film</p>
-                        </div>
-                      </div>
-                    </Col>
                   </Row>
                   <Row>
                     <Form.Group className="col-12">
@@ -231,6 +240,7 @@ export default function AddMovie() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

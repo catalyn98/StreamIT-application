@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Moment from "moment";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function MovieItem({ item }) {
   const [, setItemMovie] = useState({});
@@ -32,7 +33,7 @@ export default function MovieItem({ item }) {
         <div className="media align-items-center">
           {/* Movie thumbnail */}
           <img
-            src={item.image}
+            src={item.image || placeholderMovie}
             className="img-fluid mr-3"
             alt="streamit"
             style={{ maxHeight: 50 }}

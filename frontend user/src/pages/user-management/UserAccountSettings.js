@@ -3,29 +3,75 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container, Form, Button } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import storage from "../../firebase";
+import Moment from "moment";
 import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
 import {
   getMyInformations,
   updateMyInformations,
 } from "../../context/myInformationsContext/apiCalls";
+import { ToastContainer } from "react-toastify";
+import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 import userAvatar from "../../assets/images/user/user.png";
 
 export default function UserAccountSettings() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [, setUploaded] = useState(0);
+
   const { user, dispatchUser } = useContext(MyInformationsContext);
+  const [userInfo, setUserInfo] = useState(user);
 
   useEffect(() => {
     getMyInformations(dispatchUser);
   }, [dispatchUser]);
+
+  const upload = (items) => {
+    items.forEach((item) => {
+      const fileName =
+        Moment(new Date().getTime()).format("HH:mm:ss") +
+        " - " +
+        item.file.name;
+      const uploadTask = storage.ref(`/users-files/${fileName}`).put(item.file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+          notifyError("Fișierele media nu au putut fi încărcate.");
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setProfilePicture((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+            notifySuccess(
+              "Fișierul " + item.file.name + " a fost încărcat cu succes."
+            );
+          });
+        }
+      );
+    });
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setUserInfo({ ...userInfo, [e.target.name]: value });
   };
 
+  const handleSubmitProfilePicture = (e) => {
+    e.preventDefault();
+    upload([{ file: profilePicture, label: "profilePicture" }]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMyInformations(dispatchUser);
+    updateMyInformations(user._id, dispatchUser);
   };
 
   return (
@@ -46,9 +92,20 @@ export default function UserAccountSettings() {
                         className="profile-pic avatar-130 rounded-circle img-fluname"
                         alt="user"
                       />
+                      {/* Edit image pencil line */}
                       <div className="p-image">
-                        <input className="file-upload" type="file" />
-                        <i className="ri-pencil-line upload-button"></i>
+                        <input
+                          className="file-upload"
+                          type="file"
+                          id="file"
+                          onChange={(e) => setProfilePicture(e.target.files[0])}
+                        />
+                        <label htmlFor="file" style={{ cursor: "pointer" }}>
+                          <i
+                            className="ri-pencil-line upload-button"
+                            style={{ color: "white" }}
+                          ></i>
+                        </label>
                       </div>
                     </div>
                   </Col>
@@ -151,6 +208,20 @@ export default function UserAccountSettings() {
                         >
                           Actualizează
                         </Button>{" "}
+                        <Link to="/">
+                          <Button
+                            type="submit"
+                            variant="btn btn-primary"
+                            className="mr-2"
+                            style={{
+                              backgroundColor: "red",
+                              borderColor: "red",
+                            }}
+                            onClick={handleSubmitProfilePicture}
+                          >
+                            Încarcă poza de profil
+                          </Button>
+                        </Link>
                         <Link to="/user-profile">
                           <Button
                             type="reset"
@@ -173,6 +244,7 @@ export default function UserAccountSettings() {
         </Container>
       </section>
       <Footer />
+      <ToastContainer />
     </>
   );
 }

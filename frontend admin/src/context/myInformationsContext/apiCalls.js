@@ -7,6 +7,8 @@ import {
   updateMyInformationsSuccess,
   updateMyInformationsFailure,
 } from "./MyInformationsAction";
+import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
 
 export const getMyInformations = async (dispatchMyInformations) => {
   const objectID = JSON.parse(localStorage.getItem("user")).user._id;
@@ -24,30 +26,19 @@ export const getMyInformations = async (dispatchMyInformations) => {
   }
 };
 
-export const updateMyInformations = async (dispatchMyInformations) => {
-  const objectID = JSON.parse(localStorage.getItem("user")).user._id;
-  const t = {
-    headers: {
-      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")),
-    },
-    token: JSON.parse(localStorage.getItem("user")).token,
-  };
-  console.log(t);
-  console.log("Before start");
+export const updateMyInformations = async (user, dispatchMyInformations) => {
   dispatchMyInformations(updateMyInformationsStart());
-  console.log("After start");
   try {
-    const res = await axios.patch("/user/" + objectID, {
+    const res = await axios.put("/user/" + user._id, user, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,
       },
     });
-    console.log("Before update");
     dispatchMyInformations(updateMyInformationsSuccess(res.data));
-    console.log("After update");
+    notifySuccess("Detaliile contului au fost actualizate cu succes.");
   } catch (error) {
-    console.log("Encountered a problem");
     dispatchMyInformations(updateMyInformationsFailure());
+    notifyError("Detaliile contului nu au putut fi actualizate.");
   }
 };

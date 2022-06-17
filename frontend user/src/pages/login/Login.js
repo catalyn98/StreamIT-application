@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
 import { login } from "../../context/authenticationContext/apiCalls";
 import { ToastContainer } from "react-toastify";
+import notifyError from "../../components/notify/notifyError";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,13 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    if (email.length === 0) {
+      notifyError("Tastează adresa de email.");
+    } else if (password.length === 0) {
+      notifyError("Tastează parola.");
+    } else {
+      login({ email, password }, dispatch);
+    }
   };
 
   return (

@@ -7,6 +7,8 @@ import {
   updateMyInformationsSuccess,
   updateMyInformationsFailure,
 } from "./MyInformationsAction";
+import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
 
 export const getMyInformations = async (dispatchUser) => {
   const objectID = JSON.parse(localStorage.getItem("user")).user._id;
@@ -24,18 +26,19 @@ export const getMyInformations = async (dispatchUser) => {
   }
 };
 
-export const updateMyInformations = async (dispatchUser) => {
-  const objectID = JSON.parse(localStorage.getItem("user")).user._id;
+export const updateMyInformations = async (user, dispatchUser) => {
   dispatchUser(updateMyInformationsStart());
   try {
-    const res = await axios.patch("/user/" + objectID, {
+    const res = await axios.put("/user/" + user._id, user, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,
       },
     });
     dispatchUser(updateMyInformationsSuccess(res.data));
+    notifySuccess("Detaliile contului au fost actualizate cu succes.");
   } catch (error) {
     dispatchUser(updateMyInformationsFailure());
+    notifyError("Detaliile contului nu au putut fi actualizate.");
   }
 };

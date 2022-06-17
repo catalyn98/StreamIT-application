@@ -13,6 +13,8 @@ import {
   deleteCategorySuccess,
   deleteCategoryFailure,
 } from "./CategoryAction";
+import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
 
 export const getCategoriesMovies = async (dispatch) => {
   dispatch(getCategoriesStart());
@@ -39,23 +41,31 @@ export const createCategoryMovies = async (categoriesMovies, dispatch) => {
       },
     });
     dispatch(createCategorySuccess(res.data));
+    notifySuccess("Categoria de filme a fost creată cu succes.");
   } catch (error) {
     dispatch(createCategoryFailure());
+    notifyError("Categoria de filme nu a putut fi creată.");
   }
 };
 
-export const updateCategoryMovies = async (id, dispatch) => {
+export const updateCategoryMovies = async (categoriesMovies, dispatch) => {
   dispatch(updateCategoryStart());
   try {
-    const res = await axios.put("/categories-movies/" + id, {
-      headers: {
-        Authorization:
-          "Bearer " + JSON.parse(localStorage.getItem("user")).token,
-      },
-    });
+    const res = await axios.put(
+      "/categories-movies/" + categoriesMovies._id,
+      categoriesMovies,
+      {
+        headers: {
+          Authorization:
+            "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+        },
+      }
+    );
     dispatch(updateCategorySuccess(res.data));
+    notifySuccess("Categoria de filme a fost actualizată cu succes.");
   } catch (error) {
     dispatch(updateCategoryFailure());
+    notifyError("Categoria de filme nu a putut fi actualizată.");
   }
 };
 
@@ -69,7 +79,9 @@ export const deleteCategoryMovies = async (id, dispatch) => {
       },
     });
     dispatch(deleteCategorySuccess(id));
+    notifySuccess("Categoria de filme a fost ștearsă cu succes.");
   } catch (error) {
     dispatch(deleteCategoryFailure());
+    notifyError("Categoria de filme nu a putut fi ștearsă.");
   }
 };

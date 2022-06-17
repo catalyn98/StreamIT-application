@@ -2,16 +2,25 @@ import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Tab, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
+import storage from "../../firebase";
+import Moment from "moment";
 import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
 import {
   getMyInformations,
   updateMyInformations,
 } from "../../context/myInformationsContext/apiCalls";
+import { ToastContainer } from "react-toastify";
+import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 import userAvatr from "../../assets/images/user/user.png";
 
 export default function AdminManagementAccount() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [, setUploaded] = useState(0);
+
   const { user, dispatchMyInformations } = useContext(MyInformationsContext);
+
+  const [userInfo, setUserInfo] = useState(user);
 
   useEffect(() => {
     getMyInformations(dispatchMyInformations);
@@ -22,9 +31,47 @@ export default function AdminManagementAccount() {
     setUserInfo({ ...userInfo, [e.target.name]: value });
   };
 
+  const upload = (items) => {
+    items.forEach((item) => {
+      const fileName =
+        Moment(new Date().getTime()).format("HH:mm:ss") +
+        " - " +
+        item.file.name;
+      const uploadTask = storage.ref(`/admin-files/${fileName}`).put(item.file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+          notifyError("Fișierele media nu au putut fi încărcate.");
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setProfilePicture((prev) => {
+              return { ...prev, [item.label]: url };
+            });
+            setUploaded((prev) => prev + 1);
+            notifySuccess(
+              "Fișierul " + item.file.name + " a fost încărcat cu succes."
+            );
+          });
+        }
+      );
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMyInformations(dispatchMyInformations);
+    updateMyInformations(user._id, dispatchMyInformations);
+  };
+
+  const handleSubmitProfilePicture = (e) => {
+    e.preventDefault();
+    upload([{ file: profilePicture, label: "profilePicture" }]);
   };
 
   return (
@@ -50,9 +97,22 @@ export default function AdminManagementAccount() {
                           className="profile-pic avatar-130 rounded-circle img-fluid"
                           alt="user"
                         />
+                        {/* Edit image pencil line */}
                         <div className="p-image">
-                          <i className="ri-pencil-line upload-button"></i>
-                          <input className="file-upload" type="file" />
+                          <input
+                            className="file-upload"
+                            type="file"
+                            id="file"
+                            onChange={(e) =>
+                              setProfilePicture(e.target.files[0])
+                            }
+                          />
+                          <label htmlFor="file" style={{ cursor: "pointer" }}>
+                            <i
+                              className="ri-pencil-line upload-button"
+                              style={{ color: "white" }}
+                            ></i>
+                          </label>
                         </div>
                       </div>
                     </Col>
@@ -157,6 +217,16 @@ export default function AdminManagementAccount() {
                         </Button>
                       </Link>
                       <Link to="/">
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          className="mr-2"
+                          onClick={handleSubmitProfilePicture}
+                        >
+                          Încarcă poza de profil
+                        </Button>
+                      </Link>
+                      <Link to="/">
                         <Button type="reset" variant="danger">
                           Anulează
                         </Button>
@@ -169,6 +239,7 @@ export default function AdminManagementAccount() {
           </Row>
         </Tab.Container>
       </Container>
+      <ToastContainer />
     </>
   );
 }

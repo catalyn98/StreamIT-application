@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Moment from "moment";
+import placeholderNews from "../../../assets/images/news/placeholderNews.jpg";
 
 export default function ArticleItem({ item }) {
   const [, setPost] = useState({});
@@ -23,7 +24,7 @@ export default function ArticleItem({ item }) {
     getPost();
   }, [item]);
 
-  const imagePost = item.image;
+  const imagePost = item.image || placeholderNews;
 
   return (
     <div className="widget-area" aria-label="Blog Sidebar">

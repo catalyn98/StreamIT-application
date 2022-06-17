@@ -13,6 +13,8 @@ import {
   deletePostSuccess,
   deletePostFailure,
 } from "./BlogAction";
+import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
 
 export const getPosts = async (dispatch) => {
   dispatch(getPostsStart());
@@ -39,23 +41,27 @@ export const createPost = async (post, dispatch) => {
       },
     });
     dispatch(createPostSuccess(res.data));
+    notifySuccess("Articolul a fost creat cu succes.");
   } catch (error) {
     dispatch(createPostFailure());
+    notifyError("Articolul nu a putut fi creat.");
   }
 };
 
-export const updatePost = async (id, dispatch) => {
+export const updatePost = async (post, dispatch) => {
   dispatch(updatePostStart());
   try {
-    const res = await axios.put("/news/" + id, {
+    const res = await axios.put("/news/" + post._id, post, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,
       },
     });
     dispatch(updatePostSuccess(res.data));
+    notifySuccess("Articolul a fost actualizat cu succes.");
   } catch (error) {
     dispatch(updatePostFailure());
+    notifyError("Articolul nu a putut fi actualizat.");
   }
 };
 
@@ -69,7 +75,9 @@ export const deletePost = async (id, dispatch) => {
       },
     });
     dispatch(deletePostSuccess(id));
+    notifySuccess("Articolul a fost șters cu succes.");
   } catch (error) {
     dispatch(deletePostFailure());
+    notifySuccess("Articolul nu a putut fi șters.");
   }
 };

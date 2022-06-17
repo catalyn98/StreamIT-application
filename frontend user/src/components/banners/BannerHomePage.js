@@ -6,6 +6,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);
 
 const gsapAnimate = {
@@ -121,7 +122,7 @@ export default function Banner() {
             className="slide slick-bg s-bg-1"
             // Image slider
             style={{
-              backgroundImage: "url(" + imageSlider + ")",
+              backgroundImage: "url(" + imageSlider || placeholderMovie + ")",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Moment from "moment";
+import placeholderNews from "../../../assets/images/news/placeholderNews.jpg";
 
 export default function Article({ item }) {
   const [, setPost] = useState({});
@@ -29,7 +30,12 @@ export default function Article({ item }) {
         <div className="iq-blog-box">
           <div className="iq-blog-image">
             {/* Image post */}
-            <img width="1920" height="1080" src={item.image} alt="" />
+            <img
+              width="1920"
+              height="1080"
+              src={item.image || placeholderNews}
+              alt=""
+            />
           </div>
           {/* Post details */}
           <div className="iq-blog-detail">

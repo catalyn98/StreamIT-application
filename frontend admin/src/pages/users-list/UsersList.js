@@ -5,6 +5,7 @@ import Card from "../../components/card/Card";
 import Moment from "moment";
 import { UserContext } from "../../context/userContext/UserContext";
 import { getUsers, deleteUser } from "../../context/userContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 import user from "../../assets/images/user/user.png";
 
 export default function UsersList() {
@@ -127,6 +128,7 @@ export default function UsersList() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

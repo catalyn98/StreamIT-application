@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Card from "../../components/card/Card";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function MoviesList() {
@@ -143,6 +144,7 @@ export default function MoviesList() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

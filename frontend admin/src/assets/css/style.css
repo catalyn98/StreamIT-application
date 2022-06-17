@@ -60,7 +60,9 @@ General
   color: var(--iq-white);
   text-shadow: none;
 }
-
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
 dl dd {
   margin-bottom: 15px;
 }

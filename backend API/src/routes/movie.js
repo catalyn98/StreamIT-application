@@ -18,22 +18,26 @@ router.post("/", authentication.verify, async (req, res) => {
 });
 
 // Update movie
-router.put("/:id", async (req, res) => {
-    try {
-      const updateMovie = await Movie.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        {
-          new: true,
-        }
-      );
-      res.status(200).json(updateMovie);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  
+router.put("/:id", authentication.verify, async (req, res) => {
+  try {
+    console.log(req.params.id);
+    console.log("start update");
+    console.log(req.body);
+    const updateMovie = await Movie.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      {
+        new: true,
+      }
+    );
+    console.log("finished update");
+
+    res.status(200).json(updateMovie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 // Delete movie
@@ -57,7 +61,7 @@ router.get("/", authentication.verify, async (req, res) => {
   const query = req.query.new;
   try {
     const movies = query
-      ? await Movie.find().sort({ _id: -1 }).limit(3)
+      ? (await Movie.find().sort({ _id: -1 }).limit(3)).reverse()
       : await Movie.find();
     res.status(200).json(movies.reverse());
   } catch (error) {

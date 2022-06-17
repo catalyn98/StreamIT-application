@@ -5,6 +5,7 @@ import Card from "../../components/card/Card";
 import Moment from "moment";
 import { BlogContext } from "../../context/blogContext/BlogContext";
 import { getPosts, deletePost } from "../../context/blogContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 import news from "../../assets/images/movie-thumb/news.jpg";
 
 export default function NewsList() {
@@ -151,6 +152,7 @@ export default function NewsList() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

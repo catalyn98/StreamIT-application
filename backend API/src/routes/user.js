@@ -229,7 +229,7 @@ router.post("/contact", async (req, res) => {
 });
 
 // Update user
-router.patch("/:id", authentication.verify, async (req, res) => {
+router.put("/:id", authentication.verify, async (req, res) => {
   if (req.user.id === req.params.id) {
     const updates = Object.keys(req.body);
     try {
@@ -271,9 +271,9 @@ router.get("/", authentication.verify, async (req, res) => {
     });
   try {
     const users = query
-      ? await User.find().sort({ _id: -1 }).limit(5)
+      ? (await User.find().sort({ _id: -1 }).limit(5)).reverse()
       : await User.find();
-    res.status(200).json(users);
+    res.status(200).json(users.reverse());
   } catch (error) {
     res.status(500).json(error);
   }

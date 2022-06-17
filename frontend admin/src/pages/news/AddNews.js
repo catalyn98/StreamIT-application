@@ -3,8 +3,12 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
 import storage from "../../firebase";
-import { createPost } from "../../context/blogContext/apiCalls";
+import Moment from "moment";
 import { BlogContext } from "../../context/blogContext/BlogContext";
+import { createPost } from "../../context/blogContext/apiCalls";
+import { ToastContainer } from "react-toastify";
+import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export default function AddNews() {
   const [post, setPost] = useState(null);
@@ -26,8 +30,11 @@ export default function AddNews() {
 
   const upload = (items) => {
     items.forEach((item) => {
-      const fileName = new Date().getTime() + " - " + item.file.name;
-      const uploadTask = storage.ref(`/postFiles/${fileName}`).put(item.file);
+      const fileName =
+        Moment(new Date().getTime()).format("HH:mm:ss") +
+        " - " +
+        item.file.name;
+      const uploadTask = storage.ref(`/posts-files/${fileName}`).put(item.file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -37,6 +44,7 @@ export default function AddNews() {
         },
         (error) => {
           console.log(error);
+          notifyError("Fișierele media nu au putut fi încărcate.");
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
@@ -44,6 +52,9 @@ export default function AddNews() {
               return { ...prev, [item.label]: url };
             });
             setUploaded((prev) => prev + 1);
+            notifySuccess(
+              "Fișierul " + item.file.name + " a fost încărcat cu succes."
+            );
           });
         }
       );
@@ -58,7 +69,9 @@ export default function AddNews() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createPost(post, dispatch);
-    history.push("/blog-posts");
+    setTimeout(() => {
+      history.push("/blog-posts");
+    }, 6000);
   };
 
   return (
@@ -97,21 +110,18 @@ export default function AddNews() {
                           />
                         </Form.Group>
                         {/* Upload image post */}
-                        <div className="col-6 form_gallery form-group">
-                          <label id="gallery2" htmlFor="form_gallery-upload">
-                            Încarcă imagine
-                          </label>
+                        <div className="col-12 form-group">
+                          <label className="form-label">Încarcă imagine</label>
                           <input
-                            data-name="#gallery2"
-                            id="form_gallery-upload"
-                            className="form_gallery-upload"
-                            type="file"
+                            className="form-control form_gallery-upload"
                             name="image"
+                            type="file"
+                            id="image"
                             onChange={(e) => setImage(e.target.files[0])}
                           />
                         </div>
                         {/* Choose category post */}
-                        <Form.Group className="col-md-6">
+                        <Form.Group className="col-md-12">
                           <select
                             className="form-control"
                             id="exampleFormControlSelect1"
@@ -197,6 +207,7 @@ export default function AddNews() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

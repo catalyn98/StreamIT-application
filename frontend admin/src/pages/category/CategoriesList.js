@@ -7,6 +7,7 @@ import {
   getCategoriesMovies,
   deleteCategoryMovies,
 } from "../../context/categoryContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 
 export default function CategoriesList() {
   const { categoriesMovies, dispatch } = useContext(CategoryContext);
@@ -121,6 +122,7 @@ export default function CategoriesList() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }

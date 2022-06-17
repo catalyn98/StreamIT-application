@@ -60,7 +60,7 @@ router.get("/", authentication.verify, async (req, res) => {
   const query = req.query.new;
   try {
     const news = query
-      ? await News.find().sort({ _id: -1 }).limit(3)
+      ? (await News.find().sort({ _id: -1 }).limit(3)).reverse()
       : await News.find();
     res.status(200).json(news.reverse());
   } catch (error) {

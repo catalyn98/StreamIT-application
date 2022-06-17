@@ -78,11 +78,15 @@ router.get("/", authentication.verify, async (req, res) => {
       list = await CategoriesMovies.aggregate([
         { $sample: { size: 10 } },
         { $match: { genre: genreQuery } },
+        { $sort: { createdAt: -1 } },
       ]);
     } else {
-      list = await CategoriesMovies.aggregate([{ $sample: { size: 10 } }]);
+      list = await CategoriesMovies.aggregate([
+        { $sample: { size: 10 } },
+        { $sort: { createdAt: -1 } },
+      ]);
     }
-    res.status(200).json(list.reverse());
+    res.status(200).json(list);
   } catch (error) {
     res.status(500).json(error);
   }

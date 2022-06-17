@@ -1,23 +1,43 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import Card from "../../components/card/Card";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
-
-const animatedComponents = makeAnimated();
+import { getMovies } from "../../context/movieContext/apiCalls";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { CategoryContext } from "../../context/categoryContext/CategoryContext";
+import { updateCategoryMovies } from "../../context/categoryContext/apiCalls";
+import { ToastContainer } from "react-toastify";
 
 export default function UpdateCategoryList() {
   const location = useLocation();
   const categoryList = location.categoryList;
+  const [categoryUpdate, setCategoryUpdate] = useState(categoryList);
+  const history = useHistory();
 
-  const options = [
-    { value: "Sonic Ariciul 2", label: "Sonic Ariciul 2" },
-    { value: "Mortal Kombat", label: "Mortal Kombat" },
-    { value: "Insurgent", label: "Insurgent" },
-    { value: "Dune", label: "Dune" },
-    { value: "Răzbunătorii", label: "Răzbunătorii" },
-  ];
+  const { dispatch } = useContext(CategoryContext);
+  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMovies(dispatchMovie);
+  }, [dispatchMovie]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setCategoryUpdate({ ...categoryUpdate, [e.target.name]: value });
+  };
+
+  const handleSelect = (e) => {
+    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    setCategoryUpdate({ ...categoryUpdate, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateCategoryMovies(categoryUpdate, dispatch);
+    setTimeout(() => {
+      history.push("/categories-movies-list");
+    }, 6000);
+  };
 
   return (
     <>
@@ -37,14 +57,19 @@ export default function UpdateCategoryList() {
                       {/* Category name */}
                       <Form.Group>
                         <label>Titlu</label>
-                        <Form.Control placeholder={categoryList.title} />
+                        <Form.Control
+                          placeholder={categoryList.title}
+                          name="title"
+                          onChange={handleChange}
+                        />
                       </Form.Group>
                       {/* Choose genre movie category */}
                       <Form.Group>
                         <label>Gen</label>
                         <select
                           className="form-control"
-                          id="exampleFormControlSelect1"
+                          name="genre"
+                          onChange={handleChange}
                           defaultValue={categoryList.genre}
                         >
                           <option>Acțiune</option>
@@ -61,22 +86,37 @@ export default function UpdateCategoryList() {
                       </Form.Group>
                       {/* Choose movie(es) */}
                       <Form.Group>
-                        <label>
-                          Alege filmele care vor face parte din această
-                          categorie
-                        </label>
-                        <Select
-                          closeMenuOnSelect={false}
-                          components={animatedComponents}
-                          placeholder="Alege filme"
-                          isMulti
-                          options={options}
-                        />
+                        <Col lg="12">
+                          <label>
+                            Alege filmele care vor face parte din această
+                            categorie
+                          </label>
+                        </Col>
+                        <Form.Group>
+                          <select
+                            multiple
+                            className="form-control"
+                            name="content"
+                            onChange={handleSelect}
+                          >
+                            {movies
+                              .sort((a, b) => a.title.localeCompare(b.title))
+                              .map((movie) => (
+                                <option key={movie._id} value={movie._id}>
+                                  {movie.title},&nbsp;&nbsp;{movie.genre}
+                                </option>
+                              ))}
+                          </select>
+                        </Form.Group>
                       </Form.Group>
                       <Form.Group className="form-group">
                         <Link to="/categories-movies-list">
                           {/* Update button */}
-                          <Button type="button" variant=" btn-primary">
+                          <Button
+                            type="button"
+                            variant=" btn-primary"
+                            onClick={handleSubmit}
+                          >
                             Actualizează
                           </Button>{" "}
                         </Link>
@@ -95,6 +135,7 @@ export default function UpdateCategoryList() {
           </Col>
         </Row>
       </Container>
+      <ToastContainer />
     </>
   );
 }
