@@ -6,3 +6,4 @@
 # misc
 /backend API/.env
 /frontend admin/.env
+/frontend user/.env
