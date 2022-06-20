@@ -13,8 +13,8 @@ import {
   deleteCategorySuccess,
   deleteCategoryFailure,
 } from "./CategoryAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getCategoriesMovies = async (dispatch) => {
   dispatch(getCategoriesStart());

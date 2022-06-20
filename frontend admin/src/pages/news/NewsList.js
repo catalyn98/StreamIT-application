@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import Card from "../../components/card/Card";
-import Moment from "moment";
 import { BlogContext } from "../../context/blogContext/BlogContext";
 import { getPosts, deletePost } from "../../context/blogContext/apiCalls";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import Moment from "moment";
+import Card from "../../components/card/Card";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import news from "../../assets/images/movie-thumb/news.jpg";
 
 export default function NewsList() {
-  const { posts, dispatch } = useContext(BlogContext);
   const [query, setQuery] = useState("");
+  const { posts, dispatch } = useContext(BlogContext);
 
   useEffect(() => {
     getPosts(dispatch);
@@ -85,7 +85,7 @@ export default function NewsList() {
                           }
                           return false;
                         })
-                        .map((item, index) => (
+                        ?.map((item, index) => (
                           <tr key={index}>
                             {/* Image post */}
                             <td>

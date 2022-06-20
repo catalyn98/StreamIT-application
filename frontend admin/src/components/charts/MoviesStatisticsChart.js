@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Chart from "react-apexcharts";
 
@@ -21,7 +21,7 @@ export default function MoviesStatisticsChart() {
         const statisticsList = res.data.sort(function (a, b) {
           return a.total - b.total;
         });
-        statisticsList.map((item) =>
+        statisticsList?.map((item) =>
           setMoviesStatistics((prev) => [
             ...prev,
             {

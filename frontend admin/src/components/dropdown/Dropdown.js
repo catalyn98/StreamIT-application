@@ -14,4 +14,5 @@ const CustomToggle = React.forwardRef(({ children, variant, onClick }, ref) => (
     {children}
   </Link>
 ));
+
 export default CustomToggle;

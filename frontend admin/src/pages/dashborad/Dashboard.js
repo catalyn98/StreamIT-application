@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
+import Card from "../../components/card/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faFilm, faList } from "@fortawesome/free-solid-svg-icons";
-import Card from "../../components/card/Card";
 import UsersStatisticsChart from "../../components/charts/UsersStatisticsChart";
 import MoviesStatisticsChart from "../../components/charts/MoviesStatisticsChart";
 import TableNewUsers from "../../components/new-users/TableNewUsers";

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Axios from "axios";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { ToastContainer } from "react-toastify";
 import notifyError from "../../components/notify/notifyError";
+import Axios from "axios";
 import notifySuccess from "../../components/notify/notifySuccess";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export default function RecoveryPassword() {
   const [email, setEmail] = useState("");

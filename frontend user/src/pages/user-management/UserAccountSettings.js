@@ -1,30 +1,38 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container, Form, Button } from "react-bootstrap";
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
-import storage from "../../firebase";
-import Moment from "moment";
+import React, { useState, useContext, useEffect } from "react";
 import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
 import {
   getMyInformations,
   updateMyInformations,
 } from "../../context/myInformationsContext/apiCalls";
-import { ToastContainer } from "react-toastify";
-import notifySuccess from "../../components/notify/notifySuccess";
+import Moment from "moment";
+import storage from "../../firebase";
 import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
+import Header from "../../components/header/Header";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
+import { ToastContainer } from "react-toastify";
 import userAvatar from "../../assets/images/user/user.png";
 
 export default function UserAccountSettings() {
   const [profilePicture, setProfilePicture] = useState(null);
   const [, setUploaded] = useState(0);
-
   const { user, dispatchUser } = useContext(MyInformationsContext);
   const [userInfo, setUserInfo] = useState(user);
 
   useEffect(() => {
     getMyInformations(dispatchUser);
   }, [dispatchUser]);
+
+  const handleChange = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateMyInformations(user._id, userInfo, dispatchUser);
+  };
 
   const upload = (items) => {
     items.forEach((item) => {
@@ -49,6 +57,7 @@ export default function UserAccountSettings() {
             setProfilePicture((prev) => {
               return { ...prev, [item.label]: url };
             });
+            setUserInfo({ ...userInfo, [item.label]: url });
             setUploaded((prev) => prev + 1);
             notifySuccess(
               "Fișierul " + item.file.name + " a fost încărcat cu succes."
@@ -59,19 +68,9 @@ export default function UserAccountSettings() {
     });
   };
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setUserInfo({ ...userInfo, [e.target.name]: value });
-  };
-
   const handleSubmitProfilePicture = (e) => {
     e.preventDefault();
     upload([{ file: profilePicture, label: "profilePicture" }]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateMyInformations(user._id, dispatchUser);
   };
 
   return (
@@ -88,19 +87,23 @@ export default function UserAccountSettings() {
                     <div className="upload_profile d-inline-block">
                       {/* Change profile picture */}
                       <img
-                        src={user.profilePicture || userAvatar}
+                        src={userInfo.profilePicture || userAvatar}
                         className="profile-pic avatar-130 rounded-circle img-fluname"
                         alt="user"
                       />
                       {/* Edit image pencil line */}
                       <div className="p-image">
                         <input
+                          name="profilePicture"
                           className="file-upload"
                           type="file"
-                          id="file"
+                          id="profilePicture"
                           onChange={(e) => setProfilePicture(e.target.files[0])}
                         />
-                        <label htmlFor="file" style={{ cursor: "pointer" }}>
+                        <label
+                          htmlFor="profilePicture"
+                          style={{ cursor: "pointer" }}
+                        >
                           <i
                             className="ri-pencil-line upload-button"
                             style={{ color: "white" }}
@@ -124,7 +127,7 @@ export default function UserAccountSettings() {
                                 className="form-control mb-0"
                                 name="firstName"
                                 autoComplete="off"
-                                placeholder={user.firstName}
+                                value={userInfo.firstName}
                                 onChange={handleChange}
                                 required
                               />
@@ -139,7 +142,7 @@ export default function UserAccountSettings() {
                                 className="form-control mb-0"
                                 name="lastName"
                                 autoComplete="off"
-                                placeholder={user.lastName}
+                                value={userInfo.lastName}
                                 onChange={handleChange}
                                 required
                               />
@@ -154,7 +157,7 @@ export default function UserAccountSettings() {
                                 className="form-control mb-0"
                                 name="emailAddress"
                                 autoComplete="off"
-                                placeholder={user.email}
+                                value={userInfo.email}
                                 onChange={handleChange}
                                 required
                               />
@@ -169,7 +172,7 @@ export default function UserAccountSettings() {
                                 className="form-control mb-0"
                                 name="username"
                                 autoComplete="off"
-                                placeholder={user.username}
+                                value={userInfo.username}
                                 onChange={handleChange}
                                 required
                               />
@@ -180,11 +183,11 @@ export default function UserAccountSettings() {
                             <Form.Group className="form-group">
                               <Form.Label>Număr de telefon</Form.Label>
                               <Form.Control
+                                value={userInfo.phoneNumber}
                                 type="text"
                                 className="form-control mb-0"
                                 name="phoneNumber"
                                 autoComplete="off"
-                                placeholder={user.phoneNumber}
                                 onChange={handleChange}
                                 required
                               />
@@ -199,7 +202,7 @@ export default function UserAccountSettings() {
                                 className="form-control mb-0"
                                 name="password"
                                 autoComplete="off"
-                                placeholder="parolă"
+                                placeholder="*****"
                                 onChange={handleChange}
                                 required
                               />

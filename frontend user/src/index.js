@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
 import { AuthenticationContextProvider } from "../src/context/authenticationContext/AuthenticationContext";
 import { MyInformationsContextProvider } from "../src/context/myInformationsContext/MyInformationsContext";
+import { MovieContextProvider } from "../src/context/movieContext/MovieContext";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <AuthenticationContextProvider>
         <MyInformationsContextProvider>
-          <App />
+          <MovieContextProvider>
+            <App />
+          </MovieContextProvider>
         </MyInformationsContextProvider>
       </AuthenticationContextProvider>
     </BrowserRouter>

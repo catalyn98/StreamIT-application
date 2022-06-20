@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Accordion } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import Scrollbar from "smooth-scrollbar";
+import { Accordion } from "react-bootstrap";
 import logo from "../../../src/assets/images/logo.png";
 
 export default function Sidebar() {
-  const [setActiveMenu] = useState(false);
-
   let location = useLocation();
+  const [setActiveMenu] = useState(false);
 
   useEffect(() => {
     Scrollbar.init(document.querySelector("#sidebar-scrollbar"));

@@ -1,9 +1,10 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import placeholderVideo from "../../assets/video/Lionsgate.mp4";
+import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg"
 
 export default function MovieDetails() {
   const location = useLocation();
@@ -56,7 +57,7 @@ export default function MovieDetails() {
                   >
                     <div style={{ maxWidth: "100%" }}>
                       <img
-                        src={movie.image}
+                        src={movie.image || placeholderMovie}
                         style={{
                           marginLeft: "auto",
                           marginRight: "auto",

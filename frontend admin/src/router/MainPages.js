@@ -1,8 +1,7 @@
 import React from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useLocation, Switch, Route } from "react-router-dom";
 import Dashbord from "../pages/dashborad/Dashboard";
-import AdminManagementAccount from "../pages/admin-management/AdminManagementAccount";
 import UsersList from "../pages/users-list/UsersList";
 import MoviesList from "../pages/movie/MoviesList";
 import AddMovie from "../pages/movie/AddMovie";
@@ -13,6 +12,7 @@ import UpdateCategoryList from "../pages/category/UpdateCategoryList";
 import NewsList from "../pages/news/NewsList";
 import AddNews from "../pages/news/AddNews";
 import UpdateNews from "../pages/news/UpdateNews";
+import AdminManagementAccount from "../pages/admin-management/AdminManagementAccount";
 
 const MainPages = () => {
   let location = useLocation();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
@@ -44,7 +44,7 @@ export default function ListMovies({ list }) {
                   as="ul"
                   className="favorites-slider list-inline  row p-0 m-0 iq-rtl-direction"
                 >
-                  {list.content.map((item, index) => (
+                  {list.content?.map((item, index) => (
                     <SwiperSlide key={index} as="li">
                       <MovieCard item={item} />
                     </SwiperSlide>

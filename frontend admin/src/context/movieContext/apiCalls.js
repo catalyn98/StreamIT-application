@@ -13,8 +13,8 @@ import {
   deleteMovieSuccess,
   deleteMovieFailure,
 } from "./MovieAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());
@@ -65,16 +65,19 @@ export const updateMovie = async (movie, dispatch) => {
   }
 };
 
-export const deleteMovie = async (id, dispatch) => {
+export const deleteMovie = async (ids, dispatch) => {
   dispatch(deleteMovieStart());
   try {
-    await axios.delete("/movie/" + id, {
+    await axios.delete("/movie/" + ids.movieId, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,
       },
+      data: {
+        ids: ids.categoryId && ids.categoryId,
+      },
     });
-    dispatch(deleteMovieSuccess(id));
+    dispatch(deleteMovieSuccess(ids.movieId));
     notifySuccess("Filmul a fost șters cu succes.");
   } catch (error) {
     dispatch(deleteMovieFailure());

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Axios from "axios";
-import { Container, Button, Row, Col, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import notifySuccess from "../../components/notify/notifySuccess";
 import notifyError from "../../components/notify/notifyError";
+import Axios from "axios";
+import notifySuccess from "../../components/notify/notifySuccess";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -31,12 +31,12 @@ export default function Register() {
       notifyError("Parola trebuie să conțină minim 8 caractere.");
     } else {
       Axios.post("/user/register/", {
-        email,
-        username,
-        password,
         firstName,
         lastName,
+        email,
+        username,
         phoneNumber,
+        password,
       })
         .then((res) => {
           if (res.status === 201) {

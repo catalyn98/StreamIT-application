@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container, Col, Row } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Container, Row, Col } from "react-bootstrap";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperSlideImage from "./SwiperSlideImage";
 import SwiperSlideOverview from "./SwiperSlideOverview";
 import movieThumbnail1 from "../../assets/images/trending/05.jpg";

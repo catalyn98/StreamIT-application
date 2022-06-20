@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
-import "swiper/swiper-bundle.css";
 import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
+import "swiper/swiper-bundle.css";
 SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);
 
 const gsapAnimate = {

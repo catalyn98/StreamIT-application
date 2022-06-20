@@ -1,5 +1,5 @@
-import MyInformationsReducer from "./MyInformationsReducer";
 import { createContext, useReducer } from "react";
+import MyInformationsReducer from "./MyInformationsReducer";
 
 const INITIAL_STATE = {
   user: [],

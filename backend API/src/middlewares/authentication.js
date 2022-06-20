@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const verify = async (req, res, next) => {
-  try 
-  {
+  try {
     const token = req.header("Authorization").replace("Bearer ", "");
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await User.findOne({

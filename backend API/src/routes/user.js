@@ -156,6 +156,7 @@ router.post("/reset-password", async (req, res) => {
   }
 });
 
+// send message to the administrator
 router.post("/contact", async (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -344,5 +345,33 @@ router.get(
     }
   }
 );
+
+// Add watched movie to user
+router.put("/:id/:movieId", authentication.verify, async (req, res) => {
+  const { user } = req;
+  const existsMovieInList =
+    user.seenMovies && user.seenMovies.includes(req.params.movieId);
+  if (!existsMovieInList) {
+    if (req.user.id === req.params.id) {
+      const updates = Object.keys(req.body);
+      try {
+        await User.findByIdAndUpdate(
+          { _id: req.user.id },
+          {
+            $addToSet: {
+              seenMovies: [{ _id: req.params.movieId }],
+            },
+          }
+        );
+        user.save();
+        res.send(user);
+      } catch (error) {
+        res.status(400).send(error);
+      }
+    } else {
+      res.status(500).json("Filmul s-a adăugat în lista de filme vizionate!");
+    }
+  } else return null;
+});
 
 module.exports = router;

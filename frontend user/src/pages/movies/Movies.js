@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import MoviesCarousel from "../../components/moviesCarousel/MoviesCarousel";
-import ListMovies from "../../components/movies/ListMovies";
 import DropdownGenre from "../../components/movies/DropdownGenre";
+import ListMovies from "../../components/movies/ListMovies";
+import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 
 export default function Movies() {
@@ -24,8 +24,8 @@ export default function Movies() {
           }
         );
         setLists(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getRandomLists();

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Col, Container, Row } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
+import { Container, Row, Col } from "react-bootstrap";
 import Article from "../../components/blog/leftSide/Article";
 import TheMostRecentArticle from "../../components/blog/rightSide/TheMostRecentArticle";
 import Footer from "../../components/footer/Footer";
@@ -21,8 +21,8 @@ export default function Blog() {
           },
         });
         setLists(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getPosts();
@@ -48,7 +48,7 @@ export default function Blog() {
                   }
                   return false;
                 })
-                .map((item, index) => (
+                ?.map((item, index) => (
                   <Article key={index} item={item} />
                 ))}
             </Col>

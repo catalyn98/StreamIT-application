@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleItem from "./ArticleItem";
+import { Link } from "react-router-dom";
 
 export default function TheMostRecentArticle() {
   const [lists, setLists] = useState([]);
@@ -16,8 +16,8 @@ export default function TheMostRecentArticle() {
           },
         });
         setLists(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getPosts();

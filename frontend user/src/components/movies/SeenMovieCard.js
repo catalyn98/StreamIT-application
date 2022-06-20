@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import thumbnail from "../../assets/images/episodes/01.jpg";
 
-export default function SeenMovieCard() {
+export default function SeenMovieCard({ title, img, duration, limitAge }) {
   return (
     <>
       <Col md="3" className="col-1-3 iq-mb-30">
         <div className="epi-box">
           <div className="epi-img position-relative">
             {/* Movie image */}
-            <img src={thumbnail} className="img-fluid img-zoom" alt="" />
+            <img src={img || thumbnail} className="img-fluid img-zoom" alt="" />
             <div className="episode-play-info">
               <div className="episode-play">
                 <Link to="#">
@@ -21,16 +21,14 @@ export default function SeenMovieCard() {
           </div>
           <div className="epi-desc p-3">
             {/* Movie title */}
-            <Link to="#">
-              <p className="epi-name text-white mb-0" style={{ fontSize: 25 }}>
-                Titlu film
-              </p>
-            </Link>
-            {/* Date & time */}
-            <div className="d-flex align-items-center justify-content-between">
-              <span className="text-primary" style={{ fontSize: 18 }}>
-                data & ora
-              </span>
+            <p className="epi-name text-white mb-0" style={{ fontSize: 25 }}>
+              {title}
+            </p>
+            <div className="movie-time d-flex align-items-center my-2 iq-ltr-direction">
+              {/* Limit age */}
+              <div className="badge badge-secondary p-1 mr-2">{limitAge}</div>
+              {/* Duration */}
+              <span className="text-white">{duration}</span>
             </div>
           </div>
         </div>

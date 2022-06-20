@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
+import { UserContext } from "../../context/userContext/UserContext";
+import { getUsers, deleteUser } from "../../context/userContext/apiCalls";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
 import Moment from "moment";
-import { UserContext } from "../../context/userContext/UserContext";
-import { getUsers, deleteUser } from "../../context/userContext/apiCalls";
 import { ToastContainer } from "react-toastify";
 import user from "../../assets/images/user/user.png";
 
 export default function UsersList() {
-  const { users, dispatch } = useContext(UserContext);
   const [query, setQuery] = useState("");
+  const { users, dispatch } = useContext(UserContext);
 
   useEffect(() => {
     getUsers(dispatch);
@@ -81,7 +81,7 @@ export default function UsersList() {
                           }
                           return false;
                         })
-                        .map((item, index) => (
+                        ?.map((item, index) => (
                           <tr key={index}>
                             <td>
                               <img

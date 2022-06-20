@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
+import { Container, Row } from "react-bootstrap";
 import AllMoviesCard from "../../components/allMovies/AllMoviesCard";
 import Footer from "../../components/footer/Footer";
 
@@ -73,7 +73,7 @@ export default function AllMovies() {
                     }
                     return false;
                   })
-                  .map((item, index) => (
+                  ?.map((item, index) => (
                     <AllMoviesCard key={index} item={item} />
                   ))}
               </Row>

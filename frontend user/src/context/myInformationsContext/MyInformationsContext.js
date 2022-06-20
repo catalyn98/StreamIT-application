@@ -1,5 +1,5 @@
-import MyInformationsReducer from "./MyInformationsReducer";
 import { createContext, useReducer } from "react";
+import MyInformationsReducer from "./MyInformationsReducer";
 
 const INITIAL_STATE = {
   user: [],
@@ -10,7 +10,10 @@ const INITIAL_STATE = {
 export const MyInformationsContext = createContext(INITIAL_STATE);
 
 export const MyInformationsContextProvider = ({ children }) => {
-  const [state, dispatchUser] = useReducer(MyInformationsReducer, INITIAL_STATE);
+  const [state, dispatchUser] = useReducer(
+    MyInformationsReducer,
+    INITIAL_STATE
+  );
 
   return (
     <MyInformationsContext.Provider

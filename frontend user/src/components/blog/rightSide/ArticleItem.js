@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Moment from "moment";
 import placeholderNews from "../../../assets/images/news/placeholderNews.jpg";
 
@@ -17,8 +17,8 @@ export default function ArticleItem({ item }) {
           },
         });
         setPost(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getPost();

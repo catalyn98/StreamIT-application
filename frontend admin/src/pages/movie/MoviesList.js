@@ -1,22 +1,33 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { CategoryContext } from "../../context/categoryContext/CategoryContext";
+import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
+import { getCategoriesMovies } from "../../context/categoryContext/apiCalls";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Card from "../../components/card/Card";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import { getMovies, deleteMovie } from "../../context/movieContext/apiCalls";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function MoviesList() {
-  const { movies, dispatch } = useContext(MovieContext);
   const [query, setQuery] = useState("");
+  const { movies, dispatch } = useContext(MovieContext);
+  const { categoriesMovies, dispatch: categoryDispatch } =
+    useContext(CategoryContext);
 
   useEffect(() => {
     getMovies(dispatch);
-  }, [dispatch]);
+    getCategoriesMovies(categoryDispatch);
+  }, [dispatch, categoryDispatch]);
 
   const handleDelete = (id) => {
-    deleteMovie(id, dispatch);
+    const categoryId = categoriesMovies
+      .filter((el) => el.content?.includes(id))
+      .map((el) => el._id);
+    deleteMovie(
+      { movieId: id, categoryId: !!categoryId.length && categoryId },
+      dispatch
+    );
   };
 
   return (
@@ -83,7 +94,7 @@ export default function MoviesList() {
                           }
                           return false;
                         })
-                        .map((item, index) => (
+                        ?.map((item, index) => (
                           <tr key={index}>
                             {/* Movie poster + movie name */}
                             <td>

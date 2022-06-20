@@ -13,8 +13,8 @@ import {
   deletePostSuccess,
   deletePostFailure,
 } from "./BlogAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getPosts = async (dispatch) => {
   dispatch(getPostsStart());

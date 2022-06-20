@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
 import { AuthenticationContextProvider } from "../src/context/authenticationContext/AuthenticationContext";
 import { UserContextProvider } from "./context/userContext/UserContext";
-import { MyInformationsContextProvider } from "./context/myInformationsContext/MyInformationsContext";
 import { MovieContextProvider } from "../src/context/movieContext/MovieContext";
 import { CategoryContextProvider } from "../src/context/categoryContext/CategoryContext";
 import { BlogContextProvider } from "../src/context/blogContext/BlogContext";
+import { MyInformationsContextProvider } from "./context/myInformationsContext/MyInformationsContext";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.Fragment>

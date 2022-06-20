@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Col } from "react-bootstrap";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import { addMovieToWatchedMovies } from "../../context/myInformationsContext/apiCalls";
+import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
 
 export default function AllMoviesCard({ item }) {
   const [, setMovie] = useState({});
+  const { user, dispatchUser } = useContext(MyInformationsContext);
 
   useEffect(() => {
+    getMyInformations(dispatchUser);
     const getMovie = async () => {
       try {
         const res = await axios.get("/movie/find/" + item._id, {
@@ -22,7 +27,11 @@ export default function AllMoviesCard({ item }) {
       }
     };
     getMovie();
-  }, [item]);
+  }, [item, dispatchUser]);
+
+  const handeleAddMovieToWatchedMovies = (movieId) => {
+    addMovieToWatchedMovies(movieId, user, dispatchUser);
+  };
 
   return (
     <>
@@ -38,6 +47,7 @@ export default function AllMoviesCard({ item }) {
             <div className="episode-play-info">
               <div className="episode-play">
                 <Link
+                  onClick={() => handeleAddMovieToWatchedMovies(item._id)}
                   to={{ pathname: "/movie-details/" + item.title, movie: item }}
                 >
                   <i className="ri-play-fill"></i>

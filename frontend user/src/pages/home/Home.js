@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import Banner from "../../components/banners/BannerHomePage";
@@ -20,8 +20,8 @@ export default function Home() {
           },
         });
         setLists(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getRandomLists();

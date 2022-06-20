@@ -7,8 +7,8 @@ import {
   deleteUserSuccess,
   deleteUserFailure,
 } from "./UserAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getUsers = async (dispatch) => {
   dispatch(getUsersStart());

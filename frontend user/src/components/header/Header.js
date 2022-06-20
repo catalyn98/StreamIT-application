@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from "react";
-import { Container, Row, Col, Navbar, Dropdown, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Card from "../card/Card";
-import CustomToggle from "../customToggle/CustomToggle";
-import TheMostRecentMovies from "./TheMostRecentMovies";
-import logo from "../../assets/images/logo.png";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
-import { logout } from "../../context/authenticationContext/AuthenticationAction";
 import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
 import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import { Container, Row, Col, Navbar, Dropdown, Nav } from "react-bootstrap";
+import Card from "../card/Card";
+import CustomToggle from "../customToggle/CustomToggle";
+import { Link } from "react-router-dom";
+import { logout } from "../../context/authenticationContext/AuthenticationAction";
+import TheMostRecentMovies from "./TheMostRecentMovies";
+import logo from "../../assets/images/logo.png";
 import userAvatar from "../../assets/images/user/user.png";
 
 export default function Header() {
@@ -192,7 +192,7 @@ export default function Header() {
                             data-toggle="search-toggle"
                           >
                             <img
-                              src={user.profilePicture || userAvatar}
+                              src={user ? user.profilePicture : userAvatar}
                               className="img-fluid avatar-40 rounded-circle"
                               alt="user"
                             />

@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
+import { Link } from "react-router-dom";
 import "swiper/swiper-bundle.css";
 import parallax from "../../assets/images/parallax/p1.jpg";
 import parallaxBackground from "../../assets/images/parallax/p1_sonic.jpg";

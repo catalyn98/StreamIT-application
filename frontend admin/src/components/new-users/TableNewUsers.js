@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../../components/card/Card";
 import Moment from "moment";
@@ -46,7 +46,7 @@ export default function TableNewUsers() {
             </thead>
             {/* Content table */}
             <tbody>
-              {newUsers.map((item, index) => (
+              {newUsers?.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <img

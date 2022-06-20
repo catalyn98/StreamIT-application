@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Moment from "moment";
+import { Link } from "react-router-dom";
 import placeholderNews from "../../../assets/images/news/placeholderNews.jpg";
 
 export default function Article({ item }) {
@@ -82,7 +82,7 @@ export default function Article({ item }) {
               <li className="iq-tag-title">
                 <i className="fa fa-tags" aria-hidden="true"></i> Tag-uri:
               </li>
-              {item.tags.map((item, index) => (
+              {item.tags?.map((item, index) => (
                 <li key={index}>
                   <Link to="#">{item}</Link>
                 </li>

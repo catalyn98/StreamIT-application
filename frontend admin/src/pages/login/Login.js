@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
-import { login } from "../../context/authenticationContext/apiCalls";
-import { ToastContainer } from "react-toastify";
 import notifyError from "../../components/notify/notifyError";
+import { login } from "../../context/authenticationContext/apiCalls";
+import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");

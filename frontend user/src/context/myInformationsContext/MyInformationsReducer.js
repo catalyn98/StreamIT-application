@@ -30,7 +30,7 @@ const MyInformationsReducer = (state, action) => {
 
     case "UPDATE_MY_INFORMATIONS_SUCCESS":
       return {
-        users: state.users.map(
+        users: state.users?.map(
           (user) => user._id === action.payload._id && action.payload
         ),
         isFetching: false,

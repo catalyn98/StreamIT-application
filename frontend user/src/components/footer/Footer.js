@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row, Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import GooglePlay from "../../assets/images/footer/01.jpg";
 import AppStore from "../../assets/images/footer/02.jpg";

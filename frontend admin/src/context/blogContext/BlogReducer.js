@@ -51,7 +51,7 @@ const BlogReducer = (state, action) => {
 
     case "UPDATE_POST_SUCCESS":
       return {
-        posts: state.posts.map(
+        posts: state.posts?.map(
           (post) => post._id === action.payload._id && action.payload
         ),
         isFetching: false,

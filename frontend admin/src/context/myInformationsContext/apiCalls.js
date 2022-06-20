@@ -7,8 +7,8 @@ import {
   updateMyInformationsSuccess,
   updateMyInformationsFailure,
 } from "./MyInformationsAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getMyInformations = async (dispatchMyInformations) => {
   const objectID = JSON.parse(localStorage.getItem("user")).user._id;
@@ -26,10 +26,14 @@ export const getMyInformations = async (dispatchMyInformations) => {
   }
 };
 
-export const updateMyInformations = async (user, dispatchMyInformations) => {
+export const updateMyInformations = async (
+  id,
+  user,
+  dispatchMyInformations
+) => {
   dispatchMyInformations(updateMyInformationsStart());
   try {
-    const res = await axios.put("/user/" + user._id, user, {
+    const res = await axios.put("/user/" + id, user, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,

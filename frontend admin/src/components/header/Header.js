@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Navbar, Button, Nav, Dropdown } from "react-bootstrap";
-import Card from "../card/Card";
+import { Link } from "react-router-dom";
 import CustomToggle from "../dropdown/Dropdown";
-import userAvatar from "../../assets/images/user/01.png";
-import logo from "../../../src/assets/images/logo.png";
+import Card from "../card/Card";
 import { AuthenticationContext } from "../../context/authenticationContext/AuthenticationContext";
 import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
-import { logout } from "../../context/authenticationContext/AuthenticationAction";
 import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import { logout } from "../../context/authenticationContext/AuthenticationAction";
+import userAvatar from "../../assets/images/user/01.png";
+import logo from "../../../src/assets/images/logo.png";
 
 export default function Header() {
-  const { user, dispatchMyInformations } = useContext(MyInformationsContext);
   const { dispatch } = useContext(AuthenticationContext);
+  const { user, dispatchMyInformations } = useContext(MyInformationsContext);
 
   useEffect(() => {
     getMyInformations(dispatchMyInformations);
@@ -94,7 +94,7 @@ export default function Header() {
                 >
                   {/* Profile picture admin */}
                   <img
-                    src={user.profilePicture || userAvatar}
+                    src={user ? user.profilePicture : userAvatar}
                     className="img-fluid rounded-circle mr-3"
                     alt="user"
                   />
@@ -108,7 +108,7 @@ export default function Header() {
                       <div className="bg-primary p-3">
                         {/* Admin name */}
                         <h5 className="mb-0 text-white line-height">
-                          Salutare {user.lastName}
+                          Salutare {user?.lastName}
                         </h5>
                       </div>
                     </Card.Header>

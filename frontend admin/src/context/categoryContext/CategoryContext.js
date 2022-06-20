@@ -1,5 +1,5 @@
-import CategoryReducer from "./CategoryReducer";
 import { createContext, useReducer } from "react";
+import CategoryReducer from "./CategoryReducer";
 
 const INITIAL_STATE = {
   categoriesMovies: [],

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Login from "../pages/login/Login";
-import MainPagesApp from "./MainPagesApp";
 import { AuthenticationContext } from "../context/authenticationContext/AuthenticationContext";
+import { Switch, Route, Redirect } from "react-router-dom";
+import MainPagesApp from "./MainPagesApp";
+import Login from "../pages/login/Login";
 
 export default function PagesLayout() {
   const { user } = useContext(AuthenticationContext);

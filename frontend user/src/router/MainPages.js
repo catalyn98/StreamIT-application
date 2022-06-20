@@ -1,14 +1,14 @@
-import { Switch, Route } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Switch, Route } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Movies from "../pages/movies/Movies";
 import Blog from "../pages/blog/Blog";
 import Team from "../pages/team/Team";
 import ContactUs from "../pages/contact-us/ContactUs";
-import UserAccountSettings from "../pages/user-management/UserAccountSettings";
-import UserProfile from "../pages/user-management/UserProfile";
 import MovieDetails from "../pages/movie-details/MovieDetails";
 import AllMovies from "../pages/all-movies/AllMovies";
+import UserProfile from "../pages/user-management/UserProfile";
+import UserAccountSettings from "../pages/user-management/UserAccountSettings";
 import TermsOfUse from "../pages/extra-pages/TermsOfUse";
 import PrivacyPolicy from "../pages/extra-pages/PrivacyPolicy";
 import FAQ from "../pages/extra-pages/FAQ";

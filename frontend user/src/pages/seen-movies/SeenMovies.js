@@ -1,10 +1,23 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useContext, useEffect } from "react";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import { getMovies } from "../../context/movieContext/apiCalls";
 import Header from "../../components/header/Header";
+import { Container, Row, Col } from "react-bootstrap";
 import SeenMovieCard from "../../components/movies/SeenMovieCard";
 import Footer from "../../components/footer/Footer";
 
 export default function SeenMovies() {
+  const { user, dispatchUser } = useContext(MyInformationsContext);
+  const { movies, dispatch } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMyInformations(dispatchUser);
+    getMovies(dispatch);
+  }, [dispatch, dispatchUser]);
+
   return (
     <>
       <Header />
@@ -20,16 +33,21 @@ export default function SeenMovies() {
                 </Col>
               </Row>
               <Row>
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
-                <SeenMovieCard />
+                {user.seenMovies
+                  ?.map((el) =>
+                    movies
+                      .filter((movie) => movie._id === el)
+                      .map((e, i) => (
+                        <SeenMovieCard
+                          key={i}
+                          title={e.title}
+                          img={e.image}
+                          duration={e.duration}
+                          limitAge={e.limitAge}
+                        />
+                      ))
+                  )
+                  .slice(0, 10)}
               </Row>
             </div>
           </Container>

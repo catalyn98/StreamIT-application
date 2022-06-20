@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Card from "../../components/card/Card";
-import storage from "../../firebase";
-import Moment from "moment";
-import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
-import { ToastContainer } from "react-toastify";
-import notifySuccess from "../../components/notify/notifySuccess";
+import { createMovie } from "../../context/movieContext/apiCalls";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Moment from "moment";
+import storage from "../../firebase";
 import notifyError from "../../components/notify/notifyError";
+import notifySuccess from "../../components/notify/notifySuccess";
+import Card from "../../components/card/Card";
+import { ToastContainer } from "react-toastify";
 
 export default function AddMovie() {
   const [movie, setMovie] = useState(null);
@@ -16,12 +16,19 @@ export default function AddMovie() {
   const [trailer, setTrailer] = useState(null);
   const [uploaded, setUploaded] = useState(0);
   const history = useHistory();
-
   const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createMovie(movie, dispatch);
+    setTimeout(() => {
+      history.push("/movies-list");
+    }, 6000);
   };
 
   const upload = (items) => {
@@ -65,14 +72,6 @@ export default function AddMovie() {
       { file: image, label: "image" },
       { file: trailer, label: "trailer" },
     ]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createMovie(movie, dispatch);
-    setTimeout(() => {
-      history.push("/movies-list");
-    }, 6000);
   };
 
   return (

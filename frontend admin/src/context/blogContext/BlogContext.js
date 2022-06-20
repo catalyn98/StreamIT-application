@@ -1,5 +1,5 @@
-import BlogReducer from "./BlogReducer";
 import { createContext, useReducer } from "react";
+import BlogReducer from "./BlogReducer";
 
 const INITIAL_STATE = {
   posts: [],

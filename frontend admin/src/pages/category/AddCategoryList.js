@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
-import Card from "../../components/card/Card";
-import { getMovies } from "../../context/movieContext/apiCalls";
-import { MovieContext } from "../../context/movieContext/MovieContext";
 import { CategoryContext } from "../../context/categoryContext/CategoryContext";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { getMovies } from "../../context/movieContext/apiCalls";
 import { createCategoryMovies } from "../../context/categoryContext/apiCalls";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Card from "../../components/card/Card";
 import { ToastContainer } from "react-toastify";
 
 export default function AddCategory() {
   const [list, setList] = useState(null);
   const history = useHistory();
-
   const { dispatch } = useContext(CategoryContext);
   const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
 

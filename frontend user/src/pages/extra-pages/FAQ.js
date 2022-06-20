@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
+import { Container, Row, Col } from "react-bootstrap";
 import Card from "../../components/card/Card";
+import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import multipleDevices from "../../assets/images/multipleDevices.png";
 

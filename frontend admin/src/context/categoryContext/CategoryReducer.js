@@ -51,7 +51,7 @@ const CategoryReducer = (state, action) => {
 
     case "UPDATE_CATEGORY_SUCCESS":
       return {
-        categoriesMovies: state.categoriesMovies.map(
+        categoriesMovies: state.categoriesMovies?.map(
           (categoryMovies) =>
             categoryMovies._id === action.payload._id && action.payload
         ),

@@ -1,6 +1,6 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
 SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);

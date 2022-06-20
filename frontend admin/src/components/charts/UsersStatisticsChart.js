@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import axios from "axios";
 import Chart from "react-apexcharts";
 
@@ -39,7 +39,7 @@ export default function UsersStatisticsChart() {
         const statisticsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });
-        statisticsList.map((item) =>
+        statisticsList?.map((item) =>
           setUserStatistics((prev) => [
             ...prev,
             {

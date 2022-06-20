@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieItem from "./MovieItem";
 
@@ -15,8 +15,8 @@ export default function TheMostRecentMovies() {
           },
         });
         setRecentMovies(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
     getRecentMovies();

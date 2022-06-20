@@ -7,8 +7,8 @@ import {
   updateMyInformationsSuccess,
   updateMyInformationsFailure,
 } from "./MyInformationsAction";
-import notifyError from "../../components/notify/notifyError";
 import notifySuccess from "../../components/notify/notifySuccess";
+import notifyError from "../../components/notify/notifyError";
 
 export const getMyInformations = async (dispatchUser) => {
   const objectID = JSON.parse(localStorage.getItem("user")).user._id;
@@ -26,10 +26,10 @@ export const getMyInformations = async (dispatchUser) => {
   }
 };
 
-export const updateMyInformations = async (user, dispatchUser) => {
+export const updateMyInformations = async (id, user, dispatchUser) => {
   dispatchUser(updateMyInformationsStart());
   try {
-    const res = await axios.put("/user/" + user._id, user, {
+    const res = await axios.put("/user/" + id, user, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(localStorage.getItem("user")).token,
@@ -40,5 +40,20 @@ export const updateMyInformations = async (user, dispatchUser) => {
   } catch (error) {
     dispatchUser(updateMyInformationsFailure());
     notifyError("Detaliile contului nu au putut fi actualizate.");
+  }
+};
+
+export const addMovieToWatchedMovies = async (movieId, user, dispatchUser) => {
+  dispatchUser(updateMyInformationsStart());
+  try {
+    const res = await axios.put("/user/" + user._id + "/" + movieId, user, {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+      },
+    });
+    dispatchUser(updateMyInformationsSuccess(res.data));
+  } catch (error) {
+    dispatchUser(updateMyInformationsFailure());
   }
 };

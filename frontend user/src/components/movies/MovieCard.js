@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { MyInformationsContext } from "../../context/myInformationsContext/MyInformationsContext";
+import { getMyInformations } from "../../context/myInformationsContext/apiCalls";
+import { addMovieToWatchedMovies } from "../../context/myInformationsContext/apiCalls";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import SwiperCore, { EffectFade, Navigation, Thumbs, Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
 import placeholderMovie from "../../assets/images/movie-thumb/placeholderMovie.jpg";
@@ -8,8 +11,10 @@ SwiperCore.use([EffectFade, Navigation, Thumbs, Pagination]);
 
 export default function MovieCard({ item }) {
   const [movie, setMovie] = useState({});
+  const { user, dispatchUser } = useContext(MyInformationsContext);
 
   useEffect(() => {
+    getMyInformations(dispatchUser);
     const getMovie = async () => {
       try {
         const res = await axios.get("/movie/find/" + item, {
@@ -24,7 +29,11 @@ export default function MovieCard({ item }) {
       }
     };
     getMovie();
-  }, [item]);
+  }, [item, dispatchUser]);
+
+  const handeleAddMovieToWatchedMovies = (movieId) => {
+    addMovieToWatchedMovies(movieId, user, dispatchUser);
+  };
 
   return (
     <div className=" block-images position-relative">
@@ -51,6 +60,7 @@ export default function MovieCard({ item }) {
         {/* See movie */}
         <div className="hover-buttons">
           <Link
+            onClick={() => handeleAddMovieToWatchedMovies(movie._id)}
             to={{ pathname: "/movie-details/" + movie.title, movie: movie }}
             className="btn btn-hover iq-button"
           >

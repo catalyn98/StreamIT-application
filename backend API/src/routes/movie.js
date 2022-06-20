@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const authentication = require("../middlewares/authentication");
 const Movie = require("../models/Movie");
+const CategoriesMovies = require("../models/CategoriesMovies");
+const { default: mongoose } = require("mongoose");
 
 // Create movie
 router.post("/", authentication.verify, async (req, res) => {
@@ -20,9 +22,6 @@ router.post("/", authentication.verify, async (req, res) => {
 // Update movie
 router.put("/:id", authentication.verify, async (req, res) => {
   try {
-    console.log(req.params.id);
-    console.log("start update");
-    console.log(req.body);
     const updateMovie = await Movie.findByIdAndUpdate(
       req.params.id,
       {
@@ -32,8 +31,6 @@ router.put("/:id", authentication.verify, async (req, res) => {
         new: true,
       }
     );
-    console.log("finished update");
-
     res.status(200).json(updateMovie);
   } catch (error) {
     res.status(500).json(error);
@@ -41,13 +38,32 @@ router.put("/:id", authentication.verify, async (req, res) => {
 });
 
 // Delete movie
-router.delete("/:id", authentication.verify, async (req, res) => {
+router.delete("/:movieId", authentication.verify, async (req, res) => {
+  const existsMovieInCategory =
+    req.body.ids &&
+    (await CategoriesMovies.find({
+      _id: !!req.body.ids.length ? req.body.ids.map((el) => el) : null,
+    }));
+  const movieId = req.params.movieId;
   if (req.user.role === "admin") {
     try {
-      await Movie.findByIdAndDelete(req.params.id);
-      res
-        .status(200)
-        .json("Filmul cu id-ul " + req.params.id + " a fost șters!");
+      if (existsMovieInCategory) {
+        await CategoriesMovies.updateMany(
+          {
+            _id:
+              req.body.ids &&
+              !!req.body.ids.length &&
+              req.body.ids.map((el) => el),
+          },
+          {
+            $pullAll: {
+              content: [{ _id: movieId }],
+            },
+          }
+        );
+      }
+      await Movie.findByIdAndDelete(mongoose.Types.ObjectId(movieId));
+      res.status(200).json("Filmul cu id-ul " + movieId + " a fost șters!");
     } catch (error) {
       res.status(500).json(error);
     }

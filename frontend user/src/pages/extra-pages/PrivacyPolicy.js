@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import Header from "../../components/header/Header";
 import BannerPages from "../../components/banners/BannerPages";
+import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 
 export default function PrivacyPolicy() {

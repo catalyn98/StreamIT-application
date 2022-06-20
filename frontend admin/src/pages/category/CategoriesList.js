@@ -1,17 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import Card from "../../components/card/Card";
 import { CategoryContext } from "../../context/categoryContext/CategoryContext";
 import {
   getCategoriesMovies,
   deleteCategoryMovies,
 } from "../../context/categoryContext/apiCalls";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Card from "../../components/card/Card";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 export default function CategoriesList() {
-  const { categoriesMovies, dispatch } = useContext(CategoryContext);
   const [query, setQuery] = useState("");
+  const { categoriesMovies, dispatch } = useContext(CategoryContext);
 
   useEffect(() => {
     getCategoriesMovies(dispatch);
@@ -83,7 +83,7 @@ export default function CategoriesList() {
                           }
                           return false;
                         })
-                        .map((item, index) => (
+                        ?.map((item, index) => (
                           <tr key={index}>
                             <td>{item.title}</td>
                             <td>{item.genre}</td>
