@@ -19,9 +19,9 @@ StreamIT application requires [Node.js](https://nodejs.org/)  to run.
 
 ### Set environment variables 
 ```sh
-$ Create a .env file in your backend API folder
-$ See the .env sample
+$ Create a .env file in your backend API folder, frontend user folder and frontend admin folder
 create a mongodb database and add your connection string into .env file
+create a firebase connection and add your connection string into .env file
 ```
 
 ### Clone the repositories
@@ -149,7 +149,7 @@ $ npm start
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/12.Update%20post.png" />
 
   13.Login admin page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/10.Login%20admin%20page.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/13.Login%20admin%20page.png" />
 </details>
 
 # Database structure
