@@ -143,7 +143,7 @@ $ npm start
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/10.Update%20category%20movies%20list.png" />
 
   11.Add post 
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/9.Add%20post.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/11.Add%20post.png" />
 
   12.Update post
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/12.Update%20post.png" />
