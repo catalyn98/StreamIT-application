@@ -226,7 +226,7 @@ export default function AdminManagementAccount() {
                             className="mr-2"
                             onClick={handleSubmitProfilePicture}
                           >
-                            Încarcă poza de profil
+                            Încarcă poza
                           </Button>
                         </Link>
                         <Link to="/">

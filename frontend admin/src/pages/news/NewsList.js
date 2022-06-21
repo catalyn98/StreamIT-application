@@ -109,7 +109,9 @@ export default function NewsList() {
                             {/* Tags post */}
                             <td style={{ listStyleType: "none" }}>
                               {item.tags?.map((tag, index) => (
-                                <li key={index}>{tag}</li>
+                                <li className="tagsBlog" key={index}>
+                                  {tag}
+                                </li>
                               ))}
                             </td>
                             {/* Date post */}

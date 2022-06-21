@@ -28,7 +28,7 @@ export default function SeenMovies() {
               <Row>
                 <Col sm="12" className="overflow-hidden">
                   <div className="iq-main-header d-flex align-items-center justify-content-between">
-                    <h4 className="main-title">Filme vizualizate</h4>
+                    <h4 className="main-title">Filme vizionate</h4>
                   </div>
                 </Col>
               </Row>

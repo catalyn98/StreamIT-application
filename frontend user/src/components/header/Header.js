@@ -96,7 +96,7 @@ export default function Header() {
                                     <i className="ri-movie-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
-                                    <h6 className="my-0 ">Filme vizualizate</h6>
+                                    <h6 className="my-0 ">Filme vizionate</h6>
                                   </div>
                                 </div>
                               </Link>
@@ -245,7 +245,7 @@ export default function Header() {
                                     <i className="ri-movie-line text-primary"></i>
                                   </div>
                                   <div className="media-body ml-3">
-                                    <h6 className="my-0 ">Filme vizualizate</h6>
+                                    <h6 className="my-0 ">Filme vizionate</h6>
                                   </div>
                                 </div>
                               </Link>

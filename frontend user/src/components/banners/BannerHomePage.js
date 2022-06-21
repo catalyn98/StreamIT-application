@@ -191,6 +191,7 @@ export default function Banner() {
                           data-iq-gsap="onStart"
                           data-iq-position-y="80"
                           data-iq-delay="0.8"
+                          className="descriptionMovies"
                         >
                           {content.description}
                         </p>

@@ -951,6 +951,15 @@ li.slide-item:hover .block-images {
 
 /*-------------------*/
 
+.descriptionMovies {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+          line-clamp: 3; 
+  -webkit-box-orient: vertical;
+}
+
 .movie-content li {
   position: relative;
   padding-right: 20px;

@@ -209,14 +209,21 @@ export default function UserAccountSettings() {
                             </Form.Group>
                           </Col>
                         </Row>
-                        <Button
-                          type="button"
-                          variant="btn btn-primary"
-                          style={{ backgroundColor: "red", borderColor: "red" }}
-                          onClick={handleSubmit}
-                        >
-                          Actualizează
-                        </Button>{" "}
+                        <Link to="/">
+                          <Button
+                            type="button"
+                            variant="btn btn-primary"
+                            className="mr-2"
+                            style={{
+                              backgroundColor: "red",
+                              borderColor: "red",
+                              padding: 10,
+                            }}
+                            onClick={handleSubmit}
+                          >
+                            Actualizează
+                          </Button>
+                        </Link>
                         <Link to="/">
                           <Button
                             type="submit"
@@ -225,10 +232,11 @@ export default function UserAccountSettings() {
                             style={{
                               backgroundColor: "red",
                               borderColor: "red",
+                              padding: 10,
                             }}
                             onClick={handleSubmitProfilePicture}
                           >
-                            Încarcă poza de profil
+                            Încarcă poza
                           </Button>
                         </Link>
                         <Link to="/user-profile">
@@ -238,6 +246,7 @@ export default function UserAccountSettings() {
                             style={{
                               backgroundColor: "white",
                               borderColor: "white",
+                              padding: 10,
                             }}
                           >
                             Anulează
