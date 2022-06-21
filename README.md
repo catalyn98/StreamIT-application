@@ -137,7 +137,7 @@ $ npm start
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/8.Update%20movie.png" />
   
   9.Add category movies list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/8.Add%20category%20movies%20list.png" />
+  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/9.Add%20category%20movies%20list.png" />
 
   10.Update category movies list
   <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/10.Update%20category%20movies%20list.png" />
