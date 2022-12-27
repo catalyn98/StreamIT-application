@@ -11,7 +11,7 @@ MongoDB, ExpressJS, NodeJS, React
 StreamIT uses a number of open source projects to work properly:
 * [MongoDB](https://www.mongodb.com/) - A document-oriented, No-SQL database used to store the application data.
 * [ExpressJS](https://expressjs.com/) - fast node.js network app framework.
-* [NodeJS](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine
+* [NodeJS](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
 
 # Installation
