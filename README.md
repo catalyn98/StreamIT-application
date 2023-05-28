@@ -50,8 +50,9 @@ $ npm start
 ```
 
 # Web application screenshots 
-|Home page|Movies page|
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |
+|  Home page |  Movies page |
+| ------------ | ------------ |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |
 
 1.Home page
 <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />
