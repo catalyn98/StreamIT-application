@@ -50,17 +50,17 @@ $ npm start
 ```
 
 # Web application screenshots 
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |   |   |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| <h3 align="center">Home page</h3>  | <h3 align="center">Movies page</h3> |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 1.Home page
 <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />
 
