@@ -50,25 +50,9 @@ $ npm start
 ```
 
 # Web application screenshots 
-| **Home page** | **Movies page** |
-| ------------ | ------------ |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> |
-| **Blog page** | **Team page** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/6.Blog%20page.png" />  | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/7.Team%20page.png" />  |
-| **Contact us page** | **View profile** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/8.Contact%20us%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/9.View%20profile.png" /> |
-| **Settings account** | **Seen movies by user** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/10.Settings%20account.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/11.Seen%20movies%20by%20user.png" /> |
-| **Movies details page** | **Terms of use** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/12.Movies%20details%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/15.Terms%20of%20use.png" /> |
-| **Privacy policy** | **Frequevent questions** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/13.Privacy%20policy.png" /> |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/14.Frequevent%20questions.png" /> |
-| **All movies page** | **Login page** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/16.All%20movies.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/1.Login%20page.png" /> |
-| **Register page** | **Recovery password page** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/2.Register%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/3.Recovery%20password%20page.png" /> |
-| **Email resset password** | **Email sent by user from contact page** |
-| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/17.Email%20resset%20password.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/18.Email%20sent%20by%20user%20from%20contact%20page.png" /> |
+| **Home page** | **Movies page** | **Blog page** |
+| ------------ | ------------ | ------------ |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/6.Blog%20page.png" />  |
 
 1.Home page
 <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />
