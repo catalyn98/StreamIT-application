@@ -1,47 +1,48 @@
 <h1 align="center">
-StreamIT
+  StreamIT
 </h1>
 <p align="center">
-MongoDB, ExpressJS, NodeJS, React
+  ReactJS, NodeJS, ExpressJS, MongoDB
 </p>
 
-<img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/mern.png" />
+<img align="center" src="https://firebasestorage.googleapis.com/v0/b/licenseproject-c2773.appspot.com/o/mern.png?alt=media&token=3ec9ebdd-6476-4ae2-b172-7fcb635c072d" />
 
 # Tech stack
 StreamIT uses a number of open source projects to work properly:
-* [MongoDB](https://www.mongodb.com/) - A document-oriented, No-SQL database used to store the application data.
-* [ExpressJS](https://expressjs.com/) - fast node.js network app framework.
-* [NodeJS](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
-* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [ReactJS](https://reactjs.org/) - a JavaScript library for building user interfaces.
+* [NodeJS](https://nodejs.org/) - is an open-source, server-side JavaScript runtime environment that allows you to run JavaScript code on the server.
+* [ExpressJS](https://expressjs.com/) - is a popular web application framework for Node.js. It provides a set of features and tools that simplify the process of building web applications and APIs.
+* [MongoDB](https://www.mongodb.com/) - a document-oriented, No-SQL database used to store the application data.
 
 # Installation
-StreamIT application requires [Node.js](https://nodejs.org/)  to run.
+StreamIT application requires [Node.js](https://nodejs.org/) to run.
 
 ### Set environment variables 
-```sh
-$ Create a .env file in your backend API folder, frontend user folder and frontend admin folder
-create a mongodb database and add your connection string into .env file
-create a firebase connection and add your connection string into .env file
-```
+To set up your project, follow these steps:
+1. Create a *.env* file in the following directories: the *backend API* folder, the *frontend user* folder, and the *frontend admin* folder, this file will store your environment variables.
+2. Create a MongoDB database and obtain the connection string provided by MongoDB for connecting to your database.
+3. Create a Firebase project and obtain the Firebase connection string.
 
 ### Clone the repositories
 ```sh
 $ git clone https://github.com/catalyn98/StreamIT-application.git
 ```
 
-### Install the dependencies and devDependencies:
+### Install the dependencies:
 Start the server:
 ```sh
 $ cd backend API
 $ npm install 
 $ npm start 
 ```
+
 Start the frontend user:
 ```sh
 $ cd frontend admin
 $ npm install 
 $ npm start 
 ```
+
 Start the frontend admin:
 ```sh
 $ cd frontend admin
@@ -50,80 +51,32 @@ $ npm start
 ```
 
 # Web application screenshots 
-| **Home page** | **Movies page** | **Blog page** |
+| <p align="center">**Home page**</p> | <p align="center">**Movies page**</p> | <p align="center">**Blog page**</p> |
 | ------------ | ------------ | ------------ |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/4.Home%20page.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/5.Movies%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/6.Blog%20page.png" /> |
-| **Team page** | **Contact us page** | **View profile** |
+| <p align="center">**Team page**</p> | <p align="center">**Contact us page**</p> | <p align="center">**View profile**</p> |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/7.Team%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/8.Contact%20us%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/9.View%20profile.png" /> |
-| **Settings account** | **Seen movies by user** | **Movies details page** |
+| <p align="center">**Settings account**</p> | <p align="center">**Seen movies by user**</p> | <p align="center">**Movies details page**</p> |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/10.Settings%20account.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/11.Seen%20movies%20by%20user.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/12.Movies%20details%20page.png" /> |
-| **Terms of use** | **Privacy policy** | **Frequevent questions** |
+| <p align="center">**Terms of use**</p> | <p align="center">**Privacy policy**</p> | <p align="center">**Frequevent questions**</p> |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/15.Terms%20of%20use.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/13.Privacy%20policy.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/14.Frequevent%20questions.png" /> |
-| **All movies page** | **Login page** | **Register page** |
+| <p align="center">**All movies page**</p> | <p align="center">**Login page**</p> | <p align="center">**Register page**</p> |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/16.All%20movies.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/1.Login%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/2.Register%20page.png" /> |
-| **Recovery password page** | **Email resset password** | **Email sent by user from contact page** |
+| <p align="center">**Recovery password page**</p> | <p align="center">**Email resset password**</p> | <p align="center">**Email sent by user from contact page**</p> |
 | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/3.Recovery%20password%20page.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/17.Email%20resset%20password.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/User%20pages/18.Email%20sent%20by%20user%20from%20contact%20page.png" /> |
 
 # Admin panel screenshots
-
-1.Dashboard
-<img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/1.Dashboard.png" />
-
-<details>
-  <summary>More Screenshots</summary>
-  2.Users list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/2.Users%20list.png" />
-
-  3.Movies list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/3.Movies%20list.png" />
-
-  4.Categories movies
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/4.Categories%20movies%20list.png" />
-
-  5.Posts list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/5.Posts%20list.png" />
-
-  6.Account settings
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/6.Account%20settings.png" />
-
-  7.Add movie 
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/7.Add%20movie.png" />
-
-  8.Update movie
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/8.Update%20movie.png" />
-  
-  9.Add category movies list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/9.Add%20category%20movies%20list.png" />
-
-  10.Update category movies list
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/10.Update%20category%20movies%20list.png" />
-
-  11.Add post 
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/11.Add%20post.png" />
-
-  12.Update post
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/12.Update%20post.png" />
-
-  13.Login admin page
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/13.Login%20admin%20page.png" />
-</details>
+| <p align="center">**Dashboard**</p> | <p align="center">**Users list**</p> | <p align="center">**Movies list**</p> |
+| ------------ | ------------ | ------------ |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/1.Dashboard.png" />  |  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/2.Users%20list.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/3.Movies%20list.png" /> |
+| <p align="center">**Categories movies**</p> | <p align="center">**Posts list**</p> | <p align="center">**Account settings**</p> |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/4.Categories%20movies%20list.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/5.Posts%20list.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/6.Account%20settings.png" /> |
+| <p align="center">**Add movie**</p> | <p align="center">**Update movie**</p> | <p align="center">**Add category movies list**</p> |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/7.Add%20movie.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/8.Update%20movie.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/9.Add%20category%20movies%20list.png" /> |
+| <p align="center">**Update category movies list**</p> | <p align="center">**Add post**</p> | <p align="center">**Update post**</p> |
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/10.Update%20category%20movies%20list.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/11.Add%20post.png" /> | <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/12.Update%20post.png" /> |
+| <p align="center">**Login admin page**</p> |||
+| <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Admin%20pages/13.Login%20admin%20page.png" /> |
 
 # Database structure
-
-1.The whole schema
-<img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/1.Structure%20of%20database.png" />
-
-<details>
-  <summary>More Screenshots</summary>
-  2.User schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/2.User.png" />
-
-  3.Movie schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/3.Movie.png" />
-
-  4.Category movie schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/4.Category%20movie.png" />
-
-  5.Article schema
-  <img src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/5.Article.png" />
-</details>
+<img align="center" src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/1.Structure%20of%20database.png" />
