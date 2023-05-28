@@ -38,7 +38,7 @@ $ npm start
 
 Start the frontend user:
 ```sh
-$ cd frontend admin
+$ cd frontend user
 $ npm install 
 $ npm start 
 ```
