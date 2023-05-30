@@ -80,3 +80,14 @@ $ npm start
 
 # Database structure
 <img align="center" src="https://github.com/catalyn98/StreamIT-application/blob/master/screenshots/Database%20structure/1.Structure%20of%20database.png" />
+
+# Credit
+This application was created based on a comprehensive tutorial on YouTube titled **"React Node.js Netflix App | MERN Stack + JWT Full Tutorial"** by Lama Dev. You can find the tutorial [here](https://www.youtube.com/watch?v=FzWG8jiw4XM).
+
+### Description
+The tutorial provided a step-by-step guide on building this app using the MERN stack. It covered various aspects of the development process, including setting up the backend API, implementing user authentication, fetching movie data from external sources, building the user interface with React, and incorporating responsive design principles.
+By following the tutorial, I gained practical experience in utilizing the MERN stack to create a dynamic and engaging streaming platform. I learned how to handle user authentication, manage database interactions, and display movie data in a visually appealing manner.
+Lama Dev did an excellent job of explaining complex concepts and providing insightful tips throughout the tutorial.
+
+### Acknowledgment
+I would like to express my gratitude to Lama Dev for sharing his knowledge and expertise through the tutorial. His comprehensive guidance and clear explanations were invaluable resources in developing this MERN stack app. I highly recommend checking out the tutorial for anyone interested in building their own streaming platform.
